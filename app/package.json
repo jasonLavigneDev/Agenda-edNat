@@ -6,7 +6,7 @@
     "start": "meteor --exclude-archs 'web.browser.legacy, web.cordova' --settings ../config/settings.development.json",
     "start-dev": "MONGO_URL=mongodb://localhost:3001/meteor meteor run --exclude-archs 'web.browser.legacy, web.cordova' --settings ../config/settings.development.json --port 3030",
     "test": "meteor test --once --exclude-archs 'web.browser.legacy, web.cordova' --driver-package meteortesting:mocha --allow-superuser",
-    "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
+    "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha --settings ../config/settings.development.json",
     "lint": "eslint . --ext js,jsx",
     "lintfix": "eslint --fix . --ext js,jsx",
     "visualize": "meteor --production --extra-packages bundle-visualizer --settings ../config/settings.development.json",
@@ -28,6 +28,8 @@
     "babel-eslint": "^10.1.0",
     "bcrypt": "^5.0.1",
     "buffer": "^6.0.3",
+    "chai": "^4.3.4",
+    "faker": "^5.5.3",
     "ical-generator": "^2.2.0",
     "meteor-node-stubs": "^1.0.1",
     "moment": "^2.29.1",
@@ -37,7 +39,8 @@
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-toastify": "^7.0.4",
-    "simpl-schema": "^1.12.0"
+    "simpl-schema": "^1.12.0",
+    "sinon": "^11.1.1"
   },
   "meteor": {
     "mainModule": {
