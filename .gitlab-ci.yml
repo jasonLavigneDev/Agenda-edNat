@@ -1,0 +1,41 @@
+image: hub.eole.education/proxyhub/geoffreybooth/meteor-base:2.1
+
+stages:
+  - deps
+  - lint
+  - test
+
+before_script:
+  - cd app
+
+cache:
+  paths:
+    - app/node_modules/
+
+variables:
+  METEOR_ALLOW_SUPERUSER: "true"
+
+Deps:
+  stage: deps
+  script:
+    - meteor npm ci
+  artifacts:
+    paths:
+      - app/node_modules/
+  rules:
+    - if: '$CI_COMMIT_MESSAGE  !~ /^(\[Draft\]|\(Draft\)|Draft:|\[WIP\]|WIP:)/'
+
+Lint:
+  stage: lint
+  script:
+    - meteor npm install --only=dev
+    - meteor npm run lint
+  rules:
+    - if: '$CI_COMMIT_MESSAGE  !~ /^(\[Draft\]|\(Draft\)|Draft:|\[WIP\]|WIP:)/'
+
+Test:
+  stage: test
+  script:
+    - meteor npm test
+  rules:
+    - if: '$CI_COMMIT_MESSAGE  !~ /^(\[Draft\]|\(Draft\)|Draft:|\[WIP\]|WIP:)/'

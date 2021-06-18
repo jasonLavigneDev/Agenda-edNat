@@ -1,0 +1,21 @@
+{
+  "public": {
+    "enableKeycloak": true,
+    "keycloakUrl": "",
+    "keycloakRealm": "",
+    "laboiteURL": ""
+  },
+  "keycloak": {
+    "pubkey": "",
+    "client": "",
+  },
+  "private": {
+    "laboiteApiKey": "",
+    "apiKeys": [],
+  },
+  "smtp":{
+    "url": "smtps://USERNAME:PASSWORD@HOST:PORT",
+    "fromEmail": "USERNAME",
+    "toEmail": "admin@domain.fr"
+  }
+}
