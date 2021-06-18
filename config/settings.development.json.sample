@@ -10,12 +10,11 @@
     "client": "",
   },
   "private": {
-    "laboiteApiKey": "",
     "apiKeys": [],
+    "smtp":{
+      "url": "smtps://USERNAME:PASSWORD@HOST:PORT",
+      "fromEmail": "USERNAME",
+      "toEmail": "admin@domain.fr"
+    }
   },
-  "smtp":{
-    "url": "smtps://USERNAME:PASSWORD@HOST:PORT",
-    "fromEmail": "USERNAME",
-    "toEmail": "admin@domain.fr"
-  }
 }

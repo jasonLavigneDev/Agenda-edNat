@@ -3,7 +3,7 @@ import ROUTES from '../../../ui/layouts/routes';
 
 const sendnotif = ({ groups, participants, title, eventId, content }) => {
   axios.defaults.baseURL = Meteor.settings.public.laboiteHost;
-  axios.defaults.headers.common['X-API-KEY'] = Meteor.settings.private.laboiteApiKey;
+  axios.defaults.headers.common['X-API-KEY'] = Meteor.settings.private.apiKeys[0];
   axios.defaults.headers.post['Content-Type'] = 'application/json';
   try {
     groups.forEach(async ({ _id }) => {
