@@ -57,7 +57,7 @@ ModalWrapper.propTypes = {
   open: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
   onClose: PropTypes.func.isRequired,
-  children: PropTypes.objectOf(PropTypes.any).isRequired,
+  children: PropTypes.arrayOf(PropTypes.any).isRequired,
   loading: PropTypes.bool,
   buttons: PropTypes.arrayOf(PropTypes.any).isRequired,
 };
