@@ -20,19 +20,23 @@ export const createEvent = new ValidatedMethod({
         throw new Meteor.Error('api.events.create.notLoggedIn', i18n.__('api.users.mustBeLoggedIn'));
       }
       const result = Events.insert(data);
-      if (result && Meteor.isServer) {
+      if (result && Meteor.isServer && !Meteor.isTest) {
         // eslint-disable-next-line global-require
         const sendnotif = require('../notifications/server/notifSender').default;
         // eslint-disable-next-line global-require
         const sendEmail = require('../emails/server/methods').default;
-        sendnotif({
-          groups: data.groups,
-          participants: data.participants,
-          title: i18n.__('notifications.newMeetingEvent'),
-          content: `${i18n.__('notifications.youAreInvitedTo')} ${data.title}`,
-          eventId: result,
-        });
-        sendEmail.call({ event: data });
+        if (data.participants && data.participants.length) {
+          sendnotif({
+            groups: data.groups,
+            participants: data.participants,
+            title: i18n.__('notifications.newMeetingEvent'),
+            content: `${i18n.__('notifications.youAreInvitedTo')} ${data.title}`,
+            eventId: result,
+          });
+        }
+        if (data.guests && data.guests.length) {
+          sendEmail.call({ event: data });
+        }
       }
       return result;
     } catch (error) {
@@ -55,16 +59,23 @@ export const editEvent = new ValidatedMethod({
         throw new Meteor.Error('api.events.edit.notOwner', i18n.__('api.users.mustBeOwner'));
       }
       const result = Events.update({ _id: data._id }, { $set: { ...data } });
-      if (result && Meteor.isServer) {
+      if (result && Meteor.isServer && !Meteor.isTest) {
         // eslint-disable-next-line global-require
         const sendnotif = require('../notifications/server/notifSender').default;
-        sendnotif({
-          groups: data.groups,
-          participants: data.participants,
-          title: i18n.__('notifications.newMeetingEvent'),
-          content: `${i18n.__('notifications.youAreInvitedTo')} ${data.title}`,
-          eventId: result,
-        });
+        // eslint-disable-next-line global-require
+        const sendEmail = require('../emails/server/methods').default;
+        if (data.participants && data.participants.length) {
+          sendnotif({
+            groups: data.groups,
+            participants: data.participants,
+            title: i18n.__('notifications.newMeetingEvent'),
+            content: `${i18n.__('notifications.youAreInvitedTo')} ${data.title}`,
+            eventId: result,
+          });
+        }
+        if (data.guests && data.guests.length) {
+          sendEmail.call({ event: data });
+        }
       }
       return result;
     } catch (error) {

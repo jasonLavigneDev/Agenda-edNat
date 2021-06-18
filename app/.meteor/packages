@@ -32,6 +32,7 @@ meteortesting:mocha
 hwillson:stub-collections
 johanbrook:publication-collector
 dburles:factory
+random
 hotello:accounts-keycloak
 service-configuration
 

@@ -24,16 +24,17 @@ const sendEmail = new ValidatedMethod({
       description: event.description,
       url: ROUTES.EVENT_MAKE(event._id),
     });
+    const user = Meteor.users.findOne(this.userId);
     const html = eventTemplate({
       title: event.title,
       description: event.description,
       start: moment(event.start).format('LLL'),
       end: moment(event.end).format('LLL'),
-      sender: Meteor.users.findOne(this.userId).emails[0].address,
+      sender: user && user.emails[0].address,
     });
 
-    event.guests.forEach((guest) => {
-      Email.send({
+    return event.guests.forEach((guest) => {
+      return Email.send({
         to: guest,
         from: Meteor.settings.private.smtp.fromEmail,
         subject: `Laboite - Agenda - Votre rdv du ${moment(event.start).format('L')}`,
