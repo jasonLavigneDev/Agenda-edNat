@@ -17,7 +17,7 @@ export const createEvent = new ValidatedMethod({
   run({ data }) {
     try {
       if (!isActive(this.userId)) {
-        throw new Meteor.Error('api.events.create.notLoggedIn', i18n.__('api.users.mustBeLoggedIn'));
+        throw new Meteor.Error('api.events.create.notLoggedIn', i18n.__('api.users.notLoggedIn'));
       }
       const result = Events.insert(data);
       if (result && Meteor.isServer && !Meteor.isTest) {
@@ -54,7 +54,7 @@ export const editEvent = new ValidatedMethod({
     try {
       const event = Events.findOne({ _id: data._id }, { fields: { userId: 1 } });
       if (!isActive(this.userId)) {
-        throw new Meteor.Error('api.events.edit.notLoggedIn', i18n.__('api.users.mustBeLoggedIn'));
+        throw new Meteor.Error('api.events.edit.notLoggedIn', i18n.__('api.users.notLoggedIn'));
       } else if (event && event.userId !== this.userId) {
         throw new Meteor.Error('api.events.edit.notOwner', i18n.__('api.users.mustBeOwner'));
       }
@@ -93,7 +93,7 @@ export const deleteEvent = new ValidatedMethod({
     try {
       const event = Events.findOne({ _id: eventId }, { fields: { userId: 1 } });
       if (!isActive(this.userId)) {
-        throw new Meteor.Error('api.events.edit.notLoggedIn', i18n.__('api.users.mustBeLoggedIn'));
+        throw new Meteor.Error('api.events.edit.notLoggedIn', i18n.__('api.users.notLoggedIn'));
       } else if (event && event.userId !== this.userId) {
         throw new Meteor.Error('api.events.edit.notOwner', i18n.__('api.users.mustBeOwner'));
       }
@@ -115,7 +115,7 @@ export const changeUserStatus = new ValidatedMethod({
     try {
       const event = Events.findOne({ _id: eventId }) || {};
       if (!isActive(this.userId)) {
-        throw new Meteor.Error('api.events.edit.notLoggedIn', i18n.__('api.users.mustBeLoggedIn'));
+        throw new Meteor.Error('api.events.edit.notLoggedIn', i18n.__('api.users.notLoggedIn'));
       }
       const participants = event.participants.map((p) => ({
         ...p,
