@@ -3,7 +3,13 @@
     "enableKeycloak": true,
     "keycloakUrl": "",
     "keycloakRealm": "",
-    "laboiteURL": ""
+    "laboiteURL": "",
+    "packages": {
+      "dynamic-import": {
+        "link": "https://github.com/meteor/meteor/pull/11105",
+        "useLocationOrigin": true
+      }
+    }
   },
   "keycloak": {
     "pubkey": "",
