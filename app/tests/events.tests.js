@@ -8,7 +8,7 @@ import { changeCurrentUser } from './factories/utils';
 
 import Events from '../imports/api/events/events';
 import '../imports/api/events/server/publications';
-import { createEvent, deleteEvent, editEvent } from '../imports/api/events/methods';
+import { changeUserStatus, createEvent, deleteEvent, editEvent } from '../imports/api/events/methods';
 
 describe('event', function eventTests() {
   describe('mutators', function eventMutators() {
@@ -96,9 +96,21 @@ describe('event', function eventTests() {
       anotherUser = changeCurrentUser();
       currentUser = changeCurrentUser();
       oneEventID = Random.id();
-      [0, 3, 4, 5, 9].forEach((i) => {
+      Factory.create('event', {
+        _id: oneEventID,
+        userId: currentUser._id,
+        start: moment().add(1, 'days').format(),
+        end: moment().add(1, 'days').add(1, 'hour').format(),
+        participants: () => [
+          {
+            _id: anotherUser._id,
+            email: anotherUser.emails[0].address,
+            status: 0,
+          },
+        ],
+      });
+      [3, 4, 5, 9].forEach((i) => {
         Factory.create('event', {
-          _id: i === 0 ? oneEventID : Random.id(),
           userId: currentUser._id,
           start: moment().add(i, 'days').format(),
           end: moment().add(i, 'days').add(1, 'hour').format(),
@@ -236,6 +248,40 @@ describe('event', function eventTests() {
           },
           Meteor.Error,
           /api.events.edit.notOwner/,
+        );
+      });
+    });
+
+    describe('changeUserStatus', function changeUserStatusTest() {
+      it('changes a user status with a connected user', function changeUserStatusSuccess() {
+        changeCurrentUser(anotherUser);
+        changeUserStatus._execute(
+          { userId: anotherUser._id },
+          {
+            eventId: oneEventID,
+            status: 2,
+          },
+        );
+
+        const event = Events.findOne({ _id: oneEventID });
+        assert.equal(event.participants[0].status, 2);
+        assert.equal(event.participants[0]._id, anotherUser._id);
+        assert.equal(event.participants[0].email, anotherUser.emails[0].address);
+      });
+      it('does not changes a user status without a connected user', function notConnectedError() {
+        // Throws if logged out user tries to change user status of an event
+        assert.throws(
+          () => {
+            changeUserStatus._execute(
+              { userId: null },
+              {
+                eventId: oneEventID,
+                status: 1,
+              },
+            );
+          },
+          Meteor.Error,
+          /api.events.edit.notLoggedIn/,
         );
       });
     });

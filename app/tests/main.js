@@ -1,6 +1,7 @@
 import assert from 'assert';
 import './factories/index';
 import './events.tests';
+import './groups.tests';
 
 describe('agenda3', function describeAgenda() {
   it('package.json has correct name', async function getNameFromPackage() {
