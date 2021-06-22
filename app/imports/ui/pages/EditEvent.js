@@ -93,6 +93,8 @@ const EditEvent = ({ history, match: { params } }) => {
         participants: allParticipants,
         startTime,
         endTime,
+        startRecur: rest.recurrent ? rest.startRecur : null,
+        endRecur: rest.recurrent ? rest.endRecur : null,
         daysOfWeek: rest.recurrent ? daysOfWeek : null,
         start: moment(`${startDate} ${!state.allDay ? startTime : '00:00'}`).format(),
         end: moment(`${endDate} ${!state.allDay ? endTime : '23:59'}`).format(),

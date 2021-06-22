@@ -76,6 +76,8 @@ const AddEvent = ({ history }) => {
         groups,
         participants: allParticipants,
         startTime,
+        startRecur: rest.recurrent ? rest.startRecur : null,
+        endRecur: rest.recurrent ? rest.endRecur : null,
         daysOfWeek: rest.recurrent ? daysOfWeek : null,
         endTime,
         start: moment(`${startDate} ${!state.allDay ? startTime : '00:00'}`).format(),
