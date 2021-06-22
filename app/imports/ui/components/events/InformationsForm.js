@@ -8,7 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import Divider from '@material-ui/core/Divider';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import moment from 'moment';
+// import moment from 'moment';
 
 const useStyles = makeStyles(() => ({
   field: {
@@ -19,28 +19,28 @@ const useStyles = makeStyles(() => ({
 const InformationsForm = ({ stateHook: [state, setState], errors }) => {
   const classes = useStyles();
 
-  const handleToggleRecurrence = (e) => {
-    setState({
-      recurrent: e.target.checked,
-      daysOfWeek: !e.target.checked ? null : [moment(state.startDate).day()],
-      startRecur: !e.target.checked ? null : state.startDate,
-      endRecur: !e.target.checked ? null : moment(state.startDate).add(1, 'months').format('YYYY-MM-DD'),
-    });
-  };
+  // const handleToggleRecurrence = (e) => {
+  //   setState({
+  //     recurrent: e.target.checked,
+  //     daysOfWeek: !e.target.checked ? null : [moment(state.startDate).day()],
+  //     startRecur: !e.target.checked ? null : state.startDate,
+  //     endRecur: !e.target.checked ? null : moment(state.startDate).add(1, 'months').format('YYYY-MM-DD'),
+  //   });
+  // };
 
-  const handleToggledaysOfWeek = (e) => {
-    const day = Number(e.target.value);
-    const { daysOfWeek = [] } = state;
-    if (day !== moment(state.startDate).day()) {
-      if (daysOfWeek.indexOf(day) > -1) {
-        setState({ daysOfWeek: daysOfWeek.filter((d) => d !== day) });
-      } else {
-        setState({ daysOfWeek: [...daysOfWeek, day] });
-      }
-    } else {
-      msg.error(i18n.__('pages.FormEvent.youCantRemoveToday'));
-    }
-  };
+  // const handleToggledaysOfWeek = (e) => {
+  //   const day = Number(e.target.value);
+  //   const { daysOfWeek = [] } = state;
+  //   if (day !== moment(state.startDate).day()) {
+  //     if (daysOfWeek.indexOf(day) > -1) {
+  //       setState({ daysOfWeek: daysOfWeek.filter((d) => d !== day) });
+  //     } else {
+  //       setState({ daysOfWeek: [...daysOfWeek, day] });
+  //     }
+  //   } else {
+  //     msg.error(i18n.__('pages.FormEvent.youCantRemoveToday'));
+  //   }
+  // };
 
   return (
     <form noValidate>
