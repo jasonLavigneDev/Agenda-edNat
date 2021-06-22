@@ -67,7 +67,7 @@ const InformationsForm = ({ stateHook: [state, setState], errors }) => {
             onChange={(e) => setState({ location: e.target.value })}
           />
         </Grid>
-        {moment(state.startDate).isSame(state.endDate) && (
+        {/* {moment(state.startDate).isSame(state.endDate) && (
           <>
             <Grid item md={12} xs={12}>
               <FormControlLabel
@@ -120,7 +120,7 @@ const InformationsForm = ({ stateHook: [state, setState], errors }) => {
               </>
             )}
           </>
-        )}
+        )} */}
         {!state.recurrent && (
           <>
             <Grid item md={6} xs={12}>

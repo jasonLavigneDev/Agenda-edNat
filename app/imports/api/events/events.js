@@ -76,14 +76,14 @@ EventsAgenda.schema = new SimpleSchema(
       type: String,
       optional: true,
     },
-    startRecur: {
-      type: Date,
-      optional: true,
-    },
-    endRecur: {
-      type: Date,
-      optional: true,
-    },
+    // startRecur: {
+    //   type: Date,
+    //   optional: true,
+    // },
+    // endRecur: {
+    //   type: Date,
+    //   optional: true,
+    // },
     start: {
       type: Date,
     },
