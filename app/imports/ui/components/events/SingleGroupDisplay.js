@@ -55,7 +55,7 @@ const SingleGroupDisplay = ({ group, handleDelete, view, event }) => {
 
   return (
     <Accordion>
-      <AccordionSummary className={classes.header} square expandIcon={<ExpandMoreIcon />}>
+      <AccordionSummary className={classes.header} square="true" expandIcon={<ExpandMoreIcon />}>
         {handleDelete && (
           <IconButton
             size="small"
