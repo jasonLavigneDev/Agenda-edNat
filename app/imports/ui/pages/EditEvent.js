@@ -56,6 +56,8 @@ const EditEvent = ({ history, match: { params } }) => {
         ...event,
         startDate: moment(event.start).format('YYYY-MM-DD'),
         endDate: moment(event.end).format('YYYY-MM-DD'),
+        startRecur: moment(event.startRecur).format('YYYY-MM-DD'),
+        endRecur: moment(event.endRecur).format('YYYY-MM-DD'),
         startTime: moment(event.start).format('HH:mm'),
         endTime: moment(event.end).format('HH:mm'),
       });
