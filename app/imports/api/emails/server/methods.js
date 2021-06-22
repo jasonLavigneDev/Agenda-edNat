@@ -11,7 +11,7 @@ import ROUTES from '../../../ui/layouts/routes';
 const sendEmail = new ValidatedMethod({
   name: 'emails.sendEventNotification',
   validate: new SimpleSchema({
-    event: Events.schema,
+    event: Events.schema.omit('createdAt', 'updatedAt', 'userId'),
   }).validator({ clean: true }),
 
   run({ event }) {

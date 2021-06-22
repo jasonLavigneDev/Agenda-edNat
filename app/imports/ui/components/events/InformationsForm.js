@@ -67,84 +67,6 @@ const InformationsForm = ({ stateHook: [state, setState], errors }) => {
             onChange={(e) => setState({ location: e.target.value })}
           />
         </Grid>
-        <Grid item md={6} xs={12}>
-          <TextField
-            variant="outlined"
-            label={i18n.__('pages.FormEvent.startDate')}
-            type="date"
-            className={classes.field}
-            value={state.startDate}
-            error={!!errors.startDate}
-            helperText={errors.startDate}
-            onChange={(e) => setState({ startDate: e.target.value || state.startDate })}
-          />
-        </Grid>
-        <Grid item md={6} xs={12}>
-          <TextField
-            variant="outlined"
-            label={i18n.__('pages.FormEvent.endDate')}
-            type="date"
-            className={classes.field}
-            value={state.endDate || state.startDate}
-            error={!!errors.endDate}
-            helperText={errors.endDate}
-            onChange={(e) => setState({ endDate: e.target.value || state.endDate || state.startDate })}
-          />
-        </Grid>
-        <Grid item md={12} xs={12}>
-          <FormControlLabel
-            control={
-              <Checkbox checked={state.allDay} onChange={() => setState({ allDay: !state.allDay })} color="primary" />
-            }
-            label={i18n.__('pages.FormEvent.allDay')}
-          />
-        </Grid>
-        {!state.allDay && (
-          <>
-            <Grid item md={6} xs={12}>
-              <TextField
-                variant="outlined"
-                label={i18n.__('pages.FormEvent.startTime')}
-                inputProps={{
-                  step: 300, // 5 min
-                }}
-                type="time"
-                className={classes.field}
-                value={state.startTime}
-                error={!!errors.startTime}
-                helperText={errors.startTime}
-                onChange={(e) => setState({ startTime: e.target.value || state.startTime })}
-              />
-            </Grid>
-            <Grid item md={6} xs={12}>
-              <TextField
-                variant="outlined"
-                label={i18n.__('pages.FormEvent.endTime')}
-                inputProps={{
-                  step: 300, // 5 min
-                }}
-                type="time"
-                className={classes.field}
-                value={state.endTime}
-                error={!!errors.endTime}
-                helperText={errors.endTime}
-                onChange={(e) => setState({ endTime: e.target.value || state.endTime })}
-              />
-            </Grid>
-          </>
-        )}
-        <Grid item md={12} xs={12}>
-          <TextField
-            variant="outlined"
-            multiline
-            label={i18n.__('pages.FormEvent.description')}
-            className={classes.field}
-            value={state.description}
-            error={!!errors.description}
-            helperText={errors.description}
-            onChange={(e) => setState({ description: e.target.value })}
-          />
-        </Grid>
         {moment(state.startDate).isSame(state.endDate) && (
           <>
             <Grid item md={12} xs={12}>
@@ -199,6 +121,89 @@ const InformationsForm = ({ stateHook: [state, setState], errors }) => {
             )}
           </>
         )}
+        {!state.recurrent && (
+          <>
+            <Grid item md={6} xs={12}>
+              <TextField
+                variant="outlined"
+                label={i18n.__('pages.FormEvent.startDate')}
+                type="date"
+                className={classes.field}
+                value={state.startDate}
+                error={!!errors.startDate}
+                helperText={errors.startDate}
+                onChange={(e) => setState({ startDate: e.target.value || state.startDate })}
+              />
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <TextField
+                variant="outlined"
+                label={i18n.__('pages.FormEvent.endDate')}
+                type="date"
+                className={classes.field}
+                value={state.endDate || state.startDate}
+                error={!!errors.endDate}
+                helperText={errors.endDate}
+                onChange={(e) => setState({ endDate: e.target.value || state.endDate || state.startDate })}
+              />
+            </Grid>
+          </>
+        )}
+
+        <Grid item md={12} xs={12}>
+          <FormControlLabel
+            control={
+              <Checkbox checked={state.allDay} onChange={() => setState({ allDay: !state.allDay })} color="primary" />
+            }
+            label={i18n.__('pages.FormEvent.allDay')}
+          />
+        </Grid>
+        {!state.allDay && (
+          <>
+            <Grid item md={6} xs={12}>
+              <TextField
+                variant="outlined"
+                label={i18n.__('pages.FormEvent.startTime')}
+                inputProps={{
+                  step: 300, // 5 min
+                }}
+                type="time"
+                className={classes.field}
+                value={state.startTime}
+                error={!!errors.startTime}
+                helperText={errors.startTime}
+                onChange={(e) => setState({ startTime: e.target.value || state.startTime })}
+              />
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <TextField
+                variant="outlined"
+                label={i18n.__('pages.FormEvent.endTime')}
+                inputProps={{
+                  step: 300, // 5 min
+                }}
+                type="time"
+                className={classes.field}
+                value={state.endTime}
+                error={!!errors.endTime}
+                helperText={errors.endTime}
+                onChange={(e) => setState({ endTime: e.target.value || state.endTime })}
+              />
+            </Grid>
+          </>
+        )}
+        <Grid item md={12} xs={12}>
+          <TextField
+            variant="outlined"
+            multiline
+            label={i18n.__('pages.FormEvent.description')}
+            className={classes.field}
+            value={state.description}
+            error={!!errors.description}
+            helperText={errors.description}
+            onChange={(e) => setState({ description: e.target.value })}
+          />
+        </Grid>
       </Grid>
     </form>
   );
