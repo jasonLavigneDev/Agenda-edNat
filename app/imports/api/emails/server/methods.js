@@ -19,7 +19,7 @@ const sendEmail = new ValidatedMethod({
     cal.createEvent({
       start: moment(event.start),
       end: moment(event.end),
-      place: event.place,
+      location: event.location,
       summary: event.title,
       description: event.description,
       url: ROUTES.EVENT_MAKE(event._id),

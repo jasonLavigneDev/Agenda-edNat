@@ -83,7 +83,7 @@ const ReadEvent = ({ history, match: { params } }) => {
     { label: i18n.__('pages.FormEvent.eventTitle'), value: state.title },
     {
       label: i18n.__('pages.FormEvent.eventPlace'),
-      value: state.place || i18n.__('pages.ReadEvent.eventPlaceNotDefined'),
+      value: state.location || i18n.__('pages.ReadEvent.eventPlaceNotDefined'),
     },
     { label: i18n.__('pages.FormEvent.startDate'), value: state.startDate },
     { label: i18n.__('pages.FormEvent.endDate'), value: state.endDate },
