@@ -28,7 +28,7 @@ export const useErrors = (state) => {
   useEffect(() => {
     if (moment(startDate).isAfter(endDate)) {
       setErrors({ endDate: i18n.__('pages.AddEvent.endDateMustBeAfterStartDate') });
-    } else if (moment(startDate).isBefore(moment())) {
+    } else if (moment(startDate).isBefore(moment().subtract(1, 'days'))) {
       setErrors({ endDate: i18n.__('pages.AddEvent.startDateMustBeAfterToday') });
     } else {
       setErrors({ endDate: null });
@@ -38,7 +38,7 @@ export const useErrors = (state) => {
   useEffect(() => {
     if (moment(`${startDate} ${startTime}`).isAfter(`${endDate} ${endTime}`)) {
       setErrors({ endTime: i18n.__('pages.AddEvent.endTimeMustBeAfterStartTime') });
-    } else if (moment(`${startDate} ${startTime}`).isBefore(moment())) {
+    } else if (moment(`${startDate} ${startTime}`).isBefore(moment().subtract(1, 'days'))) {
       setErrors({ endDate: i18n.__('pages.AddEvent.startDateMustBeAfterToday') });
     } else {
       setErrors({ endTime: null });

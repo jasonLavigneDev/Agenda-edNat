@@ -6,10 +6,10 @@ export const eventTemplate = ({
   // description,
   sender,
 }) => `
-    <h4>VOus avez été invité à un évenement</h4>
+    <h4>Vous avez été invité à un évènement</h4>
     <br/>
     <div>
-        Votre évenement "${title}" a été programmé par ${sender} le ${start}
+        Votre évènement "${title}" a été programmé par ${sender} le ${start}
     </div>
     <br/>
     <div>

@@ -14,7 +14,7 @@ Factory.define('event', Events, {
   recurrent: () => randomBoolean(),
   daysOfWeek: () => [Math.round(Math.random() * 7)],
   startRecur: () => new Date(moment().format()),
-  endRecur: () => new Date(moment().add(1, 'year').format()),
+  endRecur: () => new Date(moment().add(1, 'months').format()),
   start: () => new Date(moment().add(7, 'days').format()),
   end: () => new Date(moment().add(7, 'days').add(1, 'hour').format()),
   allDay: () => randomBoolean(),

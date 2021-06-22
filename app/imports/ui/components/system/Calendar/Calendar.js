@@ -36,7 +36,10 @@ const Calendar = () => {
   const buttons = useTracker(() => BUTTONS_TEXTS(), [language]);
 
   const addEventToDate = ({ dateStr, endStr, startStr }) => {
-    if ((dateStr && moment(dateStr).isBefore(moment())) || (startStr && moment(startStr).isBefore(moment()))) {
+    if (
+      (dateStr && moment(dateStr).isBefore(moment().subtract(1, 'days'))) ||
+      (startStr && moment(startStr).isBefore(moment().subtract(1, 'days')))
+    ) {
       return msg.warning(i18n.__('pages.AddEvent.startDateMustBeAfterToday'));
     }
     return history.push(

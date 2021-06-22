@@ -24,7 +24,7 @@ const InformationsForm = ({ stateHook: [state, setState], errors }) => {
       recurrent: e.target.checked,
       daysOfWeek: !e.target.checked ? null : [moment(state.startDate).day()],
       startRecur: !e.target.checked ? null : state.startDate,
-      endRecur: !e.target.checked ? null : moment(state.startDate).add(1, 'year').format('YYYY-MM-DD'),
+      endRecur: !e.target.checked ? null : moment(state.startDate).add(1, 'months').format('YYYY-MM-DD'),
     });
   };
 
