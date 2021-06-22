@@ -27,7 +27,7 @@ export const useErrors = (state) => {
 
   useEffect(() => {
     if (moment(startDate).isAfter(endDate)) {
-      setErrors({ endDate: i18n.__('pages.AddEvent.endDateMustBeAfterStartDate') });
+      setErrors({ endDate: i18n.__('pages.FormEvent.endDateMustBeAfterStartDate') });
     } else if (moment(startDate).isBefore(moment().subtract(1, 'days'))) {
       setErrors({ endDate: i18n.__('pages.AddEvent.startDateMustBeAfterToday') });
     } else {
@@ -37,7 +37,7 @@ export const useErrors = (state) => {
 
   useEffect(() => {
     if (moment(`${startDate} ${startTime}`).isAfter(`${endDate} ${endTime}`)) {
-      setErrors({ endTime: i18n.__('pages.AddEvent.endTimeMustBeAfterStartTime') });
+      setErrors({ endTime: i18n.__('pages.FormEvent.endTimeMustBeAfterStartTime') });
     } else if (moment(`${startDate} ${startTime}`).isBefore(moment().subtract(1, 'days'))) {
       setErrors({ endDate: i18n.__('pages.AddEvent.startDateMustBeAfterToday') });
     } else {
@@ -47,7 +47,7 @@ export const useErrors = (state) => {
 
   useEffect(() => {
     if (endRecur && moment(`${startRecur}`).isAfter(`${endRecur}`)) {
-      setErrors({ endTime: i18n.__('pages.AddEvent.endTimeMustBeAfterStartTime') });
+      setErrors({ endTime: i18n.__('pages.FormEvent.endTimeMustBeAfterStartTime') });
     } else {
       setErrors({ endTime: null });
     }
