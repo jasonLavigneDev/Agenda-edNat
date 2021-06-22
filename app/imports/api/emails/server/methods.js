@@ -8,6 +8,11 @@ import Events from '../../events/events';
 import { eventTemplate } from './templates';
 import ROUTES from '../../../ui/layouts/routes';
 
+Meteor.startup(() => {
+  const { url } = Meteor.settings.private.smtp;
+  process.env.MAIL_URL = url;
+});
+
 const sendEmail = new ValidatedMethod({
   name: 'emails.sendEventNotification',
   validate: new SimpleSchema({

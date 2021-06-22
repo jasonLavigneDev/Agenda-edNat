@@ -9,6 +9,3 @@ import './config/security';
 import './config/accounts';
 import './config/ValidationError';
 import './register-api';
-
-const { url } = Meteor.settings.private.smtp;
-process.env.MAIL_URL = url;
