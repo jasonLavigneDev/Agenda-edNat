@@ -25,7 +25,6 @@ function LogoutDialog({ open, onAccept, onClose }) {
   const keycloakLogout = () => {
     if (dontAsk) Meteor.call('users.setLogoutType', { logoutType: 'global' });
     onAccept();
-    Meteor.logout();
   };
 
   return (

@@ -1,7 +1,8 @@
 {
   "system": {
     "loading": "Loading",
-    "login": "Log In"
+    "login": "Log In",
+    "logout": "Logging out"
   },
   "notifications": {
     "newMeetingEvent": "New event on the agenda",
