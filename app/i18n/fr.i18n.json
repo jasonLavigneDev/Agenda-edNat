@@ -1,7 +1,8 @@
 {
   "system": {
     "loading": "Chargement",
-    "login": "Se connecter"
+    "login": "Se connecter",
+    "logout": "Déconnexion en cours"
   },
   "notifications": {
     "newMeetingEvent": "Nouvel évenement sur l'agenda",
