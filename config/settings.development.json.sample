@@ -1,0 +1,26 @@
+{
+  "public": {
+    "enableKeycloak": true,
+    "keycloakUrl": "",
+    "keycloakRealm": "",
+    "laboiteURL": "",
+    "packages": {
+      "dynamic-import": {
+        "link": "https://github.com/meteor/meteor/pull/11105",
+        "useLocationOrigin": true
+      }
+    }
+  },
+  "keycloak": {
+    "pubkey": "",
+    "client": "",
+  },
+  "private": {
+    "apiKeys": [],
+    "smtp":{
+      "url": "smtps://USERNAME:PASSWORD@HOST:PORT",
+      "fromEmail": "USERNAME",
+      "toEmail": "admin@domain.fr"
+    }
+  },
+}

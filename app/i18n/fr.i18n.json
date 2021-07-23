@@ -1,0 +1,167 @@
+{
+  "system": {
+    "loading": "Chargement",
+    "login": "Se connecter",
+    "logout": "Déconnexion en cours"
+  },
+  "notifications": {
+    "newMeetingEvent": "Nouvel évenement sur l'agenda",
+    "youAreInvitedTo": "Vous avez été invité a participer à l'évenement"
+  },
+  "api": {
+    "appsettings": {
+      "labels": {}
+    },
+    "methods": {}
+  },
+  "pages": {
+    "AddEvent": {
+      "title": "Ajouter un évènement",
+      "validateButton": "Valider",
+      "closeButton": "Annuler",
+      "eventCreated": "Évenement créé avec succès",
+      "startDateMustBeAfterToday": "La date doit être après aujourd'hui"
+    },
+    "ReadEvent": {
+      "title": "Évenement",
+      "closeButton": "Fermer",
+      "editButton": "Éditer",
+      "cancelButton": "Annuler",
+      "accept": "Accepter",
+      "refuse": "Refuser",
+      "accepted": "Vous avez accepté de participer",
+      "refused": "Vous avez refusé de participer",
+      "participants": "Participants",
+      "informations": "Informations",
+      "groups": "Groupes concernés",
+      "yes": "Oui",
+      "eventPlaceNotDefined": "Lieu non défini"
+    },
+    "EditEvent": {
+      "title": "Editer un évènement",
+      "validateButton": "Valider",
+      "closeButton": "Annuler",
+      "delete": "Supprimer",
+      "eventCreated": "Évenement modifié avec succès",
+      "eventDeleted": "Évenement supprimé avec succès"
+    },
+    "FormEvent": {
+      "eventTitle": "Titre",
+      "eventPlace": "Lieu",
+      "startDate": "Date de début",
+      "endDate": "Date de fin",
+      "startTime": "Heure de début",
+      "endTime": "Heure de fin",
+      "description": "Description",
+      "participants": "Ajouter des participants",
+      "groups": "Groupes concernés",
+      "selectAGroup": "Sélectionnez un groupe",
+      "informations": "Informations",
+      "allDay": "Journée entière",
+      "searchUsers": "Entrez un email",
+      "addAsAGuest": "Ajouter en tant qu'invité",
+      "recurrent": "Évenement régulier",
+      "from": "A partir de",
+      "to": "Jusqu'au",
+      "day_0": "Dimanche",
+      "day_1": "Lundi",
+      "day_2": "Mardi",
+      "day_3": "Mercredi",
+      "day_4": "Jeudi",
+      "day_5": "Vendredi",
+      "day_6": "Samedi",
+      "daysOfWeek": "Jours de l'évenement",
+      "youCantRemoveToday": "Vous ne pouvez pas enlever aujourd'hui",
+      "searchUserHelp": "Recherchez un utilisateur de la boîte ou ajoutez un invité externe",
+      "endDateMustBeAfterStartDate": "La date de fin doit être après la date de début",
+      "endTimeMustBeAfterStartTime": "L'heure de fin doit être après l'heure de début"
+    },
+    "NotFound": { "backButtonLabel": "Retour", "message": "Page non trouvée !" }
+  },
+  "components": {
+    "Calendar": {
+      "today": "Aujourd'hui",
+      "listDay": "Semaine",
+      "timeGridDay": "Jour",
+      "listWeek": "Liste",
+      "timeGridWeek": "Semaine",
+      "dayGridMonth": "Mois",
+      "importButton": "Import",
+      "exportButton": "Export",
+      "displayWeekendButton": "Week-Ends",
+      "cantMoveRecurrent": "Un évenement récurrent ne peut pas être déplacé"
+    },
+    "Footer": {
+      "legal": "Mentions légales",
+      "accessibility": "Accessibilité",
+      "gcu": "Conditions générales d'utilisation",
+      "personalData": "Données personnelles",
+      "contact": "Contact"
+    },
+    "MenuBar": {
+      "menuHome": "Accueil",
+      "menuHomeMobile": ""
+    },
+    "MainMenu": {
+      "menuLogoutLabel": "Se déconnecter",
+      "menuAddEvent": "Ajouter événement"
+    },
+    "AppVersion": {
+      "title": "Version"
+    },
+    "LogoutDialog": {
+      "dialogTitle": "Déconnexion globale",
+      "dialogContent": "Voulez vous également vous déconnecter de toutes les applications ?",
+      "dontAskAgain": "Ne plus demander",
+      "buttonYes": "Oui",
+      "buttonNo": "Non"
+    }
+  },
+  "layouts": {
+    "MainLayout": {}
+  },
+  "languages": {
+    "en": "Anglais",
+    "fr": "Français"
+  },
+  "SimpleSchema": {
+    "required": "{$label} est requis",
+    "minString": "{$label} doit faire au moins {$min} caractères",
+    "maxString": "{$label} est limité à {$max} caractères",
+    "minNumber": "{$label} doit être supérieur ou égal à {$min}",
+    "maxNumber": "{$label} doit être inférieur ou égal à {$max}",
+    "minNumberExclusive": "{$label} doit être supérieur à {$min}",
+    "maxNumberExclusive": "{$label} doit être inférieur à {$max}",
+    "minDate": "{$label} doit être postérieur à {$min}",
+    "maxDate": "{$label} doit être antérieur à {$max}",
+    "badDate": "{$label} n'est pas une tâche valide",
+    "minCount": "Vous devez saisir plus de {$minCount} valeurs",
+    "maxCount": "Vous devez saisir moins de {$maxCount} valeurs",
+    "noDecimal": "{$label} doit être un entier ",
+    "notAllowed": "{$value} n'est pas une valeur acceptée",
+    "expectedType": "{$label} doit être du type {$dataType}",
+    "keyNotInSchema": "{$name} n'est pas autorisé par le schéma",
+    "RegEx": {
+      "Default": "Echec de validation de l'expression régulière",
+      "Email": "doit être une adresse e-mail valide",
+      "EmailWithTLD": "doit être une adresse e-mail valide",
+      "Domain": "doit être un domaine valide",
+      "WeakDomain": "doit être un domaine valide",
+      "IP": "doit être une adresse IPv4/IPv6 valide",
+      "IPv4": "doit être une adresse IPv4 valide",
+      "IPv6": "doit être une adresse IPv6 valide",
+      "Url": "doit être une URL valide",
+      "Id": "doit être un identifiant alphanumérique valide",
+      "ZipCode": "doit être un code postal valide",
+      "Phone": "doit être un numéro de téléphone valide"
+    },
+    "dataTypes": {
+      "String": "Chaine de caractères",
+      "Number": "Numérique",
+      "Integer": "Entier",
+      "Boolean": "Booléen",
+      "Array": "Tableau",
+      "Object": "Objet"
+    }
+  }
+}
