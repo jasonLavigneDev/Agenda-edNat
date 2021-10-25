@@ -21,7 +21,7 @@ EventsAgenda.deny({
 const settingsGroup = new SimpleSchema({
   _id: {
     type: String,
-    regEx: SimpleSchema.RegEx.Id,
+    min: 1,
   },
   name: {
     type: String,
@@ -31,7 +31,7 @@ const settingsGroup = new SimpleSchema({
 const settingsParticipant = new SimpleSchema({
   _id: {
     type: String,
-    regEx: SimpleSchema.RegEx.Id,
+    min: 1,
   },
   email: {
     type: String,
@@ -51,7 +51,7 @@ EventsAgenda.schema = new SimpleSchema(
   {
     _id: {
       type: String,
-      regEx: SimpleSchema.RegEx.Id,
+      min: 1,
     },
     title: {
       type: String,

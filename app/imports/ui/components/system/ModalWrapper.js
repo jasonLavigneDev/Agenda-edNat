@@ -41,14 +41,24 @@ const ModalWrapper = ({ open, onClose, title, children, loading, buttons = [] })
       <DialogTitle id="alert-dialog-slide-title">{title}</DialogTitle>
       <DialogContent>{children}</DialogContent>
       <DialogActions>
-        {buttons.map(
-          (b) =>
+        {buttons.map((b) => {
+          const { disabled, ...otherProps } = b.props;
+          let finalDisabled = disabled;
+          if (loading !== undefined) {
+            if (disabled !== undefined) {
+              finalDisabled = loading || disabled;
+            } else {
+              finalDisabled = loading;
+            }
+          }
+          return (
             !!b.text && (
-              <Button key={b.key} {...b.props} disabled={loading} variant="contained" onClick={b.onClick}>
+              <Button key={b.key} {...otherProps} disabled={finalDisabled} variant="contained" onClick={b.onClick}>
                 {b.text}
               </Button>
-            ),
-        )}
+            )
+          );
+        })}
       </DialogActions>
     </Dialog>
   );
