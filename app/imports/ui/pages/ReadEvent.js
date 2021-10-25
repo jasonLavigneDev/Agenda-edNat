@@ -65,9 +65,11 @@ const ReadEvent = ({ history, match: { params } }) => {
     setState({
       ...event,
       startDate: moment(event.start).format('YYYY-MM-DD'),
-      endDate: moment(event.end).format('YYYY-MM-DD'),
+      endDate: event.allDay
+        ? moment(event.end).subtract(1, 'days').format('YYYY-MM-DD')
+        : moment(event.end).format('YYYY-MM-DD'),
       startTime: moment(event.start).format('HH:mm'),
-      endTime: moment(event.end).format('HH:mm'),
+      endTime: event.allDay ? '23:59' : moment(event.end).format('HH:mm'),
     });
   };
 

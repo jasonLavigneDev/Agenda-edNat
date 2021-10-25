@@ -94,7 +94,7 @@ export const exportAgendaToICS = (events = []) => {
     domain: window.location.hostname,
     prodId: { company: window.location.hostname, product: 'ical-generator' },
     name: '<agenda>',
-  }).timezone('Europe/Paris');
+  });
   // value events when create in calendar
 
   // Find event in array
@@ -152,18 +152,20 @@ export const importICSToAgenda = (eFiles) => {
           const { location } = ev;
           // eslint-disable-next-line prefer-destructuring
           const description = ev.description;
-          const start = moment(ev.start).format();
-          const end = moment(ev.end).format();
+          const start = allDayImport
+            ? moment.utc(`${ev.start.toDateString()} 00:00`).format()
+            : moment(ev.start).format();
+          const end = allDayImport ? moment.utc(`${ev.end.toDateString()} 00:00`).format() : moment(ev.end).format();
 
           createEvent.call(
             {
               data: {
                 title,
                 location,
-                start,
-                allDay: allDayImport,
-                end,
                 description,
+                allDay: allDayImport,
+                start,
+                end,
               },
             },
             (error) => {
