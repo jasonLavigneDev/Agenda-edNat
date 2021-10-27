@@ -80,8 +80,10 @@ const AddEvent = ({ history }) => {
         endRecur: rest.recurrent ? rest.endRecur : null,
         daysOfWeek: rest.recurrent ? daysOfWeek : null,
         endTime,
-        start: moment(`${startDate} ${!state.allDay ? startTime : '00:00'}`).format(),
-        end: moment(`${endDate} ${!state.allDay ? endTime : '23:59'}`).format(),
+        start: state.allDay ? moment.utc(`${startDate} 00:00`).format() : moment(`${startDate} ${startTime}`).format(),
+        end: state.allDay
+          ? moment.utc(`${endDate} 00:00`).add(1, 'days').format()
+          : moment(`${endDate} ${endTime}`).format(),
       };
       createEvent.call({ data }, (error) => {
         setLoading(false);

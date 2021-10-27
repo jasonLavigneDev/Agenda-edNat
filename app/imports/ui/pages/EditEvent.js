@@ -55,11 +55,13 @@ const EditEvent = ({ history, match: { params } }) => {
       setState({
         ...event,
         startDate: moment(event.start).format('YYYY-MM-DD'),
-        endDate: moment(event.end).format('YYYY-MM-DD'),
+        endDate: event.allDay
+          ? moment(event.end).subtract(1, 'days').format('YYYY-MM-DD')
+          : moment(event.end).format('YYYY-MM-DD'),
         startRecur: moment(event.startRecur).format('YYYY-MM-DD'),
         endRecur: moment(event.endRecur).format('YYYY-MM-DD'),
         startTime: moment(event.start).format('HH:mm'),
-        endTime: moment(event.end).format('HH:mm'),
+        endTime: event.allDay ? '23:59' : moment(event.end).format('HH:mm'),
       });
     });
   }, []);
@@ -96,20 +98,22 @@ const EditEvent = ({ history, match: { params } }) => {
         startRecur: rest.recurrent ? rest.startRecur : null,
         endRecur: rest.recurrent ? rest.endRecur : null,
         daysOfWeek: rest.recurrent ? daysOfWeek : null,
-        start: moment(`${startDate} ${!state.allDay ? startTime : '00:00'}`).format(),
-        end: moment(`${endDate} ${!state.allDay ? endTime : '23:59'}`).format(),
+        start: state.allDay ? moment.utc(`${startDate} 00:00`).format() : moment(`${startDate} ${startTime}`).format(),
+        end: state.allDay
+          ? moment.utc(`${endDate} 00:00`).add(1, 'days').format()
+          : moment(`${endDate} ${endTime}`).format(),
       };
       editEvent.call({ data }, (error) => {
         setLoading(false);
         if (error) {
-          msg.error(error.reason);
+          msg.error(error.reason || error.message);
         } else {
           msg.success(i18n.__('pages.EditEvent.eventCreated'));
           history.push('/');
         }
       });
     } catch (error) {
-      msg.error(error.reason);
+      msg.error(error.reason || error.message);
       setLoading(false);
     }
   };
