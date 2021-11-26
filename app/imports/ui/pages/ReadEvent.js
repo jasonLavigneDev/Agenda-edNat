@@ -126,6 +126,7 @@ const ReadEvent = ({ history, match: { params } }) => {
       } else {
         setEventIntoState(event);
         msg.success(i18n.__('pages.ReadEvent.accepted'));
+        goHome();
       }
     });
   };
@@ -138,10 +139,10 @@ const ReadEvent = ({ history, match: { params } }) => {
       } else {
         setEventIntoState(event);
         msg.success(i18n.__('pages.ReadEvent.refused'));
+        goHome();
       }
     });
   };
-
   return (
     <ModalWrapper
       open
