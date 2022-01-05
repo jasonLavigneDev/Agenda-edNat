@@ -38,7 +38,7 @@ cache-dependencies:
     - meteor npm ci
   artifacts:
     paths:
-      - node_modules/
+      - app/node_modules/
 
 
 ###############################################################################
