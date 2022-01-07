@@ -19,6 +19,7 @@ export const initialState = {
   participants: [],
   startRecur: '',
   endRecur: '',
+  participateUserEvent: false,
 };
 
 export const useErrors = (state) => {

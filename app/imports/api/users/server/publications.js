@@ -36,3 +36,13 @@ Meteor.publish('users.groups', function publishUserFromGroup({ groupsIds = [] })
     { limit: 500, sort: { 'emails.address': 1 }, fields: { firstName: 1, lastName: 1, avatar: 1, emails: 1 } },
   );
 });
+
+// Meteor.publish('users.searchAll', function () {
+//   return Meteor.users.find(
+//     {},
+//     {
+//       sort: { 'emails.address': 1 },
+//       fields: { emails: 1 },
+//     },
+//   );
+// });

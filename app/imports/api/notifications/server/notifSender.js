@@ -21,6 +21,7 @@ const sendnotif = ({ groups, participants, title, eventId, content }) => {
           userId: _id,
           content,
           title,
+          type: 'info',
           link: `${Meteor.absoluteUrl()}${ROUTES.EVENT_MAKE(eventId).replace('/', '')}`,
         });
       }

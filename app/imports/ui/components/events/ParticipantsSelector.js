@@ -13,7 +13,10 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 import { validateEmail } from '../../../api/utils/functions';
+// import Groups from '../../../api/groups/groups';
 
 const useStyles = makeStyles(() => ({
   chip: {
@@ -27,9 +30,11 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const ParticipantsSelector = ({ stateHook: [state, setState] }) => {
+const ParticipantsSelector = ({ stateHook: [state, setState], handleCheckBoxUser }) => {
   const classes = useStyles();
+
   const [search, setSearch] = useState('');
+
   const searchResults = useTracker(() => {
     const regex = new RegExp(search, 'i');
     const exclude = state.participants.map(({ _id }) => _id);
@@ -39,7 +44,10 @@ const ParticipantsSelector = ({ stateHook: [state, setState] }) => {
       .find({ _id: { $ne: Meteor.userId(), $nin: exclude }, 'emails.address': { $regex: regex } })
       .fetch();
   });
-
+  // const searchAll = useTracker(() => {
+  //   // Meteor.subscribe('users.searchAll');
+  //   return Meteor.users.find({}).fetch();
+  // });
   const resetSearch = () => setSearch('');
 
   const handleSelect = (participant) => {
@@ -60,12 +68,67 @@ const ParticipantsSelector = ({ stateHook: [state, setState] }) => {
     resetSearch();
   };
 
+  // if checkBoxUser is on, we add the current user in participants array
+
+  // const handleCheckBoxGroupAdmin = () => {
+  //   setState({
+  //     ParticipateAdmin: !state.ParticipateAdmin,
+  //   });
+  //   console.log(`state.groups`, state.groups.length);
+  //   if (state.groups.length > 0) {
+  //     const adminGrp = Groups.find({ _id: { $in: state.groups.map((grp) => grp._id) } }).map((grp) => grp.admins);
+  //     const arrayAdmins = [];
+
+  //     adminGrp.map((admin) => arrayAdmins.push(admin[0]));
+  //     console.log(`arrayAdmins`, arrayAdmins);
+  //     console.log(`all admin groups`, adminGrp);
+  //     //const grpIds = state.groups.map((grp) => grp._id);
+
+  //     console.log(
+  //       ` group user`,
+  //       state.groups.map((grp) => grp._id),
+  //     );
+
+  //     console.log(` admin grp`, adminGrp[1]);
+
+  //     Meteor.call('events.allUsers', { arrayAdmins }, (error, result) => {
+  //       if (error) {
+  //         console.log(error);
+  //       } else {
+  //         console.log('arrayAdmins', result);
+  //         result.map((admin) => console.log(`admin`, admin._id, admin.emails[0].address));
+
+  //         setState({
+  //           participants: [...state.participants, ...[{ _id: result[0]._id, email: result[0].emails[0].address }]],
+  //         });
+  //         // console.log(`state.participants dans handleAdmin`, state.participants);
+  //         // setState({
+  //         //   participants: [...state.participants, ...[{ _id: result[0]._id, email: result[1].emails[0].address }]],
+  //         // });
+
+  //         // for (let i = 0; i < result.length; i += 1) {
+  //         //   setState({
+  //         //     participants: [...state.participants, ...[{ _id: result[i]._id, email: result[i].emails[0].address }]],
+  //         //   });
+  //         // }
+
+  //         console.log(' participants handleGrp: ', state.participants);
+  //       }
+  //     });
+  //   }
+  // };
+
   const handleDelete = (itemEmail, key) => {
     setState({
       [key]: [
         ...state[key].filter((item) => (typeof item === 'object' ? item.email !== itemEmail : item !== itemEmail)),
       ],
     });
+    if (Meteor.user().emails[0].address === itemEmail) {
+      setState({
+        participateUserEvent: !state.participateUserEvent,
+      });
+    }
   };
 
   return (
@@ -73,6 +136,20 @@ const ParticipantsSelector = ({ stateHook: [state, setState] }) => {
       <Grid item md={12} xs={12}>
         <Divider />
         <h2>{i18n.__('pages.FormEvent.participants')}</h2>
+        <Grid item md={12} xs={12}>
+          <FormControlLabel
+            control={
+              <Checkbox id="chk" onChange={handleCheckBoxUser} checked={state.participateUserEvent} color="primary" />
+            }
+            label={i18n.__('pages.FormEvent.participateUserEvent')}
+          />
+        </Grid>
+        {/* <Grid item md={12} xs={12}>
+          <FormControlLabel
+            control={<Checkbox checked={state.ParticipateAdmin} onChange={handleCheckBoxGroupAdmin} color="primary" />}
+            label={i18n.__('pages.FormEvent.ParticipateAdmin')}
+          />
+          </Grid> */}
       </Grid>
       <Grid item md={12} xs={12}>
         <TextField
@@ -130,9 +207,8 @@ const ParticipantsSelector = ({ stateHook: [state, setState] }) => {
     </Grid>
   );
 };
-
 export default ParticipantsSelector;
-
 ParticipantsSelector.propTypes = {
   stateHook: PropTypes.arrayOf(PropTypes.any).isRequired,
+  handleCheckBoxUser: PropTypes.func.isRequired,
 };

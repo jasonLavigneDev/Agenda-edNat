@@ -25,10 +25,10 @@ export const createEvent = new ValidatedMethod({
         const sendnotif = require('../notifications/server/notifSender').default;
         // eslint-disable-next-line global-require
         const sendEmail = require('../emails/server/methods').default;
-        if (data.participants && data.participants.length) {
+        if (data.participants && data.participants.filter((p) => p._id !== this.userId).length) {
           sendnotif({
             groups: data.groups,
-            participants: data.participants,
+            participants: data.participants.filter((p) => p._id !== this.userId),
             title: i18n.__('notifications.newMeetingEvent'),
             content: `${i18n.__('notifications.youAreInvitedTo')} ${data.title}`,
             eventId: result,
@@ -44,6 +44,19 @@ export const createEvent = new ValidatedMethod({
     }
   },
 });
+
+// export const allUsersGroup = new ValidatedMethod({
+//   name: 'events.allUsers',
+//   validate: new SimpleSchema({
+//     arrayAdmins: { type: Array },
+//     'arrayAdmins.$': { type: String },
+//   }).validator({ clean: true }),
+//   run({ arrayAdmins }) {
+//     const user = Meteor.users.find({ _id: { $in: arrayAdmins } }, { fields: { _id: 1, emails: 1 } }).fetch();
+//     return user;
+//   },
+// });
+
 export const editEvent = new ValidatedMethod({
   name: 'events.edit',
   validate: new SimpleSchema({
@@ -64,10 +77,10 @@ export const editEvent = new ValidatedMethod({
         const sendnotif = require('../notifications/server/notifSender').default;
         // eslint-disable-next-line global-require
         const sendEmail = require('../emails/server/methods').default;
-        if (data.participants && data.participants.length) {
+        if (data.participants && data.participants.filter((p) => p._id !== this.userId).length) {
           sendnotif({
             groups: data.groups,
-            participants: data.participants,
+            participants: data.participants.filter((p) => p._id !== this.userId),
             title: i18n.__('notifications.newMeetingEvent'),
             content: `${i18n.__('notifications.youAreInvitedTo')} ${data.title}`,
             eventId: result,
