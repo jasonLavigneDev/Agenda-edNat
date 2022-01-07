@@ -48,7 +48,7 @@ const SingleGroupDisplay = ({ group, handleDelete, view, event }) => {
 
   const users = useTracker(() => {
     const { animators = [], members = [] } = Groups.findOne({ _id: group._id }) || {};
-    return Meteor.users.find({ _id: { $in: [...animators, ...members], $ne: view ? null : Meteor.userId() } }).fetch();
+    return Meteor.users.find({ _id: { $in: [...animators, ...members] } }).fetch();
   });
 
   return (

@@ -135,7 +135,6 @@ const ParticipantsSelector = ({ stateHook: [state, setState], handleCheckBoxUser
     <Grid container spacing={2} className={classes.resultWrapper}>
       <Grid item md={12} xs={12}>
         <Divider />
-        <h2>{i18n.__('pages.FormEvent.participants')}</h2>
         <Grid item md={12} xs={12}>
           <FormControlLabel
             control={
@@ -144,6 +143,8 @@ const ParticipantsSelector = ({ stateHook: [state, setState], handleCheckBoxUser
             label={i18n.__('pages.FormEvent.participateUserEvent')}
           />
         </Grid>
+        <Divider />
+        <h2>{i18n.__('pages.FormEvent.participants')}</h2>
         {/* <Grid item md={12} xs={12}>
           <FormControlLabel
             control={<Checkbox checked={state.ParticipateAdmin} onChange={handleCheckBoxGroupAdmin} color="primary" />}
@@ -184,7 +185,7 @@ const ParticipantsSelector = ({ stateHook: [state, setState], handleCheckBoxUser
       </Grid>
       <Grid item md={12} xs={12}>
         {state.participants
-          .filter(({ groupId }) => !groupId)
+          .filter(({ _id, groupId }) => !groupId && _id !== Meteor.userId())
           .map((part) => (
             <Chip
               key={part._id}
