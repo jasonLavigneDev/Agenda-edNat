@@ -103,9 +103,14 @@ const EditEvent = ({ history, match: { params } }) => {
       const organizerId = Meteor.userId();
       const { groups, participants, endDate, startDate, endTime, startTime, daysOfWeek, ...rest } = state;
       let allParticipants = [...participants];
+      let organizerGroup = '';
       if (groups.length) {
         groups.forEach(({ _id }) => {
           const { admins, animators, members } = Groups.findOne({ _id });
+          const groupUsers = [...admins, ...animators, ...members];
+          if (organizerGroup === '' && groupUsers.includes(organizerId)) {
+            organizerGroup = _id;
+          }
           // add users from group that are not already in participants (excluding event organizer)
           const users = Meteor.users
             .find({
@@ -116,7 +121,9 @@ const EditEvent = ({ history, match: { params } }) => {
             })
             .fetch();
           allParticipants = [
-            ...allParticipants,
+            ...allParticipants.map((user) =>
+              user._id === Meteor.userId() && organizerGroup !== '' ? { ...user, groupId: organizerGroup } : user,
+            ),
             ...users.map((user) => ({
               email: user.emails[0].address,
               _id: user._id,
