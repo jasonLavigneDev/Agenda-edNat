@@ -47,10 +47,8 @@ const SingleGroupDisplay = ({ group, handleDelete, view, event }) => {
   const classes = useStyles();
 
   const users = useTracker(() => {
-    const { admins = [], animators = [], members = [] } = Groups.findOne({ _id: group._id }) || {};
-    return Meteor.users
-      .find({ _id: { $in: [...admins, ...animators, ...members], $ne: view ? null : Meteor.userId() } })
-      .fetch();
+    const { animators = [], members = [] } = Groups.findOne({ _id: group._id }) || {};
+    return Meteor.users.find({ _id: { $in: [...animators, ...members] } }).fetch();
   });
 
   return (
@@ -75,7 +73,7 @@ const SingleGroupDisplay = ({ group, handleDelete, view, event }) => {
           const status = () => {
             if (event.participants) {
               const thisUser = event.participants.find((p) => p._id === _id);
-              return thisUser.status;
+              return thisUser ? thisUser.status : 0;
             }
             return 1;
           };

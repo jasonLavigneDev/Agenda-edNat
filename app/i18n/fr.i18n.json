@@ -55,6 +55,8 @@
       "description": "Description",
       "participants": "Ajouter des participants",
       "groups": "Groupes concernés",
+      "participateUserEvent": "Je participe à l'évènement",
+      "ParticipateAdmin": "Les administrateurs du groupe participent à l'évènement",
       "selectAGroup": "Sélectionnez un groupe",
       "informations": "Informations",
       "allDay": "Journée entière",

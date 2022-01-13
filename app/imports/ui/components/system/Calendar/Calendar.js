@@ -105,7 +105,6 @@ const Calendar = () => {
         eventDrop={eventDropOrResize}
         eventResize={eventDropOrResize}
         height={isMobile ? 'auto' : 1000}
-        content={isMobile ? 'auto' : 1000}
         firstDay={1}
         nowIndicator
         buttonText={buttons}

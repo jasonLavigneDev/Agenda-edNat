@@ -62,24 +62,68 @@ const EditEvent = ({ history, match: { params } }) => {
         endRecur: moment(event.endRecur).format('YYYY-MM-DD'),
         startTime: moment(event.start).format('HH:mm'),
         endTime: event.allDay ? '23:59' : moment(event.end).format('HH:mm'),
+        participateUserEvent: event.participants.some((participant) => participant._id === Meteor.userId()),
       });
     });
   }, []);
+
+  useEffect(() => {
+    const organizerId = Meteor.userId();
+    if (
+      state.participateUserEvent === true &&
+      !state.participants.some((participant) => participant._id === organizerId)
+    ) {
+      setState({
+        participants: [
+          ...state.participants,
+          ...[{ _id: organizerId, email: Meteor.user().emails[0].address, status: 2 }],
+        ],
+      });
+    } else if (
+      state.participateUserEvent === false &&
+      state.participants.some((participant) => participant._id === organizerId)
+    ) {
+      setState({
+        participants: state.participants.filter((participant) => participant._id !== organizerId),
+      });
+    }
+  }, [state.participateUserEvent]);
+
+  // if user is not in participants and participateUserEvent is false : add him to the list
+  const handleCheckBoxUser = () => {
+    setState({
+      participateUserEvent: !state.participateUserEvent,
+    });
+  };
 
   const editEventCall = () => {
     try {
       setLoading(true);
 
+      const organizerId = Meteor.userId();
       const { groups, participants, endDate, startDate, endTime, startTime, daysOfWeek, ...rest } = state;
       let allParticipants = [...participants];
+      let organizerGroup = '';
       if (groups.length) {
         groups.forEach(({ _id }) => {
           const { admins, animators, members } = Groups.findOne({ _id });
+          const groupUsers = [...admins, ...animators, ...members];
+          if (organizerGroup === '' && groupUsers.includes(organizerId)) {
+            organizerGroup = _id;
+          }
+          // add users from group that are not already in participants (excluding event organizer)
           const users = Meteor.users
-            .find({ _id: { $nin: allParticipants.map((p) => p._id), $in: [...admins, ...animators, ...members] } })
+            .find({
+              _id: {
+                $nin: [...allParticipants.map((p) => p._id), organizerId],
+                $in: [...admins, ...animators, ...members],
+              },
+            })
             .fetch();
           allParticipants = [
-            ...allParticipants,
+            ...allParticipants.map((user) =>
+              user._id === Meteor.userId() && organizerGroup !== '' ? { ...user, groupId: organizerGroup } : user,
+            ),
             ...users.map((user) => ({
               email: user.emails[0].address,
               _id: user._id,
@@ -135,7 +179,6 @@ const EditEvent = ({ history, match: { params } }) => {
       setLoading(false);
     }
   };
-
   return (
     <ModalWrapper
       open
@@ -169,7 +212,7 @@ const EditEvent = ({ history, match: { params } }) => {
         <>
           <InformationsForm errors={errors} stateHook={[state, setState]} />
           <GroupsSelector errors={errors} stateHook={[state, setState]} />
-          <ParticipantsSelector stateHook={[state, setState]} />
+          <ParticipantsSelector stateHook={[state, setState]} handleCheckBoxUser={handleCheckBoxUser} />
         </>
       )}
     </ModalWrapper>
