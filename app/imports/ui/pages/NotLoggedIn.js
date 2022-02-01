@@ -17,7 +17,9 @@ const NotLoggedIn = () => {
   const [{ loggingIn }] = useAppContext();
 
   useEffect(() => {
-    if (!loggingIn) Meteor.loginWithKeycloak();
+    if (!loggingIn) {
+      setTimeout(() => Meteor.loginWithKeycloak(), 500);
+    }
   }, []);
 
   return (
