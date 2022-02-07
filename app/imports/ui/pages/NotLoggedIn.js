@@ -14,13 +14,13 @@ const useStyles = makeStyles(() => ({
 
 const NotLoggedIn = () => {
   const classes = useStyles();
-  const [{ loggingIn }] = useAppContext();
+  const [{ loggingIn, loadingUser }] = useAppContext();
 
   useEffect(() => {
-    if (!loggingIn) {
-      setTimeout(() => Meteor.loginWithKeycloak(), 500);
+    if (!loadingUser && !loggingIn) {
+      Meteor.loginWithKeycloak();
     }
-  }, []);
+  }, [loadingUser, loggingIn]);
 
   return (
     <div className={classes.wrapper}>
