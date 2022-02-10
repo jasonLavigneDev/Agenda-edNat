@@ -51,8 +51,12 @@ const MainMenu = ({ user = {} }) => {
   const keycloakLogout = () => {
     const { keycloakUrl, keycloakRealm } = Meteor.settings.public;
     const keycloakLogoutUrl = `${keycloakUrl}/realms/${keycloakRealm}/protocol/openid-connect/logout`;
-    const redirectUri = `${Meteor.absoluteUrl()}/?dologout=1`;
+    const redirectUri = `${Meteor.absoluteUrl()}/logout`;
     window.location = `${keycloakLogoutUrl}?post_logout_redirect_uri=${redirectUri}`;
+  };
+
+  const localLogout = () => {
+    history.replace(ROUTES.LOGOUT);
   };
 
   const closeLogoutDialog = () => {
@@ -67,9 +71,9 @@ const MainMenu = ({ user = {} }) => {
         setOpenLogout(true);
       } else if (logoutType === 'global') {
         keycloakLogout();
-      } else Meteor.logout();
+      } else localLogout();
     } else {
-      Meteor.logout();
+      localLogout();
     }
   };
 

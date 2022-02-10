@@ -83,7 +83,7 @@ export default DynamicStore;
 
 Store.defaultProps = {
   authenticated: false,
-  loadingUser: false,
+  loadingUser: true,
   loggingIn: false,
   userId: undefined,
   user: {},

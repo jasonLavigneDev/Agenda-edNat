@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import i18n from 'meteor/universe:i18n';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
@@ -12,15 +13,17 @@ import Slide from '@material-ui/core/Slide';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import ROUTES from '../../layouts/routes';
 
 const Transition = React.forwardRef((props, ref) => <Slide direction="up" ref={ref} {...props} />);
 
 function LogoutDialog({ open, onAccept, onClose }) {
   const [dontAsk, setDontAsk] = useState(false);
+  const history = useHistory();
   const simpleLogout = () => {
     if (dontAsk) Meteor.call('users.setLogoutType', { logoutType: 'local' });
     onClose();
-    Meteor.logout();
+    history.replace(ROUTES.LOGOUT);
   };
   const keycloakLogout = () => {
     if (dontAsk) Meteor.call('users.setLogoutType', { logoutType: 'global' });

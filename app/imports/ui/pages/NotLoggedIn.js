@@ -1,8 +1,7 @@
-import React from 'react';
-import i18n from 'meteor/universe:i18n';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import { useAppContext } from '../contexts/context';
+import Spinner from '../components/system/Spinner';
 
 const useStyles = makeStyles(() => ({
   wrapper: {
@@ -15,14 +14,17 @@ const useStyles = makeStyles(() => ({
 
 const NotLoggedIn = () => {
   const classes = useStyles();
-  const [{ loggingIn }] = useAppContext();
-  //   const { enableKeycloak } = Meteor.settings.public;
+  const [{ loggingIn, loadingUser }] = useAppContext();
+
+  useEffect(() => {
+    if (!loadingUser && !loggingIn) {
+      Meteor.loginWithKeycloak();
+    }
+  }, [loadingUser, loggingIn]);
 
   return (
     <div className={classes.wrapper}>
-      <Button variant="contained" color="primary" onClick={Meteor.loginWithKeycloak}>
-        {i18n.__(loggingIn ? 'system.loading' : 'system.login')}
-      </Button>
+      <Spinner />
     </div>
   );
 };

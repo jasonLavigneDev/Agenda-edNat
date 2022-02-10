@@ -10,6 +10,7 @@ const queryStringMaker = (query) => {
 
 const ROUTES = {
   HOME: '/',
+  LOGOUT: '/logout',
   ADD_EVENT: '/add-event',
   ADD_EVENT_TO_DATE: ({ date, start, end }) => `/add-event?${queryStringMaker({ date, start, end })}`,
   EVENT: '/event/:_id',
