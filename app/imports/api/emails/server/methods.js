@@ -20,10 +20,17 @@ const sendEmail = new ValidatedMethod({
   }).validator({ clean: true }),
 
   run({ event }) {
+    // locale is forced to 'fr'
+    // language setting from ui is not persisted right now, email template is in french
+    const locale = 'fr';
     const cal = ical({ domain: process.env.ROOT_URL, name: 'event iCal' });
+    const dateStart = moment(event.start);
+    dateStart.locale(locale);
+    const dateEnd = moment(event.end);
+    dateEnd.locale(locale);
     cal.createEvent({
-      start: moment(event.start),
-      end: moment(event.end),
+      start: dateStart,
+      end: dateEnd,
       location: event.location,
       summary: event.title,
       description: event.description,
@@ -33,8 +40,8 @@ const sendEmail = new ValidatedMethod({
     const html = eventTemplate({
       title: event.title,
       description: event.description,
-      start: moment(event.start).format('LLL'),
-      end: moment(event.end).format('LLL'),
+      start: dateStart.format('LLL'),
+      end: dateEnd.format('LLL'),
       sender: user && user.emails[0].address,
     });
 
