@@ -12,6 +12,7 @@ import NotLoggedIn from '../pages/NotLoggedIn';
 import Logout from '../pages/Logout';
 import ROUTES from './routes';
 import { useAppContext } from '../contexts/context';
+import SiteInMaintenance from '../components/system/SiteInMaintenance';
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -21,29 +22,37 @@ const useStyles = makeStyles((theme) => ({
 
 const MainLayout = () => {
   const classes = useStyles();
-  const [{ userId }] = useAppContext();
+  const [{ userId, appsettings }] = useAppContext();
 
   return (
     <>
       <TopBar />
       <main className={classes.main}>
         <Container>
-          {userId ? (
-            <>
-              <Calendar />
+          {!appsettings.maintenance ? (
+            userId ? (
+              <>
+                <Calendar />
+                <Switch>
+                  <Route exact path={ROUTES.LOGOUT} component={Logout} />
+                  <Route exact path={ROUTES.ADD_EVENT} component={AddEvent} />
+                  <Route exact path={ROUTES.EVENT} component={ReadEvent} />
+                  <Route exact path={ROUTES.EVENT_EDIT} component={EditEvent} />
+                  <Redirect from="*" to={ROUTES.HOME} />
+                </Switch>
+              </>
+            ) : (
               <Switch>
                 <Route exact path={ROUTES.LOGOUT} component={Logout} />
-                <Route exact path={ROUTES.ADD_EVENT} component={AddEvent} />
-                <Route exact path={ROUTES.EVENT} component={ReadEvent} />
-                <Route exact path={ROUTES.EVENT_EDIT} component={EditEvent} />
+                <Route path={ROUTES.HOME} component={NotLoggedIn} />
                 <Redirect from="*" to={ROUTES.HOME} />
               </Switch>
-            </>
+            )
           ) : (
             <Switch>
               <Route exact path={ROUTES.LOGOUT} component={Logout} />
-              <Route path={ROUTES.HOME} component={NotLoggedIn} />
-              <Redirect from="*" to={ROUTES.HOME} />
+              <Route exact path="/" component={SiteInMaintenance} />
+              <Route component={SiteInMaintenance} />
             </Switch>
           )}
         </Container>

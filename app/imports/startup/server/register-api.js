@@ -9,3 +9,6 @@ import '../../api/events/server/methods';
 
 import '../../api/groups/server/publications';
 import '../../api/groups/groups';
+
+import '../../api/appsettings/server/publications';
+import '../../api/appsettings/appsettings';

@@ -10,7 +10,8 @@
   },
   "api": {
     "appsettings": {
-      "labels": {}
+      "labels": {},
+      "migrationLockedText": "La migration de la base de données est bloquée."
     },
     "methods": {}
   },
@@ -117,6 +118,9 @@
       "dontAskAgain": "Ne plus demander",
       "buttonYes": "Oui",
       "buttonNo": "Non"
+    },
+    "SiteInMaintenance": {
+      "maintenanceInProgress": "Maintenance en cours"
     }
   },
   "layouts": {
