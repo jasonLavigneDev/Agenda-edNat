@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SMALL_LOGO = 'Logo-A.svg';
+const SMALL_LOGO = 'puce_eole.png';
 const LONG_LOGO = 'Agenda.png';
 
 function TopBar() {
