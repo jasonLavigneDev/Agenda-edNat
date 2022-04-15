@@ -18,8 +18,7 @@ const useStyles = makeStyles((theme) => ({
     minHeight: 48,
   },
   imgLogo: {
-    maxHeight: '30px',
-    height: 30,
+    maxHeight: '40px',
     outline: 'none',
   },
   grow: {
@@ -38,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SMALL_LOGO = 'Logo-A.svg';
-const LONG_LOGO = 'apps-logo-sansfond.svg';
+const LONG_LOGO = 'Agenda.png';
 
 function TopBar() {
   const [{ isMobile, user }] = useAppContext();
