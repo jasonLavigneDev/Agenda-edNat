@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import reducer, { MOBILE_SIZE } from './reducer';
 import { getLang } from '../../api/utils/functions';
 import { useWindowSize } from '../../api/utils/hooks';
+import AppSettings from '../../api/appsettings/appsettings';
 
 const initialState = {
   user: Meteor.user(),
@@ -15,6 +16,7 @@ const initialState = {
   language: getLang().substr(0, 2),
   loggingIn: Accounts.loggingIn(),
   authenticated: false,
+  appsettings: { maintenance: false, textMaintenance: '' },
 };
 
 const logger = (state, action) => {
@@ -28,7 +30,7 @@ const logger = (state, action) => {
   return newState;
 };
 
-const Store = ({ children, loggingIn, user, userId, authenticated, loadingUser }) => {
+const Store = ({ children, loggingIn, user, userId, authenticated, loading, appsettings }) => {
   const [state, dispatch] = useReducer(logger, initialState);
   const { width } = useWindowSize();
 
@@ -40,11 +42,12 @@ const Store = ({ children, loggingIn, user, userId, authenticated, loadingUser }
     dispatch({
       type: 'user',
       data: {
-        loadingUser,
+        loading,
         loggingIn,
         user,
         userId,
         authenticated,
+        appsettings,
       },
     });
     if (user && user.language && user.language !== state.language) {
@@ -55,7 +58,7 @@ const Store = ({ children, loggingIn, user, userId, authenticated, loadingUser }
         },
       });
     }
-  }, [loggingIn, user, userId, authenticated, loadingUser]);
+  }, [loggingIn, user, userId, authenticated, loading, appsettings]);
 
   return <Context.Provider value={[state, dispatch]}>{children}</Context.Provider>;
 };
@@ -65,17 +68,23 @@ export const useAppContext = () => useContext(Context);
 
 const DynamicStore = withTracker(() => {
   const userHandle = Meteor.subscribe('userData');
-  const loadingUser = !userHandle.ready();
+  const settingsHandle = Meteor.subscribe('appsettings.all');
+  const loading = !userHandle.ready() || !settingsHandle.ready();
   const loggingIn = Meteor.loggingIn();
   const user = Meteor.user();
   const userId = Meteor.userId();
+  const appsettings = AppSettings.findOne(
+    { _id: 'settings' },
+    { fields: AppSettings.publicFields, sort: { _id: 1 }, limit: 1 },
+  );
 
   return {
-    loadingUser,
+    loading,
     loggingIn,
     authenticated: !loggingIn && !!userId,
     user,
     userId,
+    appsettings,
   };
 })(Store);
 
@@ -83,17 +92,19 @@ export default DynamicStore;
 
 Store.defaultProps = {
   authenticated: false,
-  loadingUser: true,
+  loading: true,
   loggingIn: false,
   userId: undefined,
   user: {},
+  appsettings: {},
 };
 
 Store.propTypes = {
   authenticated: PropTypes.bool,
-  loadingUser: PropTypes.bool,
+  loading: PropTypes.bool,
   loggingIn: PropTypes.bool,
   userId: PropTypes.string,
   user: PropTypes.objectOf(PropTypes.any),
+  appsettings: PropTypes.objectOf(PropTypes.any),
   children: PropTypes.element.isRequired,
 };
