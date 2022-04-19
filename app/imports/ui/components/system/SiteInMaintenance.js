@@ -6,20 +6,23 @@ import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import AppSettings from '../../../api/appsettings/appsettings';
 
-const useStyle = makeStyles((theme) => ({
+const useStyle = makeStyles(() => ({
+  divContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: 'fit-content',
+    marginTop: '10vh',
+    border: 'rgba(255, 0, 0, 0.7) solid 5px',
+    borderRadius: '15px',
+    margin: 'auto',
+    padding: 30,
+  },
   title: {
-    textAlign: 'center',
+    display: 'flex',
+    justifyContent: 'center',
   },
   paragraph: {
     textAlign: 'center',
-    marginTop: 30,
-  },
-  link: {
-    color: theme.palette.primary.main,
-    textDecoration: 'none',
-    outline: 'none',
-    marginRight: 25,
-    fontFamily: 'WorkSansBold',
   },
 }));
 
@@ -28,12 +31,12 @@ const SiteInMaintenance = ({ appsettings, ready }) => {
   return (
     <>
       {ready ? (
-        <div style={{ marginTop: 80, marginBottom: 50 }}>
+        <div className={classes.divContainer}>
           <Typography className={classes.title} variant="h5" color="inherit">
             {i18n.__('components.SiteInMaintenance.maintenanceInProgress')}
           </Typography>
 
-          <Typography className={classes.paragraph} paragraph color="inherit">
+          <Typography className={classes.paragraph} color="inherit">
             {i18n.__(appsettings.textMaintenance)}
           </Typography>
         </div>

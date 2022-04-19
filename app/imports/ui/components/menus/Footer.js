@@ -10,6 +10,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     justifyContent: 'space-between',
+    position: 'relative',
+    height: '100%',
   },
   link: {
     color: theme.palette.tertiary.main,
@@ -90,7 +92,7 @@ const Footer = () => {
   };
 
   return (
-    <AppBar position="relative">
+    <AppBar style={{ position: 'relative' }}>
       {isMobile ? (
         <Toolbar className={classes.root}>
           <ul>{toolbarContent()}</ul>
