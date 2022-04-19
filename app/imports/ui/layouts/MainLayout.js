@@ -17,6 +17,7 @@ import SiteInMaintenance from '../components/system/SiteInMaintenance';
 const useStyles = makeStyles((theme) => ({
   main: {
     backgroundColor: theme.palette.background,
+    minHeight: '83.6vh',
   },
 }));
 
