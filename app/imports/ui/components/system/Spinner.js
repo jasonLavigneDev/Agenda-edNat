@@ -70,7 +70,7 @@ const useStyles = ({ inside }) =>
       height: '20%',
       float: 'left',
       animation: '$sk-grid 1.5s infinite ease-in-out',
-      backgroundImage: 'url("/images/logo.png")',
+      backgroundImage: 'url("/images/puce_eole.png")',
       backgroundRepeat: 'no-repeat',
       backgroundAttachment: 'inherit',
       backgroundSize: 60,
