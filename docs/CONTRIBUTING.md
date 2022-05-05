@@ -10,11 +10,10 @@ how to contribute to this project documentation.
 
 ## Overview
 
-
 Submitting a merge request is more than just code! To achieve a quality
 product, the tests and documentation need to be updated as well. An excellent
 merge request will include these in the changes, wherever relevant.
-
+Do not merge `testing` and `master` locally, prefer using a merge request for that.
 
 ## Commit message formatting
 
@@ -75,14 +74,13 @@ settings.
 For more details about the default settings, refer back to
 the [`commitlint` reference rules](https://conventional-changelog.github.io/commitlint/#/reference-rules).
 
-
 ### Relationship between commit type and version bump
 
 This project applies some customisation to the defaults, as outlined in the
 table below, based upon the type of the commit:
 
 | Type     | Heading                  | Description                                                                                             | Bump (default) | Bump (custom) |
-|----------|--------------------------|---------------------------------------------------------------------------------------------------------|----------------|---------------|
+| -------- | ------------------------ | ------------------------------------------------------------------------------------------------------- | -------------- | ------------- |
 | build    | Build System             | Changes related to the build system                                                                     | –              | _             |
 | chore    | –                        | Changes to the build process or auxiliary tools and libraries such as documentation generation          | –              | _             |
 | ci       | Continuous Integration   | Changes to the continuous integration configuration                                                     | –              | _             |
@@ -94,7 +92,6 @@ table below, based upon the type of the commit:
 | revert   | Reverts                  | A commit used to revert a previous commit                                                               | –              | 0.0.1         |
 | style    | Styles                   | Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc.) | –              | 0.0.1         |
 | test     | Tests                    | Adding missing or correcting existing tests                                                             | –              | 0.0.1         |
-
 
 #### Scopes
 
