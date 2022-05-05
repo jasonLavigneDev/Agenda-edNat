@@ -1,5 +1,29 @@
 # Changelog
 
+# [3.4.0](https://gitlab.mim-libre.fr/alphabet/agenda/compare/release/3.3.0...release/3.4.0) (2022-05-05)
+
+
+### Bug Fixes
+
+* **audit:** disable rule on prop types in eslint ([f5312fe](https://gitlab.mim-libre.fr/alphabet/agenda/commit/f5312fe1477d0bbf90766c6e462538706410e8bd))
+* **audit:** update Dockerfile and CI ([34dbf05](https://gitlab.mim-libre.fr/alphabet/agenda/commit/34dbf05bd883d9cc4f5b1f14e7836284416c88ae))
+* **audit:** update meteor and libraries ([5c997ff](https://gitlab.mim-libre.fr/alphabet/agenda/commit/5c997ff3a0bd5d9083bb124c3b2df2fabbc0085c))
+* **audit:** update Meteor to 2.7.1 ([06397c5](https://gitlab.mim-libre.fr/alphabet/agenda/commit/06397c5998be6f1db0f9878507f5cacf33498a76))
+* **email:** set moment js locale to french for emails ([7ad6add](https://gitlab.mim-libre.fr/alphabet/agenda/commit/7ad6addd50e438ef525af73f17158ea84ce890b6))
+
+
+### Code Refactoring
+
+* **ui:** change favicon with new icon ([d56fceb](https://gitlab.mim-libre.fr/alphabet/agenda/commit/d56fceb811d5967f555c523fd1d08f726b9ce59b))
+* **ui:** change logo apps to agenda logo ([1d516c9](https://gitlab.mim-libre.fr/alphabet/agenda/commit/1d516c9a9660c471eadfce334b4f2c76deda9548))
+* **ui:** change logo for spinner ([518a2c4](https://gitlab.mim-libre.fr/alphabet/agenda/commit/518a2c46dd823d7c5df1d81a5c76eb1cbc1e2224))
+* **ui:** refactor maintenance page ([1e3da2f](https://gitlab.mim-libre.fr/alphabet/agenda/commit/1e3da2fdae9f3b08304c6cf0d6b5cbe7175f1270))
+
+
+### Features
+
+* **maintenance:** lock application if laboite is in maintenance mode ([9e8f38e](https://gitlab.mim-libre.fr/alphabet/agenda/commit/9e8f38edab6278c832f4c34652678a08af9e2abb))
+
 # [3.3.0](https://gitlab.mim-libre.fr/alphabet/agenda/compare/release/3.2.0...release/3.3.0) (2022-03-03)
 
 
