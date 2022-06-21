@@ -1,4 +1,5 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useState, useEffect } from 'react';
+import { Accounts } from 'meteor/accounts-base';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,12 +12,29 @@ import lightTheme from '../themes/light';
 const MainLayout = lazy(() => import('./MainLayout'));
 
 function App() {
+  const [userFailed, setUserFailed] = useState(false);
+  const stopCallback = Accounts.onLoginFailure((details) => {
+    if (details.error.error === 'api.users.createUser') {
+      setUserFailed(true);
+    }
+  });
+
+  useEffect(() => {
+    return () => {
+      if (typeof stopCallback.stop === 'function') {
+        stopCallback.stop();
+      }
+    };
+  }, []);
+
   return (
     <>
       <CssBaseline />
       <Suspense fallback={<Spinner full />}>
         <Switch>
-          <Route path="/" component={MainLayout} />
+          <Route path="/">
+            <MainLayout userFailed={userFailed} setUserFailed={setUserFailed} />
+          </Route>
         </Switch>
       </Suspense>
       <MsgHandler />

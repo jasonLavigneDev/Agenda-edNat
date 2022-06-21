@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Redirect, Route, Switch } from 'react-router-dom';
@@ -13,6 +14,7 @@ import Logout from '../pages/Logout';
 import ROUTES from './routes';
 import { useAppContext } from '../contexts/context';
 import SiteInMaintenance from '../components/system/SiteInMaintenance';
+import UserFailed from '../components/system/UserFailed';
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -21,9 +23,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MainLayout = () => {
+const MainLayout = ({ userFailed, setUserFailed }) => {
   const classes = useStyles();
   const [{ userId, appsettings }] = useAppContext();
+  useEffect(() => {
+    if (userId) setUserFailed(false);
+  }, [userId]);
 
   return (
     <>
@@ -31,7 +36,9 @@ const MainLayout = () => {
       <main className={classes.main}>
         <Container>
           {!appsettings.maintenance ? (
-            userId ? (
+            userFailed ? (
+              <UserFailed />
+            ) : userId ? (
               <>
                 <Calendar />
                 <Switch>
@@ -61,6 +68,11 @@ const MainLayout = () => {
       <Footer />
     </>
   );
+};
+
+MainLayout.propTypes = {
+  userFailed: PropTypes.bool.isRequired,
+  setUserFailed: PropTypes.func.isRequired,
 };
 
 export default MainLayout;
