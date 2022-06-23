@@ -22,6 +22,8 @@ const AddEvent = ({ history }) => {
   const [isValid, setValidity] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  moment.suppressDeprecationWarnings = true;
+
   useEffect(() => {
     if (
       Object.values(errors).reduce((a, c) => (c !== null ? 1 : a), 0) === 0 &&
