@@ -32,7 +32,6 @@ const ModalWrapper = ({ open, onClose, title, children, loading, buttons = [] })
       open={open}
       TransitionComponent={Transition}
       keepMounted
-      disableBackdropClick
       className={classes.modal}
       onClose={onClose}
       aria-labelledby="alert-dialog-slide-title"
