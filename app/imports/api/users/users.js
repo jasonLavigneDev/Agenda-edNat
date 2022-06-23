@@ -123,14 +123,6 @@ Meteor.users.publicFields = {
   avatar: 1,
 };
 
-if (Meteor.isServer) {
-  Accounts.onCreateUser(() => {
-    // Users should not be created by apps-agenda,
-    // Redirect user to laboite if not found
-    throw new Meteor.Error('api.users.createUser', 'User creation is disabled in Agenda');
-  });
-}
-
 Meteor.users.deny({
   insert() {
     return true;

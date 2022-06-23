@@ -7,13 +7,13 @@ import logServer from '../../../api/utils/functions';
 
 if (Meteor.settings.keycloak) {
   if (Meteor.settings.public.enableKeycloak === true) {
-    // if (!Meteor.isTest) {
-    //   Accounts.onCreateUser(() => {
-    //     // Users should not be created by apps-agenda,
-    //     // Redirect user to laboite if not found
-    //     throw new Meteor.Error('api.users.createUser', 'User creation is disabled in Agenda');
-    //   });
-    // }
+    if (Meteor.settings.public.laboiteURL) {
+      Accounts.onCreateUser(() => {
+        // Users should not be created by apps-agenda,
+        // Redirect user to laboite if not found
+        throw new Meteor.Error('api.users.createUser', 'User creation is disabled in Agenda');
+      });
+    }
     Accounts.config({
       forbidClientAccountCreation: !Meteor.isTest,
     });

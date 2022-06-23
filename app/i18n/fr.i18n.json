@@ -121,6 +121,11 @@
     },
     "SiteInMaintenance": {
       "maintenanceInProgress": "Maintenance en cours"
+    },
+    "UserFailed": {
+      "loginLaboite": "connexion à LaBoite",
+      "loginMsg": "Votre utilisateur n'a pas de compte LaBoite, veuillez cliquer sur le bouton ci-dessous pour le créer, puis cliquez sur ",
+      "loginLink": "ce lien"
     }
   },
   "layouts": {
