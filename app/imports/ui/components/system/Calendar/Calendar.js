@@ -110,6 +110,11 @@ const Calendar = () => {
         buttonText={buttons}
         customButtons={customButtons}
         headerToolbar={TOOLBAR}
+        eventTimeFormat={{
+          hour: 'numeric',
+          minute: '2-digit',
+          meridiem: 'short',
+        }}
       />
     </div>
   );
