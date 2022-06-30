@@ -6,7 +6,7 @@
   },
   "notifications": {
     "newMeetingEvent": "Nouvel évenement sur l'agenda",
-    "youAreInvitedTo": "Vous avez été invité a participer à l'évenement"
+    "youAreInvitedTo": "Vous avez été invité à participer à l'évenement"
   },
   "api": {
     "appsettings": {
