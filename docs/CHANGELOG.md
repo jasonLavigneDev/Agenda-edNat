@@ -1,5 +1,23 @@
 # Changelog
 
+# [3.5.0](https://gitlab.mim-libre.fr/alphabet/agenda/compare/release/3.4.0...release/3.5.0) (2022-07-05)
+
+
+### Bug Fixes
+
+* **accounts:** prevent user creation if laboiteURL is defined ([8840009](https://gitlab.mim-libre.fr/alphabet/agenda/commit/884000905b8b18da3cb0d73553145c27bd2b7494))
+* **calendar:** fix hour display in english for events in calendar ([b598742](https://gitlab.mim-libre.fr/alphabet/agenda/commit/b598742e09a267ac391ae96b8b2de322356dfbd2))
+* **i18n:** typo in en ("I participate to the event") ([cb6b996](https://gitlab.mim-libre.fr/alphabet/agenda/commit/cb6b996bb895667dbb2c0bf57b9f3c9b59dbf95b))
+* **notifications:** typo when new event ([9a00543](https://gitlab.mim-libre.fr/alphabet/agenda/commit/9a0054323d4b5635d547575f1d646de71af13cbb))
+* **npm:** fix npm vulnerabilities ([7f51e42](https://gitlab.mim-libre.fr/alphabet/agenda/commit/7f51e42600c47a91b019fe64fecc344c66849ff7))
+* **ui:** fix add event console warnings ([d232d18](https://gitlab.mim-libre.fr/alphabet/agenda/commit/d232d18a8ec2a17a6e87b1d7a5b763b0e677311d))
+* **ui:** update material ui import for theme ([7165dd7](https://gitlab.mim-libre.fr/alphabet/agenda/commit/7165dd7bb1a3f42283044b1996ad62fc68255ec4))
+
+
+### Features
+
+* **ui:** use google font localy ([610dec4](https://gitlab.mim-libre.fr/alphabet/agenda/commit/610dec49b3f1790ecc838719070f45eac5efcd81))
+
 # [3.4.0](https://gitlab.mim-libre.fr/alphabet/agenda/compare/release/3.3.0...release/3.4.0) (2022-05-05)
 
 
