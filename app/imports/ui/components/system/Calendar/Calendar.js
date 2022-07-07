@@ -75,7 +75,14 @@ const Calendar = () => {
 
   return (
     <div className={classes.container}>
-      <input ref={inputRef} onChange={importICSToAgenda} className={classes.hidden} id="myfile" type="file" />
+      <input
+        ref={inputRef}
+        onChange={importICSToAgenda}
+        className={classes.hidden}
+        id="myfile"
+        type="file"
+        accept=".ics"
+      />
       <FullCalendar
         locale={language}
         timeZone="local"
