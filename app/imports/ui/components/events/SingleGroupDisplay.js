@@ -81,7 +81,13 @@ const SingleGroupDisplay = ({ group, handleDelete, view, event }) => {
           return (
             <Chip
               key={emails[0].address}
-              avatar={<Avatar alt={emails[0].address} src={avatar} />}
+              avatar={
+                <Avatar
+                  alt={emails[0].address}
+                  src={avatar}
+                  style={{ backgroundColor: avatar ? 'rgba(255,255,255,0.7)' : '' }}
+                />
+              }
               label={emails[0].address}
               className={`${classes.chip} ${
                 displayStatus ? (status() === 0 ? classes.errorChip : classes.successChip) : ''
