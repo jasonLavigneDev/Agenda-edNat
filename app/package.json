@@ -1,6 +1,9 @@
 {
   "name": "agenda3",
   "version": "3.5.0",
+  "license": "EUPL-1.2",
+  "description": "Online diary",
+  "author": "EOLE/PCLL <team@eole.education> - DINUM",
   "private": true,
   "scripts": {
     "start": "MONGO_URL=mongodb://localhost:3001/meteor meteor run --exclude-archs 'web.browser.legacy, web.cordova' --settings ../config/settings.development.json --port 3030",
