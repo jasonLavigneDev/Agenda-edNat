@@ -13,6 +13,7 @@ const ROUTES = {
   LOGOUT: '/logout',
   ADD_EVENT: '/add-event',
   ADD_EVENT_TO_DATE: ({ date, start, end }) => `/add-event?${queryStringMaker({ date, start, end })}`,
+  ADD_EVENT_TO_GROUP: ({ groupId }) => `/add-event?${queryStringMaker({ groupId })}`,
   EVENT: '/event/:_id',
   EVENT_MAKE: (id) => `/event/${id}`,
   EVENT_EDIT: '/edit-event/:_id',

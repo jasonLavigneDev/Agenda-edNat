@@ -22,8 +22,20 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const GroupsSelector = ({ stateHook: [state, setState], errors }) => {
+const GroupsSelector = ({ stateHook: [state, setState], errors, groupId }) => {
   const classes = useStyles();
+
+  if (groupId !== undefined) {
+    const selectedIds = state.groups.map(({ _id }) => _id);
+    if (!selectedIds.includes(groupId)) {
+      const group = Groups.findOne({ _id: groupId });
+      if (group !== undefined) {
+        setState({
+          groups: [...state.groups, { _id: groupId, name: group.name }],
+        });
+      }
+    }
+  }
 
   const handleSelect = (e) => {
     const group = Groups.findOne(e.target.value);
@@ -32,9 +44,9 @@ const GroupsSelector = ({ stateHook: [state, setState], errors }) => {
     });
   };
 
-  const handleDelete = (groupId) => {
+  const handleDelete = (idGroup) => {
     setState({
-      groups: [...state.groups.filter((g) => g._id !== groupId)],
+      groups: [...state.groups.filter((g) => g._id !== idGroup)],
     });
   };
 
@@ -87,4 +99,5 @@ export default GroupsSelector;
 GroupsSelector.propTypes = {
   stateHook: PropTypes.arrayOf(PropTypes.any).isRequired,
   errors: PropTypes.objectOf(PropTypes.any).isRequired,
+  groupId: PropTypes.objectOf(PropTypes.String).isRequired,
 };

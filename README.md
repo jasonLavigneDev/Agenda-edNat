@@ -1,107 +1,94 @@
-# L'application **agenda** environnement DEV :
+# The DEV environment **Agenda** application :
 
-Sommaire :
+- [Install](#install)
+  - [Application : Laboite](#application-laboite)
+  - [Application : Agenda](#application-agenda)
+  - [Parameters](#parameters)
+- [Run project](#run-project)
+  - [In a terminal **laboite**](#in-a-terminal-laboite)
+  - [Run an other terminal **agenda**](#run-an-other-terminal-agenda)
+  - [Add groups to your user](#add-groups-to-your-user)
+    - [In user interface **localhost:3000**](#in-user-interface-localhost3000)
 
-- Installation
-  - Application : la boite
-  - Application : Agenda
-  - Paramètres
-- Lancer le projet
-  - Dans un terminal **la boite**
-  - Lancer un autre terminal **agenda**
-  - Ajouter des groupes à votre utilisateur
-    - Via l'interface utilisateur **localhost:3000**
+---
 
-## Installation
+## Install
 
-### Application : la boite
+### Application : Laboite
 
-Procédure d'nstallation :
+Install process :
 
 ```
-git clone https://gitlab.mim-libre.fr/alphabet/laboite
+git clone https://gitlab.mim-libre.fr/alphabet/laboite.git
 cd laboite
 cp config/settings.development.json.sample config/settings.development.json
 cd app
-npm install
+meteor npm install
 ```
 
 ### Application : Agenda
 
-Procédure d'nstallation :
+Install process :
 
 ```
-git clone https://gitlab.mim-libre.fr/alphabet/apps-agenda.git
-cd apps-agenda
+git clone https://gitlab.mim-libre.fr/alphabet/agenda.git
 cd agenda
-npm install
+cp config/settings.development.json.sample config/settings.development.json
+cd app
+meteor npm install
 ```
 
-### Paramètres
+### Parameters
 
-Pour le fonctionnement de l'**agenda** en local, il faut configurer une instance locale de **LaBoite**' avec authentification sur un serveur Keycloak. Ajouter au moins une clé d'API dans la variable private:apiKeys.
+To run **Agenda** locally, you need to configure a **LaBoite**' local instance with authentication on a Keycloak server. Add at least one API key in the private:apiKeys variable. See [configuration document for more informations](config/README.md).
 
-## Lancer le projet
+## Run project
 
-### Dans un terminal **la boite**
+### In a terminal **laboite**
 
 ```
 cd laboite/app
-npm start
+meteor npm start
 ```
 
-Il est possible de vérifier le fonctionnement de la boite en tapant la ligne suivante à partir d'un navigateur
+It is possible to check the operation of the box by typing the following line from an web browser
 
 ```
 http://localhost:3000
 ```
 
-### lancer un autre terminal **agenda**
+### Run an other terminal **agenda**
 
 ```
-cd agenda
-npm start
+cd agenda/app
+meteor npm start
 ```
 
-copier le fichier config/settings.development.sample.json sur config/settings.development.json et le remplir de cette façon :
-
-- public:"agendaUrl": "http://localhost:3030",
-- public:"laboiteUrl": "http://localhost:3000"
-- public:"enableKeycloak": true
-
-Reprendre les paramètre de l'instance LaBoite pour les variables suivantes :
-
-- public:"keycloakUrl"
-- public:"keycloakRealm"
-- keycloak:"pubkey"
-- keycloak:"client"
-- private:"apiKeys" (nécessaire pour tester l'envoi de notification à LaBoite)
-
-A partir du navigateur, tapez ceci :
+From the browser, type this :
 
 ```
 http://localhost:3030
 ```
 
-### Ajouter des groupes à votre utilisateur
+### Add groups to your user
 
-#### Via l'interface utilisateur **localhost:3000**
+#### In user interface **localhost:3000**
 
-A partir de l'appliation `laboite`que vous accédez à partir du navigateur
+From the `LaBoite` app that you access from the browser
 
 ```
 http://localhost:3000
 ```
 
-Aller dans le fichier de config de la boîte ./config/settings.development.json
+Go to the config file in LaBoite ./config/settings.development.json
 
-Modifier l'attribut : "whiteDomains" en fonction de votre mail user
+Change the attribute : "whiteDomains" according to your mail provider.
 
 Exemple :
 
-Pour un mailUser = 'toto@gmail.com', il faudra ajouter "^gmail.com"
+For mailUser = 'toto@gmail.com', you must add "^gmail.com"
 
-Ce qui donnerait :
+which would give :
 
     "whiteDomains": [
       "^ac-[a-z-]\\.fr",
@@ -109,13 +96,13 @@ Ce qui donnerait :
       "^gmail.com"
     ]
 
-Relancer la boite
+Re run la boite
 
-Naviguez sur `http://localhost:3000` (créez vôtre utilisateur dans keycloak en suivant le lien proposé sur la page d'authentification).
+Go on `http://localhost:3000` (create your user in keycloak by following the link on the authentication page).
 
-En allant dans l'onglet "Groupes", vous pouvez "Rejoindre le groupe" automatiquement pour tous les groupes en bleu
+By going to the "Groups" tab, you can "Join Group" automatically for all groups in blue.
 
-Raffraichir la page **Agenda** du navigateur
+Refresh the page **Agenda** of browser
 
 ```
 http://localhost:3030

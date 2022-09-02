@@ -17,6 +17,7 @@ import GroupsSelector from '../components/events/GroupsSelector';
 const AddEvent = ({ history }) => {
   const goHome = () => history.push(ROUTES.HOME);
   const { date, start, end } = useQuery();
+  const { groupId } = useQuery();
   const [state, setState] = useObjectState(initialState);
   const errors = useErrors(state);
   const [isValid, setValidity] = useState(false);
@@ -167,7 +168,7 @@ const AddEvent = ({ history }) => {
       ]}
     >
       <InformationsForm errors={errors} stateHook={[state, setState]} />
-      <GroupsSelector errors={errors} stateHook={[state, setState]} />
+      <GroupsSelector errors={errors} stateHook={[state, setState]} groupId={groupId} />
       <ParticipantsSelector stateHook={[state, setState]} handleCheckBoxUser={handleCheckBoxUser} />
     </ModalWrapper>
   );

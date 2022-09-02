@@ -1,10 +1,13 @@
 {
   "name": "agenda3",
-  "version": "3.4.0",
+  "version": "3.5.0",
+  "license": "EUPL-1.2",
+  "description": "Online diary",
+  "author": "EOLE/PCLL <team@eole.education> - DINUM",
   "private": true,
   "scripts": {
-    "start": "meteor --exclude-archs 'web.browser.legacy, web.cordova' --settings ../config/settings.development.json",
-    "start-dev": "MONGO_URL=mongodb://localhost:3001/meteor meteor run --exclude-archs 'web.browser.legacy, web.cordova' --settings ../config/settings.development.json --port 3030",
+    "start": "MONGO_URL=mongodb://localhost:3001/meteor meteor run --exclude-archs 'web.browser.legacy, web.cordova' --settings ../config/settings.development.json --port 3030",
+    "start-local": "meteor --exclude-archs 'web.browser.legacy, web.cordova' --settings ../config/settings.development.json",
     "test": "meteor test --once --exclude-archs 'web.browser.legacy, web.cordova' --driver-package meteortesting:mocha --allow-superuser",
     "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha --settings ../config/settings.development.json",
     "lint": "eslint . --ext js,jsx",
