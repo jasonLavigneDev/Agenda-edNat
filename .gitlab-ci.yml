@@ -10,7 +10,7 @@ include:
     file: /templates/Runners/apps.education-docker.yaml
   - project: EOLE/infra/ci-tools
     ref: stable
-    file: /templates/Lint/Commitlint.yaml
+    file: /templates/Git.yaml
   - project: EOLE/infra/ci-tools
     ref: stable
     file: /templates/Release/Semantic-release.yaml
@@ -55,6 +55,7 @@ stages:
 # Execute `commitlint` before long `cache-dependencies` job
 commitlint:
   stage: initial-checks
+  extends: .git:commitlint
 
 ###############################################################################
 # `deps` stage: to download and cache dependencies
