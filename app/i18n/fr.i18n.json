@@ -107,7 +107,9 @@
     },
     "MainMenu": {
       "menuLogoutLabel": "Se déconnecter",
-      "menuAddEvent": "Ajouter événement"
+      "menuAddEvent": "Ajouter événement",
+      "copyCaldavUrl": "Mon URL Caldav",
+      "successCopyCaldav": "Url copié avec succès"
     },
     "AppVersion": {
       "title": "Version"

@@ -10,6 +10,7 @@ Copier `settings-development.json.sample` dans `settings-development.json` et me
 | keycloakUrl                               | string  | ""                                            | Keycloak URL                 |
 | keycloakRealm                             | string  | ""                                            | Keycloak Realm               |
 | laboiteBlogURL                            | string  | ""                                            | Laboite Blog URL             |
+| caldavUrl                                 | string  | ""                                            | url caldav                   |
 | packages                                  | object  | {}                                            |                              |
 | packages.dynamic-import                   | object  | {}                                            |                              |
 | packages.dynamic-import.link              | string  | "https://github.com/meteor/meteor/pull/11105" |                              |
