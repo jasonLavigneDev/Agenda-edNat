@@ -95,19 +95,20 @@ meteor-tests:
 #
 # The ordering is important:
 # 1. exclude schedules and drafts
-# 2. include `on-release-tag` which must match before `not-on-semantic-release-commit`
-# 3. we exclude stable which just produce the release tag
-# 4. we exclude `semantic-release` commits like when merging `release` on `dev`
-# 5. run on every branches
+# 2. include release and prerelease tag which must match before `not-on-semantic-release-commit`
+# 3. we exclude `semantic-release` commits except for `dev`
+# 4. run on every branches
 build-docker:
-  extends: .build-docker-image
+  extends: .docker:image:build
   rules:
     - !reference [.rules-map, not-on-schedule]
     - !reference [.rules-map, not-on-draft]
     - !reference [.rules-map, on-release-tag]
-    - !reference [.rules-map, not-on-stable]
+    - !reference [.rules-map, on-testing-tag]
+    - !reference [.rules-map, on-dev]
     - !reference [.rules-map, not-on-semantic-release-commit]
     - !reference [.rules-map, on-branch]
+
 
 ###############################################################################
 # `release` stage: `new release`, testing prerelease`, `merge-to-dev`, `tag *`
