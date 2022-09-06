@@ -13,7 +13,7 @@ include:
     file: /templates/Git.yaml
   - project: EOLE/infra/ci-tools
     ref: stable
-    file: /templates/Release/Semantic-release.yaml
+    file: /templates/Semantic-release.yaml
   - project: EOLE/infra/ci-tools
     ref: stable
     file: /templates/Docker.yaml
@@ -110,8 +110,15 @@ build-docker:
     - !reference [.rules-map, on-branch]
 
 ###############################################################################
-# `release` stage: `semantic-release`, `merge-to-dev`, `tag *`
+# `release` stage: `new release`, testing prerelease`, `merge-to-dev`, `tag *`
 ###############################################################################
+# Create the release versions on `$STABLE_BRANCH`
+new release: {extends: '.semantic-release:stable'}
+
+# Create the prereleases versions on `$TESTING_BRANCH`
+# update `.releaserc.js` variable `betaBranch`
+testing prerelease: {extends: '.semantic-release:testing'}
+
 # Avoid regression and update `version` of app/package*.json in `$DEV_BRANCH`
 merge-to-dev:
   stage: release
