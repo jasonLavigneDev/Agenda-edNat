@@ -84,7 +84,7 @@ const AddEvent = ({ history }) => {
     try {
       setLoading(true);
 
-      const organizerId = Meteor.userId();
+      const organizerId = userId;
       const { groups, participants, endDate, startDate, endTime, startTime, daysOfWeek, ...rest } = state;
       let allParticipants = [...participants];
       let organizerGroup = '';
@@ -106,7 +106,7 @@ const AddEvent = ({ history }) => {
             .fetch();
           allParticipants = [
             ...allParticipants.map((participant) =>
-              participant._id === Meteor.userId() && organizerGroup !== ''
+              participant._id === userId && organizerGroup !== ''
                 ? { ...participant, groupId: organizerGroup }
                 : participant,
             ),

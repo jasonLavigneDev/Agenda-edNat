@@ -64,7 +64,7 @@ const EditEvent = ({ history, match: { params } }) => {
         endRecur: moment(event.endRecur).format('YYYY-MM-DD'),
         startTime: moment(event.start).format('HH:mm'),
         endTime: event.allDay ? '23:59' : moment(event.end).format('HH:mm'),
-        participateUserEvent: event.participants.some((participant) => participant._id === Meteor.userId()),
+        participateUserEvent: event.participants.some((participant) => participant._id === userId),
       });
     });
   }, []);
@@ -99,7 +99,7 @@ const EditEvent = ({ history, match: { params } }) => {
     try {
       setLoading(true);
 
-      const organizerId = Meteor.userId();
+      const organizerId = userId;
       const { groups, participants, endDate, startDate, endTime, startTime, daysOfWeek, ...rest } = state;
       let allParticipants = [...participants];
       let organizerGroup = '';
