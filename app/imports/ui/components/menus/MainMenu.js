@@ -35,7 +35,16 @@ const MainMenu = ({ user = {} }) => {
   const [openLogout, setOpenLogout] = useState(false);
   const history = useHistory();
   const { pathname } = useLocation();
-  const userCaldavUrl = `${Meteor.settings.public.caldavUrl}/${user.username}/calendar.ics/`;
+
+  const startCaldavUrl = Meteor.settings.public.caldavUrl;
+  const endCaldavUrl = `${user.username}/calendar.ics/`;
+  const userCaldavUrl = () => {
+    if (startCaldavUrl.charAt(startCaldavUrl.length - 1) === '/') {
+      return `${startCaldavUrl}${endCaldavUrl}`;
+    }
+    return `${startCaldavUrl}/${endCaldavUrl}`;
+  };
+
   const handleClick = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
   const handleMenuClick = (path) => {
@@ -80,7 +89,7 @@ const MainMenu = ({ user = {} }) => {
   };
 
   const handleCopyCaldavUrl = () => {
-    navigator.clipboard.writeText(userCaldavUrl);
+    navigator.clipboard.writeText(userCaldavUrl());
     closeLogoutDialog();
     msg.success(i18n.__('components.MainMenu.successCopyCaldav'));
   };
@@ -129,7 +138,7 @@ const MainMenu = ({ user = {} }) => {
         <Divider />
         {Meteor.settings.public.caldavUrl ? (
           <>
-            <Tooltip title={userCaldavUrl}>
+            <Tooltip title={userCaldavUrl()}>
               <MenuItem onClick={handleCopyCaldavUrl}>
                 <T>copyCaldavUrl</T>
               </MenuItem>
