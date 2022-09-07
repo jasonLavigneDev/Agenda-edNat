@@ -15,6 +15,7 @@ import InformationsForm from '../components/events/InformationsForm';
 import ParticipantsSelector from '../components/events/ParticipantsSelector';
 import GroupsSelector from '../components/events/GroupsSelector';
 import Spinner from '../components/system/Spinner';
+import { useAppContext } from '../contexts/context';
 
 const useStyles = makeStyles((theme) => ({
   redButton: {
@@ -31,6 +32,7 @@ const EditEvent = ({ history, match: { params } }) => {
   const goHome = () => history.push(ROUTES.HOME);
   const classes = useStyles();
   const [state, setState] = useObjectState(initialState);
+  const [{ user, userId }] = useAppContext();
   const errors = useErrors(state);
   const [isValid, setValidity] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -68,16 +70,13 @@ const EditEvent = ({ history, match: { params } }) => {
   }, []);
 
   useEffect(() => {
-    const organizerId = Meteor.userId();
+    const organizerId = userId;
     if (
       state.participateUserEvent === true &&
       !state.participants.some((participant) => participant._id === organizerId)
     ) {
       setState({
-        participants: [
-          ...state.participants,
-          ...[{ _id: organizerId, email: Meteor.user().emails[0].address, status: 2 }],
-        ],
+        participants: [...state.participants, ...[{ _id: organizerId, email: user.emails[0].address, status: 2 }]],
       });
     } else if (
       state.participateUserEvent === false &&
@@ -121,12 +120,14 @@ const EditEvent = ({ history, match: { params } }) => {
             })
             .fetch();
           allParticipants = [
-            ...allParticipants.map((user) =>
-              user._id === Meteor.userId() && organizerGroup !== '' ? { ...user, groupId: organizerGroup } : user,
+            ...allParticipants.map((participant) =>
+              participant._id === organizerId && organizerGroup !== ''
+                ? { ...participant, groupId: organizerGroup }
+                : participant,
             ),
-            ...users.map((user) => ({
-              email: user.emails[0].address,
-              _id: user._id,
+            ...users.map((u) => ({
+              email: u.emails[0].address,
+              _id: u._id,
               groupId: _id,
             })),
           ];

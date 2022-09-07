@@ -16,6 +16,7 @@ import Avatar from '@material-ui/core/Avatar';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { validateEmail } from '../../../api/utils/functions';
+import { useAppContext } from '../../contexts/context';
 // import Groups from '../../../api/groups/groups';
 
 const useStyles = makeStyles(() => ({
@@ -34,6 +35,7 @@ const ParticipantsSelector = ({ stateHook: [state, setState], handleCheckBoxUser
   const classes = useStyles();
 
   const [search, setSearch] = useState('');
+  const [{ user }] = useAppContext();
 
   const searchResults = useTracker(() => {
     const regex = new RegExp(search, 'i');
@@ -124,7 +126,7 @@ const ParticipantsSelector = ({ stateHook: [state, setState], handleCheckBoxUser
         ...state[key].filter((item) => (typeof item === 'object' ? item.email !== itemEmail : item !== itemEmail)),
       ],
     });
-    if (Meteor.user().emails[0].address === itemEmail) {
+    if (user.emails[0].address === itemEmail) {
       setState({
         participateUserEvent: !state.participateUserEvent,
       });
