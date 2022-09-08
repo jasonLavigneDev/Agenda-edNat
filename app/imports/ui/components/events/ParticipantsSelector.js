@@ -16,6 +16,7 @@ import Avatar from '@material-ui/core/Avatar';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { validateEmail } from '../../../api/utils/functions';
+import { useAppContext } from '../../contexts/context';
 // import Groups from '../../../api/groups/groups';
 
 const useStyles = makeStyles(() => ({
@@ -34,15 +35,14 @@ const ParticipantsSelector = ({ stateHook: [state, setState], handleCheckBoxUser
   const classes = useStyles();
 
   const [search, setSearch] = useState('');
+  const [{ user, userId }] = useAppContext();
 
   const searchResults = useTracker(() => {
     const regex = new RegExp(search, 'i');
     const exclude = state.participants.map(({ _id }) => _id);
     Meteor.subscribe('users.search', { search, exclude });
 
-    return Meteor.users
-      .find({ _id: { $ne: Meteor.userId(), $nin: exclude }, 'emails.address': { $regex: regex } })
-      .fetch();
+    return Meteor.users.find({ _id: { $ne: userId, $nin: exclude }, 'emails.address': { $regex: regex } }).fetch();
   });
   // const searchAll = useTracker(() => {
   //   // Meteor.subscribe('users.searchAll');
@@ -124,7 +124,7 @@ const ParticipantsSelector = ({ stateHook: [state, setState], handleCheckBoxUser
         ...state[key].filter((item) => (typeof item === 'object' ? item.email !== itemEmail : item !== itemEmail)),
       ],
     });
-    if (Meteor.user().emails[0].address === itemEmail) {
+    if (user.emails[0].address === itemEmail) {
       setState({
         participateUserEvent: !state.participateUserEvent,
       });
@@ -185,7 +185,7 @@ const ParticipantsSelector = ({ stateHook: [state, setState], handleCheckBoxUser
       </Grid>
       <Grid item md={12} xs={12}>
         {state.participants
-          .filter(({ _id, groupId }) => !groupId && _id !== Meteor.userId())
+          .filter(({ _id, groupId }) => !groupId && _id !== userId)
           .map((part) => (
             <Chip
               key={part._id}
