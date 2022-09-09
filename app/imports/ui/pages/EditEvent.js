@@ -15,6 +15,7 @@ import InformationsForm from '../components/events/InformationsForm';
 import ParticipantsSelector from '../components/events/ParticipantsSelector';
 import GroupsSelector from '../components/events/GroupsSelector';
 import Spinner from '../components/system/Spinner';
+import Calendar from '../components/system/Calendar/Calendar';
 import { useAppContext } from '../contexts/context';
 
 const useStyles = makeStyles((theme) => ({
@@ -181,42 +182,45 @@ const EditEvent = ({ history, match: { params } }) => {
     }
   };
   return (
-    <ModalWrapper
-      open
-      title={i18n.__('pages.EditEvent.title')}
-      onClose={goHome}
-      loading={loading}
-      buttons={[
-        {
-          text: i18n.__('pages.EditEvent.delete'),
-          onClick: deleteEventCall,
-          props: { className: classes.redButton },
-          key: 'first',
-        },
-        {
-          text: i18n.__('pages.EditEvent.closeButton'),
-          onClick: goHome,
-          props: { color: 'default' },
-          key: 'second',
-        },
-        {
-          text: i18n.__('pages.EditEvent.validateButton'),
-          onClick: editEventCall,
-          props: { color: 'primary', disabled: !isValid },
-          key: 'third',
-        },
-      ]}
-    >
-      {loading ? (
-        <Spinner inside />
-      ) : (
-        <>
-          <InformationsForm errors={errors} stateHook={[state, setState]} />
-          <GroupsSelector errors={errors} stateHook={[state, setState]} />
-          <ParticipantsSelector stateHook={[state, setState]} handleCheckBoxUser={handleCheckBoxUser} />
-        </>
-      )}
-    </ModalWrapper>
+    <>
+      <Calendar />
+      <ModalWrapper
+        open
+        title={i18n.__('pages.EditEvent.title')}
+        onClose={goHome}
+        loading={loading}
+        buttons={[
+          {
+            text: i18n.__('pages.EditEvent.delete'),
+            onClick: deleteEventCall,
+            props: { className: classes.redButton },
+            key: 'first',
+          },
+          {
+            text: i18n.__('pages.EditEvent.closeButton'),
+            onClick: goHome,
+            props: { color: 'default' },
+            key: 'second',
+          },
+          {
+            text: i18n.__('pages.EditEvent.validateButton'),
+            onClick: editEventCall,
+            props: { color: 'primary', disabled: !isValid },
+            key: 'third',
+          },
+        ]}
+      >
+        {loading ? (
+          <Spinner inside />
+        ) : (
+          <>
+            <InformationsForm errors={errors} stateHook={[state, setState]} />
+            <GroupsSelector errors={errors} stateHook={[state, setState]} />
+            <ParticipantsSelector stateHook={[state, setState]} handleCheckBoxUser={handleCheckBoxUser} />
+          </>
+        )}
+      </ModalWrapper>
+    </>
   );
 };
 

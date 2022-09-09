@@ -14,6 +14,7 @@ import InformationsForm from '../components/events/InformationsForm';
 import { useAppContext } from '../contexts/context';
 import ParticipantsSelector from '../components/events/ParticipantsSelector';
 import GroupsSelector from '../components/events/GroupsSelector';
+import Calendar from '../components/system/Calendar/Calendar';
 
 const AddEvent = ({ history }) => {
   const goHome = () => history.push(ROUTES.HOME);
@@ -150,30 +151,33 @@ const AddEvent = ({ history }) => {
     }
   };
   return (
-    <ModalWrapper
-      open
-      title={i18n.__('pages.AddEvent.title')}
-      onClose={goHome}
-      loading={loading}
-      buttons={[
-        {
-          text: i18n.__('pages.AddEvent.closeButton'),
-          onClick: goHome,
-          props: { color: 'default' },
-          key: 'first',
-        },
-        {
-          text: i18n.__('pages.AddEvent.validateButton'),
-          onClick: createEventCall,
-          props: { color: 'primary', disabled: !isValid },
-          key: 'second',
-        },
-      ]}
-    >
-      <InformationsForm errors={errors} stateHook={[state, setState]} />
-      <GroupsSelector errors={errors} stateHook={[state, setState]} groupId={groupId} />
-      <ParticipantsSelector stateHook={[state, setState]} handleCheckBoxUser={handleCheckBoxUser} />
-    </ModalWrapper>
+    <>
+      <Calendar />
+      <ModalWrapper
+        open
+        title={i18n.__('pages.AddEvent.title')}
+        onClose={goHome}
+        loading={loading}
+        buttons={[
+          {
+            text: i18n.__('pages.AddEvent.closeButton'),
+            onClick: goHome,
+            props: { color: 'default' },
+            key: 'first',
+          },
+          {
+            text: i18n.__('pages.AddEvent.validateButton'),
+            onClick: createEventCall,
+            props: { color: 'primary', disabled: !isValid },
+            key: 'second',
+          },
+        ]}
+      >
+        <InformationsForm errors={errors} stateHook={[state, setState]} />
+        <GroupsSelector errors={errors} stateHook={[state, setState]} groupId={groupId} />
+        <ParticipantsSelector stateHook={[state, setState]} handleCheckBoxUser={handleCheckBoxUser} />
+      </ModalWrapper>
+    </>
   );
 };
 
