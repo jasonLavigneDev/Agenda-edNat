@@ -1,36 +1,17 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import i18n from 'meteor/universe:i18n';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import { useAppContext } from '../contexts/context';
 import ROUTES from '../layouts/routes';
 
-const useStyles = makeStyles(() => ({
-  wrapper: {
-    height: 'calc(100vh - 64px)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-}));
-
 const Logout = () => {
-  const classes = useStyles();
-  const [{ userId, loggingIn }] = useAppContext();
   const history = useHistory();
 
   useEffect(() => {
-    if (userId) Meteor.logout();
+    Meteor.logout(() => {
+      history.replace(ROUTES.LOGIN);
+    });
   }, []);
 
-  return (
-    <div className={classes.wrapper}>
-      <Button variant="contained" color="primary" onClick={() => history.replace(ROUTES.HOME)}>
-        {i18n.__(loggingIn ? 'system.loading' : 'system.login')}
-      </Button>
-    </div>
-  );
+  return null;
 };
 
 export default Logout;
