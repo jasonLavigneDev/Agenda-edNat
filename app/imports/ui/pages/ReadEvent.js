@@ -21,6 +21,7 @@ import Spinner from '../components/system/Spinner';
 import ROUTES from '../layouts/routes';
 import { descriptionWithLinks } from '../components/events/utils';
 import SingleGroupDisplay from '../components/events/SingleGroupDisplay';
+import Calendar from '../components/system/Calendar/Calendar';
 
 const useStyles = makeStyles((theme) => ({
   chip: {
@@ -144,93 +145,96 @@ const ReadEvent = ({ history, match: { params } }) => {
     });
   };
   return (
-    <ModalWrapper
-      open
-      title={i18n.__('pages.ReadEvent.title')}
-      loading={loading}
-      onClose={goHome}
-      buttons={[
-        {
-          text: state.userId !== userId ? i18n.__('pages.ReadEvent.closeButton') : null,
-          onClick: state.userId !== userId ? goHome : null,
-          props: { color: 'default' },
-          key: 'first',
-        },
-        {
-          text: state.userId !== userId ? i18n.__('pages.ReadEvent.refuse') : i18n.__('pages.ReadEvent.cancelButton'),
-          onClick: state.userId !== userId ? refuseEvent : goHome,
-          props: state.userId !== userId ? { className: classes.redButton } : {},
-          key: 'second',
-        },
-        {
-          text: state.userId !== userId ? i18n.__('pages.ReadEvent.accept') : i18n.__('pages.ReadEvent.editButton'),
-          onClick: state.userId !== userId ? acceptEvent : goEdit,
-          props: { color: 'primary' },
-          key: 'third',
-        },
-      ]}
-    >
-      {loading ? (
-        <Spinner inside />
-      ) : (
-        <Grid container spacing={2}>
-          <Grid item md={12} xs={12}>
-            <Divider />
-            <h2>{i18n.__('pages.ReadEvent.informations')}</h2>
-          </Grid>
-          {informations.map((item) =>
-            item.value ? (
-              <Grid item md={item.width || 6} xs={12} key={item.label}>
-                <Typography>
-                  <b>{item.label}:</b> <span className={classes.value}>{item.value}</span>
-                </Typography>
-              </Grid>
-            ) : null,
-          )}
-
-          {!!state.groups && !!state.groups.length && (
-            <>
-              <Grid item md={12} xs={12}>
-                <Divider />
-                <h2>{i18n.__('pages.ReadEvent.groups')}</h2>
-              </Grid>
-              <Grid item md={12} xs={12}>
-                {state.groups.map((group) => (
-                  <SingleGroupDisplay key={group._id} group={group} view event={state} />
-                ))}
-              </Grid>
-            </>
-          )}
-          {((!!state.participants && !!state.participants.filter(({ groupId }) => !groupId).length) ||
-            (!!state.guests && !!state.guests.length)) && (
+    <>
+      <Calendar />
+      <ModalWrapper
+        open
+        title={i18n.__('pages.ReadEvent.title')}
+        loading={loading}
+        onClose={goHome}
+        buttons={[
+          {
+            text: state.userId !== userId ? i18n.__('pages.ReadEvent.closeButton') : null,
+            onClick: state.userId !== userId ? goHome : null,
+            props: { color: 'default' },
+            key: 'first',
+          },
+          {
+            text: state.userId !== userId ? i18n.__('pages.ReadEvent.refuse') : i18n.__('pages.ReadEvent.cancelButton'),
+            onClick: state.userId !== userId ? refuseEvent : goHome,
+            props: state.userId !== userId ? { className: classes.redButton } : {},
+            key: 'second',
+          },
+          {
+            text: state.userId !== userId ? i18n.__('pages.ReadEvent.accept') : i18n.__('pages.ReadEvent.editButton'),
+            onClick: state.userId !== userId ? acceptEvent : goEdit,
+            props: { color: 'primary' },
+            key: 'third',
+          },
+        ]}
+      >
+        {loading ? (
+          <Spinner inside />
+        ) : (
+          <Grid container spacing={2}>
             <Grid item md={12} xs={12}>
               <Divider />
-              <h2>{i18n.__('pages.ReadEvent.participants')}</h2>
-              {state.participants
-                .filter(({ groupId }) => !groupId)
-                .map((part) => {
-                  const displayStatus = part.status !== 1;
-                  return (
-                    <Chip
-                      key={part._id}
-                      className={`${classes.chip} ${
-                        displayStatus ? (part.status === 0 ? classes.errorChip : classes.successChip) : ''
-                      }`}
-                      color={displayStatus ? 'primary' : 'default'}
-                      onDelete={displayStatus ? () => null : null}
-                      deleteIcon={displayStatus ? part.status === 0 ? <RemoveIcon /> : <DoneIcon /> : null}
-                      label={part.email}
-                    />
-                  );
-                })}
-              {state.guests.map((guest) => (
-                <Chip key={guest} color="secondary" label={guest} className={classes.chip} />
-              ))}
+              <h2>{i18n.__('pages.ReadEvent.informations')}</h2>
             </Grid>
-          )}
-        </Grid>
-      )}
-    </ModalWrapper>
+            {informations.map((item) =>
+              item.value ? (
+                <Grid item md={item.width || 6} xs={12} key={item.label}>
+                  <Typography>
+                    <b>{item.label}:</b> <span className={classes.value}>{item.value}</span>
+                  </Typography>
+                </Grid>
+              ) : null,
+            )}
+
+            {!!state.groups && !!state.groups.length && (
+              <>
+                <Grid item md={12} xs={12}>
+                  <Divider />
+                  <h2>{i18n.__('pages.ReadEvent.groups')}</h2>
+                </Grid>
+                <Grid item md={12} xs={12}>
+                  {state.groups.map((group) => (
+                    <SingleGroupDisplay key={group._id} group={group} view event={state} />
+                  ))}
+                </Grid>
+              </>
+            )}
+            {((!!state.participants && !!state.participants.filter(({ groupId }) => !groupId).length) ||
+              (!!state.guests && !!state.guests.length)) && (
+              <Grid item md={12} xs={12}>
+                <Divider />
+                <h2>{i18n.__('pages.ReadEvent.participants')}</h2>
+                {state.participants
+                  .filter(({ groupId }) => !groupId)
+                  .map((part) => {
+                    const displayStatus = part.status !== 1;
+                    return (
+                      <Chip
+                        key={part._id}
+                        className={`${classes.chip} ${
+                          displayStatus ? (part.status === 0 ? classes.errorChip : classes.successChip) : ''
+                        }`}
+                        color={displayStatus ? 'primary' : 'default'}
+                        onDelete={displayStatus ? () => null : null}
+                        deleteIcon={displayStatus ? part.status === 0 ? <RemoveIcon /> : <DoneIcon /> : null}
+                        label={part.email}
+                      />
+                    );
+                  })}
+                {state.guests.map((guest) => (
+                  <Chip key={guest} color="secondary" label={guest} className={classes.chip} />
+                ))}
+              </Grid>
+            )}
+          </Grid>
+        )}
+      </ModalWrapper>
+    </>
   );
 };
 

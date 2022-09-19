@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Divider from '@material-ui/core/Divider';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import PropTypes from 'prop-types';
@@ -34,6 +35,16 @@ const MainMenu = ({ user = {} }) => {
   const [openLogout, setOpenLogout] = useState(false);
   const history = useHistory();
   const { pathname } = useLocation();
+
+  const startCaldavUrl = Meteor.settings.public.caldavUrl;
+  const endCaldavUrl = `${user.username}/calendar.ics/`;
+  const userCaldavUrl = () => {
+    if (startCaldavUrl.charAt(startCaldavUrl.length - 1) === '/') {
+      return `${startCaldavUrl}${endCaldavUrl}`;
+    }
+    return `${startCaldavUrl}/${endCaldavUrl}`;
+  };
+
   const handleClick = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
   const handleMenuClick = (path) => {
@@ -75,6 +86,12 @@ const MainMenu = ({ user = {} }) => {
     } else {
       localLogout();
     }
+  };
+
+  const handleCopyCaldavUrl = () => {
+    navigator.clipboard.writeText(userCaldavUrl());
+    closeLogoutDialog();
+    msg.success(i18n.__('components.MainMenu.successCopyCaldav'));
   };
 
   return (
@@ -119,6 +136,16 @@ const MainMenu = ({ user = {} }) => {
           );
         })}
         <Divider />
+        {Meteor.settings.public.caldavUrl ? (
+          <>
+            <Tooltip title={userCaldavUrl()}>
+              <MenuItem onClick={handleCopyCaldavUrl}>
+                <T>copyCaldavUrl</T>
+              </MenuItem>
+            </Tooltip>
+            <Divider />
+          </>
+        ) : null}
 
         <MenuItem onClick={onLogout}>
           <T>menuLogoutLabel</T>

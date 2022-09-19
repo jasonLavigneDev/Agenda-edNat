@@ -4,6 +4,7 @@
     "keycloakUrl": "",
     "keycloakRealm": "",
     "laboiteURL": "",
+    "caldavUrl": "",
     "packages": {
       "dynamic-import": {
         "link": "https://github.com/meteor/meteor/pull/11105",

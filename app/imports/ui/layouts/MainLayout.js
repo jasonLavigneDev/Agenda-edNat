@@ -11,7 +11,9 @@ import ReadEvent from '../pages/ReadEvent';
 import EditEvent from '../pages/EditEvent';
 import NotLoggedIn from '../pages/NotLoggedIn';
 import Logout from '../pages/Logout';
+import Login from '../pages/Login';
 import ROUTES from './routes';
+import Spinner from '../components/system/Spinner';
 import { useAppContext } from '../contexts/context';
 import SiteInMaintenance from '../components/system/SiteInMaintenance';
 import UserFailed from '../components/system/UserFailed';
@@ -25,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
 const MainLayout = ({ userFailed, setUserFailed }) => {
   const classes = useStyles();
-  const [{ userId, appsettings }] = useAppContext();
+  const [{ userId, appsettings, loading }] = useAppContext();
   useEffect(() => {
     if (userId) setUserFailed(false);
   }, [userId]);
@@ -39,19 +41,25 @@ const MainLayout = ({ userFailed, setUserFailed }) => {
             userFailed ? (
               <UserFailed />
             ) : userId ? (
-              <>
-                <Calendar />
-                <Switch>
-                  <Route exact path={ROUTES.LOGOUT} component={Logout} />
-                  <Route exact path={ROUTES.ADD_EVENT} component={AddEvent} />
-                  <Route exact path={ROUTES.EVENT} component={ReadEvent} />
-                  <Route exact path={ROUTES.EVENT_EDIT} component={EditEvent} />
-                  <Redirect from="*" to={ROUTES.HOME} />
-                </Switch>
-              </>
+              loading ? (
+                <Spinner />
+              ) : (
+                <>
+                  <Switch>
+                    <Route exact path={ROUTES.HOME} component={Calendar} />
+                    <Route exact path={ROUTES.LOGOUT} component={Logout} />
+                    <Route exact path={ROUTES.LOGIN} component={Login} />
+                    <Route exact path={ROUTES.ADD_EVENT} component={AddEvent} />
+                    <Route exact path={ROUTES.EVENT} component={ReadEvent} />
+                    <Route exact path={ROUTES.EVENT_EDIT} component={EditEvent} />
+                    <Redirect from="*" to={ROUTES.HOME} />
+                  </Switch>
+                </>
+              )
             ) : (
               <Switch>
                 <Route exact path={ROUTES.LOGOUT} component={Logout} />
+                <Route exact path={ROUTES.LOGIN} component={Login} />
                 <Route path={ROUTES.HOME} component={NotLoggedIn} />
                 <Redirect from="*" to={ROUTES.HOME} />
               </Switch>
@@ -59,6 +67,7 @@ const MainLayout = ({ userFailed, setUserFailed }) => {
           ) : (
             <Switch>
               <Route exact path={ROUTES.LOGOUT} component={Logout} />
+              <Route exact path={ROUTES.LOGIN} component={Login} />
               <Route exact path="/" component={SiteInMaintenance} />
               <Route component={SiteInMaintenance} />
             </Switch>

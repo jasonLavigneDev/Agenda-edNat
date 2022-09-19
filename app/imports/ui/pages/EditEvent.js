@@ -15,6 +15,8 @@ import InformationsForm from '../components/events/InformationsForm';
 import ParticipantsSelector from '../components/events/ParticipantsSelector';
 import GroupsSelector from '../components/events/GroupsSelector';
 import Spinner from '../components/system/Spinner';
+import Calendar from '../components/system/Calendar/Calendar';
+import { useAppContext } from '../contexts/context';
 
 const useStyles = makeStyles((theme) => ({
   redButton: {
@@ -31,6 +33,7 @@ const EditEvent = ({ history, match: { params } }) => {
   const goHome = () => history.push(ROUTES.HOME);
   const classes = useStyles();
   const [state, setState] = useObjectState(initialState);
+  const [{ user, userId }] = useAppContext();
   const errors = useErrors(state);
   const [isValid, setValidity] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -62,22 +65,19 @@ const EditEvent = ({ history, match: { params } }) => {
         endRecur: moment(event.endRecur).format('YYYY-MM-DD'),
         startTime: moment(event.start).format('HH:mm'),
         endTime: event.allDay ? '23:59' : moment(event.end).format('HH:mm'),
-        participateUserEvent: event.participants.some((participant) => participant._id === Meteor.userId()),
+        participateUserEvent: event.participants.some((participant) => participant._id === userId),
       });
     });
   }, []);
 
   useEffect(() => {
-    const organizerId = Meteor.userId();
+    const organizerId = userId;
     if (
       state.participateUserEvent === true &&
       !state.participants.some((participant) => participant._id === organizerId)
     ) {
       setState({
-        participants: [
-          ...state.participants,
-          ...[{ _id: organizerId, email: Meteor.user().emails[0].address, status: 2 }],
-        ],
+        participants: [...state.participants, ...[{ _id: organizerId, email: user.emails[0].address, status: 2 }]],
       });
     } else if (
       state.participateUserEvent === false &&
@@ -100,7 +100,7 @@ const EditEvent = ({ history, match: { params } }) => {
     try {
       setLoading(true);
 
-      const organizerId = Meteor.userId();
+      const organizerId = userId;
       const { groups, participants, endDate, startDate, endTime, startTime, daysOfWeek, ...rest } = state;
       let allParticipants = [...participants];
       let organizerGroup = '';
@@ -121,12 +121,14 @@ const EditEvent = ({ history, match: { params } }) => {
             })
             .fetch();
           allParticipants = [
-            ...allParticipants.map((user) =>
-              user._id === Meteor.userId() && organizerGroup !== '' ? { ...user, groupId: organizerGroup } : user,
+            ...allParticipants.map((participant) =>
+              participant._id === organizerId && organizerGroup !== ''
+                ? { ...participant, groupId: organizerGroup }
+                : participant,
             ),
-            ...users.map((user) => ({
-              email: user.emails[0].address,
-              _id: user._id,
+            ...users.map((u) => ({
+              email: u.emails[0].address,
+              _id: u._id,
               groupId: _id,
             })),
           ];
@@ -180,42 +182,45 @@ const EditEvent = ({ history, match: { params } }) => {
     }
   };
   return (
-    <ModalWrapper
-      open
-      title={i18n.__('pages.EditEvent.title')}
-      onClose={goHome}
-      loading={loading}
-      buttons={[
-        {
-          text: i18n.__('pages.EditEvent.delete'),
-          onClick: deleteEventCall,
-          props: { className: classes.redButton },
-          key: 'first',
-        },
-        {
-          text: i18n.__('pages.EditEvent.closeButton'),
-          onClick: goHome,
-          props: { color: 'default' },
-          key: 'second',
-        },
-        {
-          text: i18n.__('pages.EditEvent.validateButton'),
-          onClick: editEventCall,
-          props: { color: 'primary', disabled: !isValid },
-          key: 'third',
-        },
-      ]}
-    >
-      {loading ? (
-        <Spinner inside />
-      ) : (
-        <>
-          <InformationsForm errors={errors} stateHook={[state, setState]} />
-          <GroupsSelector errors={errors} stateHook={[state, setState]} />
-          <ParticipantsSelector stateHook={[state, setState]} handleCheckBoxUser={handleCheckBoxUser} />
-        </>
-      )}
-    </ModalWrapper>
+    <>
+      <Calendar />
+      <ModalWrapper
+        open
+        title={i18n.__('pages.EditEvent.title')}
+        onClose={goHome}
+        loading={loading}
+        buttons={[
+          {
+            text: i18n.__('pages.EditEvent.delete'),
+            onClick: deleteEventCall,
+            props: { className: classes.redButton },
+            key: 'first',
+          },
+          {
+            text: i18n.__('pages.EditEvent.closeButton'),
+            onClick: goHome,
+            props: { color: 'default' },
+            key: 'second',
+          },
+          {
+            text: i18n.__('pages.EditEvent.validateButton'),
+            onClick: editEventCall,
+            props: { color: 'primary', disabled: !isValid },
+            key: 'third',
+          },
+        ]}
+      >
+        {loading ? (
+          <Spinner inside />
+        ) : (
+          <>
+            <InformationsForm errors={errors} stateHook={[state, setState]} />
+            <GroupsSelector errors={errors} stateHook={[state, setState]} />
+            <ParticipantsSelector stateHook={[state, setState]} handleCheckBoxUser={handleCheckBoxUser} />
+          </>
+        )}
+      </ModalWrapper>
+    </>
   );
 };
 

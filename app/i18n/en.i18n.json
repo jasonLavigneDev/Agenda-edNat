@@ -107,7 +107,9 @@
     },
     "MainMenu": {
       "menuLogoutLabel": "Logout",
-      "menuAddEvent": "Add event"
+      "menuAddEvent": "Add event",
+      "copyCaldavUrl": "My Caldav URL",
+      "successCopyCaldav": "URL copied successfully"
     },
     "AppVersion": {
       "title": "Version"
