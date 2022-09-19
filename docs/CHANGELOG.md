@@ -1,5 +1,46 @@
 # Changelog
 
+## [3.6.0](https://gitlab.mim-libre.fr/alphabet/agenda/compare/release/3.5.0...release/3.6.0) (2022-09-19)
+
+
+### Features
+
+* **event:** pre-complete formular with info from laboite ([1453790](https://gitlab.mim-libre.fr/alphabet/agenda/commit/14537902f614bdd45bda36cc9de8e425c105d62c))
+* **menu:** add copy caldav url option in main menu ([08a2ab8](https://gitlab.mim-libre.fr/alphabet/agenda/commit/08a2ab80e00b1665c9fd83bbaeb38ecf2551d7a8))
+
+
+### Bug Fixes
+
+* **avatar:** add white background for avatar user in chip ([34b52c0](https://gitlab.mim-libre.fr/alphabet/agenda/commit/34b52c02573d3e3b4967af1636338941e58b9888))
+* **calendar:** limit file type to be only .ics ([795c85c](https://gitlab.mim-libre.fr/alphabet/agenda/commit/795c85cadea1bf4029e2383e1f05bf8613b3ce97))
+* **global:** prevent loading ([759903a](https://gitlab.mim-libre.fr/alphabet/agenda/commit/759903a13c3f40cbf3c0c4320275ac7db4e61b22))
+* **global:** replace meteor.user() by context user ([e573841](https://gitlab.mim-libre.fr/alphabet/agenda/commit/e573841d9522b2db7625f5538231bf3f2fb32b19))
+* **global:** replace Meteor.userID() by userid from context ([eb7cd85](https://gitlab.mim-libre.fr/alphabet/agenda/commit/eb7cd857cfe93353184a055b3a9494723c5ab1d7))
+* **logout:** refactor logout process ([93179d5](https://gitlab.mim-libre.fr/alphabet/agenda/commit/93179d514bfb2f974771cdd0967914c71f6b56b1))
+* **menu:** add / gestion in caldav url ([47c377d](https://gitlab.mim-libre.fr/alphabet/agenda/commit/47c377d17698efcba55ffca64767086fc44a4bf9))
+* **ui:** check if user is loading in MainLayout ([60235a6](https://gitlab.mim-libre.fr/alphabet/agenda/commit/60235a6c0e15a873237483d4a5086a4c4fe25758))
+
+
+### Build System
+
+* **meteor:** update meteor 2.7.3 and node version 14.19.3 ([3e5140b](https://gitlab.mim-libre.fr/alphabet/agenda/commit/3e5140b072de259a2b42385a260443fedb657f6f))
+* **npm:** change npm command run start-dev to start ([cbc0b2b](https://gitlab.mim-libre.fr/alphabet/agenda/commit/cbc0b2b7318b2389a099f7d81d1bab37a13c0372))
+
+
+### Documentation
+
+* **readme:** update and translate readme ([6f8adda](https://gitlab.mim-libre.fr/alphabet/agenda/commit/6f8adda9906b7e2f6fbc205ece191546201aadac))
+
+
+### Continuous Integration
+
+* **build-docker:** run for `testing` prerelease ([7864043](https://gitlab.mim-libre.fr/alphabet/agenda/commit/7864043848ab9d94b6c3e210c12b7ff26d7acf61))
+* **commitlint:** use new standard job `.git:commitlint` ([0bb3fca](https://gitlab.mim-libre.fr/alphabet/agenda/commit/0bb3fcac62fbbde6a008bbc612ca463e908ead2f))
+* **merge-to-dev:** use new standard jobs `.git:merge-to` ([8dd555a](https://gitlab.mim-libre.fr/alphabet/agenda/commit/8dd555aa1fa59085e02c7f6c23ea087253925b2d))
+* **meteor:** test before generating a new release ([4c65427](https://gitlab.mim-libre.fr/alphabet/agenda/commit/4c65427c902ffed27e6aefe60ba8978e26a0b0dd))
+* **semantic-release:** create `testing` prerelease ([b15be7f](https://gitlab.mim-libre.fr/alphabet/agenda/commit/b15be7f11d0001b27a6b1372ef7c9bea5ef5048d))
+* **tag docker:** tag `testing` prerelease image ([fdf05a4](https://gitlab.mim-libre.fr/alphabet/agenda/commit/fdf05a4669a852362908f06082e43f23e21063c0))
+
 # [3.5.0](https://gitlab.mim-libre.fr/alphabet/agenda/compare/release/3.4.0...release/3.5.0) (2022-07-05)
 
 
