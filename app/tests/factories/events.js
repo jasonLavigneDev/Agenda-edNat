@@ -19,8 +19,8 @@ Factory.define('event', Events, {
   end: () => new Date(moment().add(7, 'days').add(1, 'hour').format()),
   allDay: () => randomBoolean(),
   groups: () => [
-    { _id: Random.id(), name: faker.company.companyName() },
-    { _id: Random.id(), name: faker.company.companyName() },
+    { _id: Random.id(), name: faker.company.companyName(), type: 0 },
+    { _id: Random.id(), name: faker.company.companyName(), type: 0 },
   ],
   participants: () => {
     const users = [1, 2, 3];

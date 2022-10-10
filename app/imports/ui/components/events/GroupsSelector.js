@@ -12,6 +12,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import MenuItem from '@material-ui/core/MenuItem';
 import SingleGroupDisplay from './SingleGroupDisplay';
 import Groups from '../../../api/groups/groups';
+import { getGroupName } from '../../../api/utils/functions';
 
 const useStyles = makeStyles(() => ({
   field: {
@@ -40,7 +41,7 @@ const GroupsSelector = ({ stateHook: [state, setState], errors, groupId }) => {
   const handleSelect = (e) => {
     const group = Groups.findOne(e.target.value);
     setState({
-      groups: [...state.groups, { _id: e.target.value, name: group.name }],
+      groups: [...state.groups, { _id: e.target.value, name: group.name, type: group.type }],
     });
   };
 
@@ -78,7 +79,7 @@ const GroupsSelector = ({ stateHook: [state, setState], errors, groupId }) => {
             </MenuItem>
             {groups.list.map((group) => (
               <MenuItem key={group._id} value={group._id}>
-                {group.name}
+                {getGroupName(group)}
               </MenuItem>
             ))}
           </Select>

@@ -26,6 +26,9 @@ const settingsGroup = new SimpleSchema({
   name: {
     type: String,
   },
+  type: {
+    type: SimpleSchema.Integer,
+  },
 });
 
 const settingsParticipant = new SimpleSchema({
