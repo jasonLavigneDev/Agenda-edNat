@@ -97,8 +97,12 @@ const GroupsSelector = ({ stateHook: [state, setState], errors, groupId }) => {
 
 export default GroupsSelector;
 
+GroupsSelector.defaultProps = {
+  groupId: undefined,
+};
+
 GroupsSelector.propTypes = {
   stateHook: PropTypes.arrayOf(PropTypes.any).isRequired,
   errors: PropTypes.objectOf(PropTypes.any).isRequired,
-  groupId: PropTypes.string.isRequired,
+  groupId: PropTypes.string,
 };
