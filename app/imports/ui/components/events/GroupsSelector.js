@@ -32,7 +32,7 @@ const GroupsSelector = ({ stateHook: [state, setState], errors, groupId }) => {
       const group = Groups.findOne({ _id: groupId });
       if (group !== undefined) {
         setState({
-          groups: [...state.groups, { _id: groupId, name: group.name }],
+          groups: [...state.groups, { _id: groupId, name: group.name, type: group.type }],
         });
       }
     }
@@ -100,5 +100,5 @@ export default GroupsSelector;
 GroupsSelector.propTypes = {
   stateHook: PropTypes.arrayOf(PropTypes.any).isRequired,
   errors: PropTypes.objectOf(PropTypes.any).isRequired,
-  groupId: PropTypes.objectOf(PropTypes.String).isRequired,
+  groupId: PropTypes.string.isRequired,
 };
