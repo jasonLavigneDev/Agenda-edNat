@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import i18n from 'meteor/universe:i18n';
 import PropTypes from 'prop-types';
 import { useTracker } from 'meteor/react-meteor-data';
@@ -26,18 +26,6 @@ const useStyles = makeStyles(() => ({
 const GroupsSelector = ({ stateHook: [state, setState], errors, groupId }) => {
   const classes = useStyles();
 
-  if (groupId !== undefined) {
-    const selectedIds = state.groups.map(({ _id }) => _id);
-    if (!selectedIds.includes(groupId)) {
-      const group = Groups.findOne({ _id: groupId });
-      if (group !== undefined) {
-        setState({
-          groups: [...state.groups, { _id: groupId, name: group.name, type: group.type }],
-        });
-      }
-    }
-  }
-
   const handleSelect = (e) => {
     const group = Groups.findOne(e.target.value);
     setState({
@@ -60,6 +48,20 @@ const GroupsSelector = ({ stateHook: [state, setState], errors, groupId }) => {
       list,
     };
   });
+
+  useEffect(() => {
+    if (groupId !== undefined) {
+      const selectedIds = state.groups.map(({ _id }) => _id);
+      if (!selectedIds.includes(groupId)) {
+        const group = Groups.findOne({ _id: groupId });
+        if (group !== undefined) {
+          setState({
+            groups: [...state.groups, { _id: groupId, name: group.name, type: group.type }],
+          });
+        }
+      }
+    }
+  }, [groups.ready]);
 
   useTracker(() => {
     Meteor.subscribe('users.groups', { groupsIds: state.groups.map(({ _id }) => _id) });
