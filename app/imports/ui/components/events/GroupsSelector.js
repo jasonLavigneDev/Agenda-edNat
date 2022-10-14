@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import i18n from 'meteor/universe:i18n';
 import PropTypes from 'prop-types';
 import { useTracker } from 'meteor/react-meteor-data';
@@ -12,6 +12,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import MenuItem from '@material-ui/core/MenuItem';
 import SingleGroupDisplay from './SingleGroupDisplay';
 import Groups from '../../../api/groups/groups';
+import { getGroupName } from '../../../api/utils/functions';
 
 const useStyles = makeStyles(() => ({
   field: {
@@ -25,22 +26,10 @@ const useStyles = makeStyles(() => ({
 const GroupsSelector = ({ stateHook: [state, setState], errors, groupId }) => {
   const classes = useStyles();
 
-  if (groupId !== undefined) {
-    const selectedIds = state.groups.map(({ _id }) => _id);
-    if (!selectedIds.includes(groupId)) {
-      const group = Groups.findOne({ _id: groupId });
-      if (group !== undefined) {
-        setState({
-          groups: [...state.groups, { _id: groupId, name: group.name }],
-        });
-      }
-    }
-  }
-
   const handleSelect = (e) => {
     const group = Groups.findOne(e.target.value);
     setState({
-      groups: [...state.groups, { _id: e.target.value, name: group.name }],
+      groups: [...state.groups, { _id: e.target.value, name: group.name, type: group.type }],
     });
   };
 
@@ -60,6 +49,20 @@ const GroupsSelector = ({ stateHook: [state, setState], errors, groupId }) => {
     };
   });
 
+  useEffect(() => {
+    if (groupId !== undefined) {
+      const selectedIds = state.groups.map(({ _id }) => _id);
+      if (!selectedIds.includes(groupId)) {
+        const group = Groups.findOne({ _id: groupId });
+        if (group !== undefined) {
+          setState({
+            groups: [...state.groups, { _id: groupId, name: group.name, type: group.type }],
+          });
+        }
+      }
+    }
+  }, [groups.ready]);
+
   useTracker(() => {
     Meteor.subscribe('users.groups', { groupsIds: state.groups.map(({ _id }) => _id) });
   });
@@ -78,7 +81,7 @@ const GroupsSelector = ({ stateHook: [state, setState], errors, groupId }) => {
             </MenuItem>
             {groups.list.map((group) => (
               <MenuItem key={group._id} value={group._id}>
-                {group.name}
+                {getGroupName(group)}
               </MenuItem>
             ))}
           </Select>
@@ -96,8 +99,12 @@ const GroupsSelector = ({ stateHook: [state, setState], errors, groupId }) => {
 
 export default GroupsSelector;
 
+GroupsSelector.defaultProps = {
+  groupId: undefined,
+};
+
 GroupsSelector.propTypes = {
   stateHook: PropTypes.arrayOf(PropTypes.any).isRequired,
   errors: PropTypes.objectOf(PropTypes.any).isRequired,
-  groupId: PropTypes.objectOf(PropTypes.String).isRequired,
+  groupId: PropTypes.string,
 };

@@ -14,6 +14,7 @@ import IconButton from '@material-ui/core/IconButton';
 import DoneIcon from '@material-ui/icons/Done';
 import RemoveIcon from '@material-ui/icons/CloseOutlined';
 import Groups from '../../../api/groups/groups';
+import { getGroupName } from '../../../api/utils/functions';
 
 const useStyles = makeStyles((theme) => ({
   chip: {
@@ -66,7 +67,7 @@ const SingleGroupDisplay = ({ group, handleDelete, view, event }) => {
             <DeleteButton />
           </IconButton>
         )}
-        <Typography>{group.name}</Typography>
+        <Typography>{getGroupName(group)}</Typography>
       </AccordionSummary>
       <AccordionDetails className={classes.results}>
         {users.map(({ emails = [], avatar, _id }) => {
