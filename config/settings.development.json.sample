@@ -3,7 +3,7 @@
     "enableKeycloak": true,
     "keycloakUrl": "",
     "keycloakRealm": "",
-    "laboiteURL": "",
+    "laboiteUrl": "",
     "caldavUrl": "",
     "packages": {
       "dynamic-import": {
