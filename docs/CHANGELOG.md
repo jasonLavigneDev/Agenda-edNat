@@ -1,5 +1,21 @@
 # Changelog
 
+## [3.7.0](https://gitlab.mim-libre.fr/alphabet/agenda/compare/release/3.6.0...release/3.7.0) (2022-11-22)
+
+
+### Features
+
+* **groups:** display structure groups correctly ([bf16dbe](https://gitlab.mim-libre.fr/alphabet/agenda/commit/bf16dbe0ce2453c1b99ebd1f7910070594bf0aaf))
+
+
+### Bug Fixes
+
+* **addEvent:** fix react error when adding event from laboite ([89ceb30](https://gitlab.mim-libre.fr/alphabet/agenda/commit/89ceb308b02a3fd2ecb449cac01efc22a60629de))
+* **config:** update laboiteURL to laboiteUrl in sample config ([2bf23c4](https://gitlab.mim-libre.fr/alphabet/agenda/commit/2bf23c45da5b6b6e2dc477bd3a1844fe02ae2203))
+* **footer:** set redirection from db and local page ([1688244](https://gitlab.mim-libre.fr/alphabet/agenda/commit/168824486fb55254bf758d8bbb85d2533d5be7c3))
+* **groups:** display structure group correctly when adding fom laboite ([fb87b57](https://gitlab.mim-libre.fr/alphabet/agenda/commit/fb87b572e8d26187bed17225e04fd27269659a29))
+* **groups:** fix groupId PropType on GroupSelector ([bbdd855](https://gitlab.mim-libre.fr/alphabet/agenda/commit/bbdd855ec716dcb1e7bf64e35067e9a2f1537675))
+
 ## [3.6.0](https://gitlab.mim-libre.fr/alphabet/agenda/compare/release/3.5.0...release/3.6.0) (2022-09-19)
 
 
