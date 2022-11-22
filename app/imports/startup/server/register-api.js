@@ -12,3 +12,4 @@ import '../../api/groups/groups';
 
 import '../../api/appsettings/server/publications';
 import '../../api/appsettings/appsettings';
+import '../../api/appsettings/methods';
