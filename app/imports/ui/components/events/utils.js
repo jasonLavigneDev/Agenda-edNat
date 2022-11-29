@@ -23,36 +23,25 @@ export const initialState = {
 };
 
 export const useErrors = (state) => {
-  const { startDate, endDate, startTime, endTime, startRecur, endRecur } = state;
+  const { title, startDate, endDate, startTime, endTime } = state;
   const [errors, setErrors] = useObjectState({});
 
   useEffect(() => {
-    if (moment(startDate).isAfter(endDate)) {
-      setErrors({ endDate: i18n.__('pages.FormEvent.endDateMustBeAfterStartDate') });
-    } else if (moment(startDate).isBefore(moment().subtract(1, 'days'))) {
-      setErrors({ endDate: i18n.__('pages.AddEvent.startDateMustBeAfterToday') });
-    } else {
-      setErrors({ endDate: null });
+    setErrors({ title: null, endTime: null, startTime: null, endDate: null, startDate: null });
+    if (!title) setErrors({ title: i18n.__('pages.AddEvent.needTitle') });
+    if (moment(`${startDate} ${startTime}`).isSameOrAfter(`${endDate} ${endTime}`)) {
+      setErrors({
+        endDate: i18n.__('pages.AddEvent.endMustBeAfterBegin'),
+        endTime: i18n.__('pages.AddEvent.endMustBeAfterBegin'),
+      });
     }
-  }, [endDate, startDate]);
-
-  useEffect(() => {
-    if (moment(`${startDate} ${startTime}`).isAfter(`${endDate} ${endTime}`)) {
-      setErrors({ endTime: i18n.__('pages.FormEvent.endTimeMustBeAfterStartTime') });
-    } else if (moment(`${startDate} ${startTime}`).isBefore(moment().subtract(1, 'days'))) {
-      setErrors({ endDate: i18n.__('pages.AddEvent.startDateMustBeAfterToday') });
-    } else {
-      setErrors({ endTime: null });
+    if (moment(`${startDate} ${startTime}`).isBefore()) {
+      setErrors({
+        startDate: i18n.__('pages.AddEvent.startMustBeAfterNow'),
+        startTime: i18n.__('pages.AddEvent.startMustBeAfterNow'),
+      });
     }
-  }, [endTime, startTime, endDate, startDate]);
-
-  useEffect(() => {
-    if (endRecur && moment(`${startRecur}`).isAfter(`${endRecur}`)) {
-      setErrors({ endTime: i18n.__('pages.FormEvent.endTimeMustBeAfterStartTime') });
-    } else {
-      setErrors({ endTime: null });
-    }
-  }, [startRecur, endRecur]);
+  }, [title, endTime, startTime, endDate, startDate]);
 
   return errors;
 };

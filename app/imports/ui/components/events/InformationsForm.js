@@ -55,6 +55,8 @@ const InformationsForm = ({ stateHook: [state, setState], errors }) => {
             label={i18n.__('pages.FormEvent.eventTitle')}
             className={classes.field}
             value={state.title}
+            error={!!errors.title}
+            helperText={errors.title}
             onChange={(e) => setState({ title: e.target.value })}
           />
         </Grid>
