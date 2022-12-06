@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import i18n from 'meteor/universe:i18n';
 import PropTypes from 'prop-types';
 
@@ -42,6 +42,8 @@ const InformationsForm = ({ stateHook: [state, setState], errors }) => {
   //   }
   // };
 
+  const [title, setTitle] = useState('');
+
   return (
     <form noValidate>
       <Grid container spacing={2}>
@@ -54,8 +56,11 @@ const InformationsForm = ({ stateHook: [state, setState], errors }) => {
             variant="outlined"
             label={i18n.__('pages.FormEvent.eventTitle')}
             className={classes.field}
-            value={state.title}
-            onChange={(e) => setState({ title: e.target.value })}
+            value={title}
+            error={!!errors.title}
+            helperText={errors.title}
+            onChange={(e) => setTitle(e.target.value)}
+            onBlur={() => setState({ title })}
           />
         </Grid>
         <Grid item md={6} xs={12}>
