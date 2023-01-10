@@ -21,7 +21,9 @@
       "validateButton": "Validate",
       "closeButton": "Cancel",
       "eventCreated": "Event created with success",
-      "startDateMustBeAfterToday": "Start date must be after today"
+      "needTitle": "A title is required",
+      "startMustBeAfterNow": "The event has already started",
+      "endMustBeAfterBegin": "The end of the event must be after the beginning"
     },
     "ReadEvent": {
       "title": "Event",

@@ -30,6 +30,8 @@ const AddEvent = ({ history }) => {
 
   moment.suppressDeprecationWarnings = true;
 
+  console.log('errors', errors);
+
   useEffect(() => {
     if (
       Object.values(errors).reduce((a, c) => (c !== null ? 1 : a), 0) === 0 &&
