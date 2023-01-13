@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import i18n from 'meteor/universe:i18n';
 import PropTypes from 'prop-types';
 
@@ -43,6 +43,12 @@ const InformationsForm = ({ stateHook: [state, setState], errors }) => {
   // };
 
   const [title, setTitle] = useState('');
+  const [desc, setDesc] = useState('');
+
+  useEffect(() => {
+    setTitle(state.title);
+    setDesc(state.description);
+  }, [state]);
 
   return (
     <form noValidate>
@@ -203,10 +209,11 @@ const InformationsForm = ({ stateHook: [state, setState], errors }) => {
             multiline
             label={i18n.__('pages.FormEvent.description')}
             className={classes.field}
-            value={state.description}
+            value={desc}
             error={!!errors.description}
             helperText={errors.description}
-            onChange={(e) => setState({ description: e.target.value })}
+            onChange={(e) => setDesc(e.target.value)}
+            onBlur={() => setState({ description: desc })}
           />
         </Grid>
       </Grid>
