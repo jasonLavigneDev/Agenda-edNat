@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 export const eventTemplate = ({
   title,
-  start,
+  // start,
   // end,
   // description,
   sender,
@@ -9,7 +9,7 @@ export const eventTemplate = ({
     <h4>Vous avez été invité à un évènement</h4>
     <br/>
     <div>
-        Votre évènement "${title}" a été programmé par ${sender} le ${start}
+        Votre évènement "${title}" a été programmé par ${sender}.
     </div>
     <br/>
     <div>
