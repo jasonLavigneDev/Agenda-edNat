@@ -22,6 +22,7 @@
       "closeButton": "Cancel",
       "eventCreated": "Event created with success",
       "needTitle": "A title is required",
+      "startDateMustBeAfterToday": "Start date must be after today",
       "startMustBeAfterNow": "The event has already started",
       "endMustBeAfterBegin": "The end of the event must be after the beginning"
     },
