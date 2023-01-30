@@ -1,5 +1,26 @@
 # Changelog
 
+## [3.8.0](https://gitlab.mim-libre.fr/alphabet/agenda/compare/release/3.7.0...release/3.8.0) (2023-01-30)
+
+
+### Features
+
+* **meteor:** update meteor 2.8.1 ([ce48072](https://gitlab.mim-libre.fr/alphabet/agenda/commit/ce48072e0d72e10165fcfddbf664adfa51ae2b7b))
+* **packages:** update meteor to 2.8.0 and others packages ([8c75957](https://gitlab.mim-libre.fr/alphabet/agenda/commit/8c75957d46daa911642819c72382019776236185))
+
+
+### Bug Fixes
+
+* **event:** better validation error messages ([c239427](https://gitlab.mim-libre.fr/alphabet/agenda/commit/c23942738da70626210744f1fa11aee6c1666c34))
+* **form:** title and desc fields lag and load ([466c527](https://gitlab.mim-libre.fr/alphabet/agenda/commit/466c527cd714c8f6000934c485cdd63683cbef31))
+* **mail:** no more reminder of event start in mail template ([70e64d0](https://gitlab.mim-libre.fr/alphabet/agenda/commit/70e64d082598b158434c5e33a9498477c3755b5c))
+* **translation:** missing message when clicking on a past date ([a48d4f0](https://gitlab.mim-libre.fr/alphabet/agenda/commit/a48d4f0dfb3de432616834663b8a90780c444158))
+
+
+### Performance Improvements
+
+* **form:** resolve lag when user enter a title ([239cbbd](https://gitlab.mim-libre.fr/alphabet/agenda/commit/239cbbd9a7504ab4eb872a0fe374b232e42f671e))
+
 ## [3.7.0](https://gitlab.mim-libre.fr/alphabet/agenda/compare/release/3.6.0...release/3.7.0) (2022-11-22)
 
 
