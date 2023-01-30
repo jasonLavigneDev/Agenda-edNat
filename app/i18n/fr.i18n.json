@@ -21,7 +21,10 @@
       "validateButton": "Valider",
       "closeButton": "Annuler",
       "eventCreated": "Évenement créé avec succès",
-      "startDateMustBeAfterToday": "La date doit être après aujourd'hui"
+      "needTitle": "Un titre est requis",
+      "startDateMustBeAfterToday": "La date doit être après aujourd'hui",
+      "startMustBeAfterNow": "Le début de l'événement est déjà passé",
+      "endMustBeAfterBegin": "La fin de l'événement doit être après le début"
     },
     "ReadEvent": {
       "title": "Évenement",

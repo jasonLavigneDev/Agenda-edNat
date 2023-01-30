@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import i18n from 'meteor/universe:i18n';
 import PropTypes from 'prop-types';
 
@@ -42,6 +42,14 @@ const InformationsForm = ({ stateHook: [state, setState], errors }) => {
   //   }
   // };
 
+  const [title, setTitle] = useState('');
+  const [desc, setDesc] = useState('');
+
+  useEffect(() => {
+    setTitle(state.title);
+    setDesc(state.description);
+  }, [state]);
+
   return (
     <form noValidate>
       <Grid container spacing={2}>
@@ -54,8 +62,11 @@ const InformationsForm = ({ stateHook: [state, setState], errors }) => {
             variant="outlined"
             label={i18n.__('pages.FormEvent.eventTitle')}
             className={classes.field}
-            value={state.title}
-            onChange={(e) => setState({ title: e.target.value })}
+            value={title}
+            error={!!errors.title}
+            helperText={errors.title}
+            onChange={(e) => setTitle(e.target.value)}
+            onBlur={() => setState({ title })}
           />
         </Grid>
         <Grid item md={6} xs={12}>
@@ -198,10 +209,11 @@ const InformationsForm = ({ stateHook: [state, setState], errors }) => {
             multiline
             label={i18n.__('pages.FormEvent.description')}
             className={classes.field}
-            value={state.description}
+            value={desc}
             error={!!errors.description}
             helperText={errors.description}
-            onChange={(e) => setState({ description: e.target.value })}
+            onChange={(e) => setDesc(e.target.value)}
+            onBlur={() => setState({ description: desc })}
           />
         </Grid>
       </Grid>
