@@ -47,7 +47,7 @@ export const createEvent = new ValidatedMethod({
           });
         }
         if (data.guests && data.guests.length) {
-          sendEmail.call({ event: data });
+          sendEmail(data, this.userId);
         }
       }
       return result;
@@ -100,7 +100,7 @@ export const editEvent = new ValidatedMethod({
           });
         }
         if (data.guests && data.guests.length) {
-          sendEmail.call({ event: data });
+          sendEmail(data, this.userId);
         }
       }
       return result;
