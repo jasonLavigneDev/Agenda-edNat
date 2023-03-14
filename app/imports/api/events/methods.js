@@ -5,8 +5,19 @@ import SimpleSchema from 'simpl-schema';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import i18n from 'meteor/universe:i18n';
 
-import { isActive } from '../utils/functions';
+import { isActive, validateString } from '../utils/functions';
 import Events from './events';
+
+export const validateEvent = (data) => {
+  validateString(data.title);
+  if (data.location) validateString(data.location);
+  if (data.description) validateString(data.description);
+  if (data.startTime) validateString(data.startTime);
+  if (data.endTime) validateString(data.endTime);
+  data.groups.forEach((group) => validateString(group.name));
+  data.guests.forEach((guest) => validateString(guest));
+  data.participants.forEach((participant) => validateString(participant.email));
+};
 
 export const createEvent = new ValidatedMethod({
   name: 'events.create',
@@ -19,6 +30,7 @@ export const createEvent = new ValidatedMethod({
       if (!isActive(this.userId)) {
         throw new Meteor.Error('api.events.create.notLoggedIn', i18n.__('api.users.notLoggedIn'));
       }
+      validateEvent(data);
       const result = Events.insert(data);
       if (result && Meteor.isServer && !Meteor.isTest) {
         // eslint-disable-next-line global-require
@@ -71,6 +83,7 @@ export const editEvent = new ValidatedMethod({
       } else if (event && event.userId !== this.userId) {
         throw new Meteor.Error('api.events.edit.notOwner', i18n.__('api.users.mustBeOwner'));
       }
+      validateEvent(data);
       const result = Events.update({ _id: data._id }, { $set: { ...data } });
       if (result && Meteor.isServer && !Meteor.isTest) {
         // eslint-disable-next-line global-require
@@ -99,7 +112,10 @@ export const editEvent = new ValidatedMethod({
 export const deleteEvent = new ValidatedMethod({
   name: 'events.delete',
   validate: new SimpleSchema({
-    eventId: String,
+    eventId: {
+      type: String,
+      regEx: SimpleSchema.RegEx.Id,
+    },
   }).validator({ clean: true }),
 
   run({ eventId }) {
@@ -120,7 +136,10 @@ export const deleteEvent = new ValidatedMethod({
 export const changeUserStatus = new ValidatedMethod({
   name: 'events.changeUserStatus',
   validate: new SimpleSchema({
-    eventId: String,
+    eventId: {
+      type: String,
+      regEx: SimpleSchema.RegEx.Id,
+    },
     status: Number,
   }).validator({ clean: true }),
 
