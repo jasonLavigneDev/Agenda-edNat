@@ -13,7 +13,12 @@
       "labels": {},
       "migrationLockedText": "Database migration is locked."
     },
-    "methods": {}
+    "methods": {},
+    "utils": {
+      "scriptDetected": "Forbidden content has been detected",
+      "badCharsDetected": "Following characters are Forbidden: < > & ' \"",
+      "stringTooLong": "String is too long (max 50k)"
+    }
   },
   "pages": {
     "AddEvent": {
