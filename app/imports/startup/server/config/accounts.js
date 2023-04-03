@@ -7,7 +7,7 @@ import logServer from '../../../api/utils/functions';
 
 if (Meteor.settings.keycloak) {
   if (Meteor.settings.public.enableKeycloak === true) {
-    if (Meteor.settings.public.laboiteURL) {
+    if (Meteor.settings.public.laboiteUrl) {
       Accounts.onCreateUser(() => {
         // Users should not be created by apps-agenda,
         // Redirect user to laboite if not found
