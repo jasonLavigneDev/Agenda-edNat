@@ -34,7 +34,7 @@ export default function UserFailed() {
           variant="contained"
           color="primary"
           style={{ fontStyle: 'WorkSansRegular' }}
-          onClick={() => window.open(`${Meteor.settings.public.laboiteURL}/signin`, '_blank')}
+          onClick={() => window.open(`${Meteor.settings.public.laboiteUrl}/signin`, '_blank')}
         >
           {i18n.__('components.UserFailed.loginLaboite')}
         </Button>

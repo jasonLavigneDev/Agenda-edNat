@@ -46,6 +46,7 @@ const settingsParticipant = new SimpleSchema({
   },
   groupId: {
     type: String,
+    regEx: SimpleSchema.RegEx.Id,
     optional: true,
   },
 });
@@ -54,6 +55,7 @@ EventsAgenda.schema = new SimpleSchema(
   {
     _id: {
       type: String,
+      regEx: SimpleSchema.RegEx.Id,
       min: 1,
     },
     title: {
