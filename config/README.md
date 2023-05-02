@@ -4,27 +4,23 @@ Copy `settings-development.json.sample` to `settings-development.json` and updat
 
 ## public:
 
-| Key                                       | Type    | Default value                                 | Description                  |
-| ----------------------------------------- | ------- | --------------------------------------------- | ---------------------------- |
-| enableKeycloak                            | boolean | false                                         | If true, keycloak is enabled |
-| keycloakUrl                               | string  | ""                                            | Keycloak URL                 |
-| keycloakRealm                             | string  | ""                                            | Keycloak Realm               |
-| laboiteBlogURL                            | string  | ""                                            | Laboite Blog URL             |
-| caldavUrl                                 | string  | ""                                            | Caldav url                   |
-| packages                                  | object  | {}                                            |                              |
-| packages.dynamic-import                   | object  | {}                                            |                              |
-| packages.dynamic-import.link              | string  | "https://github.com/meteor/meteor/pull/11105" |                              |
-| packages.dynamic-import.useLocationOrigin | boolean | true                                          |                              |
+| Key                                       | Type    | Default value                                 | Description      |
+| ----------------------------------------- | ------- | --------------------------------------------- | ---------------- |
+| keycloakUrl                               | string  | ""                                            | Keycloak URL     |
+| keycloakRealm                             | string  | ""                                            | Keycloak Realm   |
+| laboiteBlogURL                            | string  | ""                                            | Laboite Blog URL |
+| caldavUrl                                 | string  | ""                                            | Caldav url       |
+| packages                                  | object  | {}                                            |                  |
+| packages.dynamic-import                   | object  | {}                                            |                  |
+| packages.dynamic-import.link              | string  | "https://github.com/meteor/meteor/pull/11105" |                  |
+| packages.dynamic-import.useLocationOrigin | boolean | true                                          |                  |
 
 ## keycloak:
 
-| Key           | Type     | Default value | Description             |
-| ------------- | -------- | ------------- | ----------------------- |
-| pubkey        | string   | ""            | Keycloak public key     |
-| client        | string   | "sso"         | Keycloak client type    |
-| adminEmails   | [string] | []            | Keycloak admin emails   |
-| adminUser     | string   | ""            | Keycloak admin user     |
-| adminPassword | string   | ""            | Keycloak admin password |
+| Key    | Type   | Default value | Description          |
+| ------ | ------ | ------------- | -------------------- |
+| pubkey | string | ""            | Keycloak public key  |
+| client | string | "sso"         | Keycloak client type |
 
 ## private:
 
