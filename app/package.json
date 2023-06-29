@@ -71,5 +71,8 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-standard": "^4.1.0",
     "prettier": "^2.8.8"
+  },
+  "overrides": {
+    "semver": "^7.5.2"
   }
 }
