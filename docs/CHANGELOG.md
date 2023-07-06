@@ -1,5 +1,18 @@
 # Changelog
 
+## [3.9.0](https://gitlab.mim-libre.fr/alphabet/agenda/compare/release/3.8.0...release/3.9.0) (2023-04-18)
+
+
+### Features
+
+* **input validation:** check content of string inputs ([89a854c](https://gitlab.mim-libre.fr/alphabet/agenda/commit/89a854cd644e649859709a96405743c60123e95b))
+
+
+### Bug Fixes
+
+* **config:** update laboiteURL to laboiteUrl in code ([8a92449](https://gitlab.mim-libre.fr/alphabet/agenda/commit/8a924499b09008b639053bd6bef07c2a03482079))
+* **emails:** sendEmail is now an internal api function ([c773f1a](https://gitlab.mim-libre.fr/alphabet/agenda/commit/c773f1aff80a4ad1fb8ac6b8574bb4c547b0a711))
+
 ## [3.8.0](https://gitlab.mim-libre.fr/alphabet/agenda/compare/release/3.7.0...release/3.8.0) (2023-01-30)
 
 
