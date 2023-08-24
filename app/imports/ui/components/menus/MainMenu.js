@@ -76,16 +76,12 @@ const MainMenu = ({ user = {} }) => {
   };
 
   const onLogout = () => {
-    if (Meteor.settings.public.enableKeycloak) {
-      const logoutType = user.logoutType || 'ask';
-      if (logoutType === 'ask') {
-        setOpenLogout(true);
-      } else if (logoutType === 'global') {
-        keycloakLogout();
-      } else localLogout();
-    } else {
-      localLogout();
-    }
+    const logoutType = user.logoutType || 'ask';
+    if (logoutType === 'ask') {
+      setOpenLogout(true);
+    } else if (logoutType === 'global') {
+      keycloakLogout();
+    } else localLogout();
   };
 
   const handleCopyCaldavUrl = () => {

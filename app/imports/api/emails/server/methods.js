@@ -37,14 +37,19 @@ const sendEmail = (event, userId) => {
   });
 
   return event.guests.forEach((guest) => {
-    return Email.send({
-      to: guest,
-      from: Meteor.settings.private.smtp.fromEmail,
-      subject: `Laboite - Agenda - Votre rdv du ${moment(event.start).format('L')}`,
-      icalEvent: cal.toString(),
-      inReplyTo: Meteor.settings.private.smtp.toEmail,
-      html,
-    });
+    try {
+      return Email.send({
+        to: guest,
+        from: Meteor.settings.private.smtp.fromEmail,
+        subject: `Laboite - Agenda - Votre rdv du ${moment(event.start).format('L')}`,
+        icalEvent: cal.toString(),
+        inReplyTo: Meteor.settings.private.smtp.toEmail,
+        html,
+      });
+    } catch (error) {
+      console.log("Can't send email to : ", guest);
+      return null;
+    }
   });
 };
 
