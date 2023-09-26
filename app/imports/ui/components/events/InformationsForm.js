@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useEffect, useState } from 'react';
 import i18n from 'meteor/universe:i18n';
 import PropTypes from 'prop-types';
@@ -8,6 +9,11 @@ import TextField from '@material-ui/core/TextField';
 import Divider from '@material-ui/core/Divider';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
+import LIST_COLORS from '../../utils/colors';
 // import moment from 'moment';
 
 const useStyles = makeStyles(() => ({
@@ -77,6 +83,29 @@ const InformationsForm = ({ stateHook: [state, setState], errors }) => {
             value={state.location}
             onChange={(e) => setState({ location: e.target.value })}
           />
+        </Grid>
+        <Grid md={10} xs={12} item>
+          <FormControl fullWidth sx={{ m: 1 }} variant="outlined">
+            <InputLabel id="selectCategory">Type de rendez-vous</InputLabel>
+            <Select labelId="selectCategory" label="Type de rendez-vous">
+              {LIST_COLORS.map((color) => (
+                <MenuItem value={color}>
+                  <div style={{ display: 'flex', alignItems: 'center', height: '2vh' }}>
+                    <div
+                      style={{
+                        backgroundColor: color,
+                        height: 20,
+                        width: 20,
+                        borderRadius: 20,
+                        marginRight: 20,
+                      }}
+                    />
+                    <p>color</p>
+                  </div>
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
         </Grid>
         {/* {moment(state.startDate).isSame(state.endDate) && (
           <>
