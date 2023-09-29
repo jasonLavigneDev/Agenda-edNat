@@ -50,11 +50,6 @@ const InformationsForm = ({ stateHook: [state, setState], errors }) => {
 
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
-  const [eventType, setEventType] = React.useState(Object.keys(EVENTS_COLOR)[0]);
-
-  const handleChange = (event) => {
-    setEventType(event.target.value);
-  };
 
   useEffect(() => {
     setTitle(state.title);
@@ -95,8 +90,8 @@ const InformationsForm = ({ stateHook: [state, setState], errors }) => {
             <Select
               labelId="selectCategory"
               label="Type de rendez-vous"
-              onChange={(e) => handleChange(e)}
-              value={eventType}
+              onChange={(e) => setState({ eventType: e.target.value })}
+              value={state.eventType ?? Object.keys(EVENTS_COLOR)[0]}
             >
               {Object.entries(EVENTS_COLOR).map(([type, color]) => (
                 <MenuItem value={type}>
