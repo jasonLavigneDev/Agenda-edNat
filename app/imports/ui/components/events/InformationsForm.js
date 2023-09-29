@@ -110,7 +110,7 @@ const InformationsForm = ({ stateHook: [state, setState], errors }) => {
                         marginRight: 20,
                       }}
                     />
-                    <p>{(type, color)}</p>
+                    <p>{type}</p>
                   </div>
                 </MenuItem>
               ))}
