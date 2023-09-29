@@ -13,7 +13,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
-import LIST_COLORS from '../../utils/colors';
+import EVENTS_COLOR from '../../utils/eventsColor';
 // import moment from 'moment';
 
 const useStyles = makeStyles(() => ({
@@ -86,9 +86,15 @@ const InformationsForm = ({ stateHook: [state, setState], errors }) => {
         </Grid>
         <Grid md={10} xs={12} item>
           <FormControl fullWidth sx={{ m: 1 }} variant="outlined">
-            <InputLabel id="selectCategory">Type de rendez-vous</InputLabel>
-            <Select labelId="selectCategory" label="Type de rendez-vous">
-              {LIST_COLORS.map((color) => (
+            <InputLabel error={!!errors.eventType} helperText={errors.title} id="selectCategory">
+              Type de rendez-vous
+            </InputLabel>
+            <Select
+              labelId="selectCategory"
+              label="Type de rendez-vous"
+              onChange={(e) => setState({ eventType: e.target.value })}
+            >
+              {Object.keys(EVENTS_COLOR).map((color) => (
                 <MenuItem value={color}>
                   <div style={{ display: 'flex', alignItems: 'center', height: '2vh' }}>
                     <div
@@ -100,7 +106,7 @@ const InformationsForm = ({ stateHook: [state, setState], errors }) => {
                         marginRight: 20,
                       }}
                     />
-                    <p>color</p>
+                    <p>{color}</p>
                   </div>
                 </MenuItem>
               ))}

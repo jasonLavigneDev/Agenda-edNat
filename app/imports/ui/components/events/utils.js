@@ -20,15 +20,18 @@ export const initialState = {
   startRecur: '',
   endRecur: '',
   participateUserEvent: false,
+  eventType: '',
 };
 
 export const useErrors = (state) => {
-  const { title, startDate, endDate, startTime, endTime } = state;
+  const { title, startDate, endDate, startTime, endTime, eventType } = state;
   const [errors, setErrors] = useObjectState({});
 
   useEffect(() => {
-    setErrors({ title: null, endTime: null, startTime: null, endDate: null, startDate: null });
+    setErrors({ title: null, endTime: null, startTime: null, endDate: null, startDate: null, eventType: null });
     if (!title) setErrors({ title: i18n.__('pages.AddEvent.needTitle') });
+    if (!eventType) setErrors({ eventType: i18n.__('pages.AddEvent.needEventType') });
+
     if (moment(`${startDate} ${startTime}`).isSameOrAfter(`${endDate} ${endTime}`)) {
       setErrors({
         endDate: i18n.__('pages.AddEvent.endMustBeAfterBegin'),

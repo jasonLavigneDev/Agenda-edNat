@@ -35,6 +35,7 @@ const AddEvent = ({ history }) => {
       Object.values(errors).reduce((a, c) => (c !== null ? 1 : a), 0) === 0 &&
       state.title &&
       state.startDate &&
+      state.eventType &&
       ((state.startTime && state.endTime) || state.allDay)
     ) {
       setValidity(true);

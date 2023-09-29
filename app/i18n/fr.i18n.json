@@ -27,6 +27,7 @@
       "closeButton": "Annuler",
       "eventCreated": "Évenement créé avec succès",
       "needTitle": "Un titre est requis",
+      "needEventType": "Un type d' évenements est requis",
       "startDateMustBeAfterToday": "La date doit être après aujourd'hui",
       "startMustBeAfterNow": "Le début de l'événement est déjà passé",
       "endMustBeAfterBegin": "La fin de l'événement doit être après le début"

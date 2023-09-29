@@ -58,6 +58,9 @@ EventsAgenda.schema = new SimpleSchema(
       regEx: SimpleSchema.RegEx.Id,
       min: 1,
     },
+    eventType: {
+      type: String,
+    },
     title: {
       type: String,
     },
@@ -190,6 +193,7 @@ EventsAgenda.publicFields = {
   participants: 1,
   guests: 1,
   authorId: 1,
+  color: 1,
 };
 
 EventsAgenda.attachSchema(EventsAgenda.schema);
