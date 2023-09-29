@@ -50,6 +50,11 @@ const InformationsForm = ({ stateHook: [state, setState], errors }) => {
 
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
+  const [eventType, setEventType] = React.useState(Object.keys(EVENTS_COLOR)[0]);
+
+  const handleChange = (event) => {
+    setEventType(event.target.value);
+  };
 
   useEffect(() => {
     setTitle(state.title);
@@ -86,16 +91,15 @@ const InformationsForm = ({ stateHook: [state, setState], errors }) => {
         </Grid>
         <Grid md={10} xs={12} item>
           <FormControl fullWidth sx={{ m: 1 }} variant="outlined">
-            <InputLabel error={!!errors.eventType} helperText={errors.title} id="selectCategory">
-              Type de rendez-vous
-            </InputLabel>
+            <InputLabel id="selectCategory">Type de rendez-vous</InputLabel>
             <Select
               labelId="selectCategory"
               label="Type de rendez-vous"
-              onChange={(e) => setState({ eventType: e.target.value })}
+              onChange={(e) => handleChange(e)}
+              value={eventType}
             >
-              {Object.keys(EVENTS_COLOR).map((color) => (
-                <MenuItem value={color}>
+              {Object.entries(EVENTS_COLOR).map(([type, color]) => (
+                <MenuItem value={type}>
                   <div style={{ display: 'flex', alignItems: 'center', height: '2vh' }}>
                     <div
                       style={{
@@ -106,7 +110,7 @@ const InformationsForm = ({ stateHook: [state, setState], errors }) => {
                         marginRight: 20,
                       }}
                     />
-                    <p>{color}</p>
+                    <p>{(type, color)}</p>
                   </div>
                 </MenuItem>
               ))}
