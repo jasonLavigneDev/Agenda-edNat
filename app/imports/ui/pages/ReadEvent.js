@@ -107,6 +107,10 @@ const ReadEvent = ({ history, match: { params } }) => {
       label: i18n.__('pages.FormEvent.daysOfWeek'),
       value: state.daysOfWeek ? state.daysOfWeek.map((d) => i18n.__(`pages.FormEvent.day_${d}`)).join(', ') : null,
     },
+    {
+      label: 'event type',
+      value: state.eventType,
+    },
     { label: i18n.__('pages.FormEvent.description'), value: descriptionWithLinks(state.description), width: 12 },
   ];
 
@@ -190,7 +194,6 @@ const ReadEvent = ({ history, match: { params } }) => {
                 </Grid>
               ) : null,
             )}
-
             {!!state.groups && !!state.groups.length && (
               <>
                 <Grid item md={12} xs={12}>

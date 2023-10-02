@@ -1,7 +1,14 @@
 import sinon from 'sinon';
 import { Factory } from 'meteor/dburles:factory';
+import EVENTS_COLOR from '../../imports/ui/utils/eventsColor';
 
 export const randomBoolean = () => Boolean(Math.round(Math.random()));
+
+export const randomEventColor = () => {
+  const tableTemp = Object.keys(EVENTS_COLOR);
+  const random = Math.round(Math.random() * Object.keys(EVENTS_COLOR).length + 1);
+  return tableTemp[random];
+};
 
 sinon.stub(Meteor, 'user');
 sinon.stub(Meteor, 'userId');

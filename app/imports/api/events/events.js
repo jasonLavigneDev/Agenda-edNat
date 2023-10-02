@@ -193,7 +193,7 @@ EventsAgenda.publicFields = {
   participants: 1,
   guests: 1,
   authorId: 1,
-  color: 1,
+  eventType: 1,
 };
 
 EventsAgenda.attachSchema(EventsAgenda.schema);
