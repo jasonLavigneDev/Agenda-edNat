@@ -4,7 +4,7 @@ import { Random } from 'meteor/random';
 import moment from 'moment';
 
 import Events from '../../imports/api/events/events';
-import { randomBoolean } from './utils';
+import { randomBoolean, randomEventColor } from './utils';
 
 Factory.define('event', Events, {
   title: () => faker.lorem.sentence(),
@@ -31,4 +31,5 @@ Factory.define('event', Events, {
     }));
   },
   guests: () => [faker.internet.email(), faker.internet.email()],
+  eventType: () => randomEventColor(),
 });

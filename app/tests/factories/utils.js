@@ -6,7 +6,7 @@ export const randomBoolean = () => Boolean(Math.round(Math.random()));
 
 export const randomEventColor = () => {
   const tableTemp = Object.keys(EVENTS_COLOR);
-  const random = Math.round(Math.random() * Object.keys(EVENTS_COLOR).length + 1);
+  const random = Math.floor(Math.random() * tableTemp.length);
   return tableTemp[random];
 };
 
