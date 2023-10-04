@@ -146,6 +146,19 @@
     "en": "English",
     "fr": "French"
   },
+  "eventType": {
+    "rdv": "appointment",
+    "prefere": "favorite",
+    "project": "project",
+    "problems": "problems",
+    "suivi": "follow up",
+    "perso": "personal",
+    "meeting": "meeting",
+    "divers": "diverse",
+    "ferie": "public holiday",
+    "call": "call",
+    "conge": "holiday"
+  },
   "SimpleSchema": {
     "required": "{$label} is required",
     "minString": "{$label} must be at least {$min} characters",
