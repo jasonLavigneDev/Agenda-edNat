@@ -105,7 +105,7 @@ const InformationsForm = ({ stateHook: [state, setState], errors }) => {
                         marginRight: 20,
                       }}
                     />
-                    <p>{type}</p>
+                    <p>{i18n.__(`eventType.${type}`)}</p>
                   </div>
                 </MenuItem>
               ))}
