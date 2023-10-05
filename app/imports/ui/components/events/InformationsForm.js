@@ -86,10 +86,10 @@ const InformationsForm = ({ stateHook: [state, setState], errors }) => {
         </Grid>
         <Grid md={10} xs={12} item>
           <FormControl fullWidth sx={{ m: 1 }} variant="outlined">
-            <InputLabel id="selectCategory">Type de rendez-vous</InputLabel>
+            <InputLabel id="selectCategory">{i18n.__('eventType.type')}</InputLabel>
             <Select
               labelId="selectCategory"
-              label="Type de rendez-vous"
+              label={i18n.__('eventType.type')}
               onChange={(e) => setState({ eventType: e.target.value })}
               value={state.eventType ?? Object.keys(EVENTS_COLOR)[0]}
             >

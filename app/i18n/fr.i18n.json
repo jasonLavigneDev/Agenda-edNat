@@ -147,6 +147,7 @@
     "fr": "Français"
   },
   "eventType": {
+    "type": "Type",
     "rdv": "rendez-vous",
     "prefere": "préféré",
     "project": "projet",

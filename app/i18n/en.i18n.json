@@ -147,6 +147,7 @@
     "fr": "French"
   },
   "eventType": {
+    "type": "Type",
     "rdv": "appointment",
     "prefere": "favorite",
     "project": "project",
