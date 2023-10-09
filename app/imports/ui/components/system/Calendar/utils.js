@@ -96,7 +96,6 @@ export const exportAgendaToICS = (events = []) => {
     name: '<agenda>',
   });
   // value events when create in calendar
-
   // Find event in array
   events.forEach((line) => {
     cal.createEvent({
@@ -166,6 +165,7 @@ export const importICSToAgenda = (eFiles) => {
                 allDay: allDayImport,
                 start,
                 end,
+                eventType: '',
               },
             },
             (error) => {

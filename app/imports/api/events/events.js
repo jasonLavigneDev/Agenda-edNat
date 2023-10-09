@@ -60,6 +60,7 @@ EventsAgenda.schema = new SimpleSchema(
     },
     eventType: {
       type: String,
+      optional: true,
     },
     title: {
       type: String,
