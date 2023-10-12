@@ -1,5 +1,24 @@
 # Changelog
 
+## [3.10.0](https://gitlab.mim-libre.fr/alphabet/agenda/compare/release/3.9.0...release/3.10.0) (2023-08-24)
+
+
+### Features
+
+* **meteor:** change meteor base version ([4ad997d](https://gitlab.mim-libre.fr/alphabet/agenda/commit/4ad997d2939abf794d74f3eaf25c235aca615f70))
+
+
+### Bug Fixes
+
+* **emails:** can now create event when guest hasn't a valid mail ([8bf7f5e](https://gitlab.mim-libre.fr/alphabet/agenda/commit/8bf7f5ebfc2d2988842991e7e74056e9ea3d6fbc))
+* **notification:** modify call for multigroups notification ([07ab6c8](https://gitlab.mim-libre.fr/alphabet/agenda/commit/07ab6c8b8b845de4fb59c8186f3d87377e7a0cfa))
+* **settings:** remove enableKeycloak setting (Keycloak is mandatory) ([7c7ad53](https://gitlab.mim-libre.fr/alphabet/agenda/commit/7c7ad53aee4e497452de39486d8add88abbc1e04))
+
+
+### Build System
+
+* **meteor:** update meteor to 2.12 and meteor libs ([79a4f08](https://gitlab.mim-libre.fr/alphabet/agenda/commit/79a4f081821f78f71c4aba2840f109a1e4901f7a))
+
 ## [3.9.0](https://gitlab.mim-libre.fr/alphabet/agenda/compare/release/3.8.0...release/3.9.0) (2023-04-18)
 
 
