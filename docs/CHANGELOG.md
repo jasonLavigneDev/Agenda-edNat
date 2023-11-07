@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.11.0](https://gitlab.mim-libre.fr/alphabet/agenda/compare/release/3.10.0...release/3.11.0) (2023-11-07)
+
+
+### Features
+
+* **libs:** update node docker image ([a0201c3](https://gitlab.mim-libre.fr/alphabet/agenda/commit/a0201c34a74937d8c19e711241bb01a016094442))
+* **libs:** update npm libs to wanted version ([066a664](https://gitlab.mim-libre.fr/alphabet/agenda/commit/066a664b5801e8c679b37cc88a4e5625a4949081))
+* **libs:** update version number of meteor base ([71f0a6f](https://gitlab.mim-libre.fr/alphabet/agenda/commit/71f0a6f6fb8c4c82cdbb665bc031bcde9bb4925d))
+* **matomo:** integrate matomo client ([27fa585](https://gitlab.mim-libre.fr/alphabet/agenda/commit/27fa585874eedb9bb7eb7c6ae9fbafd26cca321e))
+* **node:** change node version to previous version ([4cebb92](https://gitlab.mim-libre.fr/alphabet/agenda/commit/4cebb92b8837beadf3be758402ec0a6a776397d5))
+
 ## [3.10.0](https://gitlab.mim-libre.fr/alphabet/agenda/compare/release/3.9.0...release/3.10.0) (2023-08-24)
 
 
