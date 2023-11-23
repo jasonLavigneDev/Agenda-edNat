@@ -22,6 +22,7 @@ import {
 } from './utils';
 import useCalendarStyles from './style';
 import ROUTES from '../../../layouts/routes';
+import EVENTS_COLOR from '../../../utils/eventsColor';
 
 const plugins = [dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin];
 
@@ -56,6 +57,11 @@ const Calendar = () => {
   };
 
   const events = useEvents(datesRange);
+
+  events.forEach((event) => {
+    // eslint-disable-next-line no-param-reassign
+    event.color = EVENTS_COLOR[event.eventType];
+  });
 
   const customButtons = CUSTOM_BUTTONS({
     importFunc: () => inputRef.current.click(),

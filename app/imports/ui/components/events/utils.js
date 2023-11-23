@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import moment from 'moment';
 import i18n from 'meteor/universe:i18n';
 import { useObjectState } from '../../../api/utils/hooks';
+import EVENTS_COLOR from '../../utils/eventsColor';
 
 export const initialState = {
   startDate: '',
@@ -20,6 +21,7 @@ export const initialState = {
   startRecur: '',
   endRecur: '',
   participateUserEvent: false,
+  eventType: Object.keys(EVENTS_COLOR)[0],
 };
 
 export const useErrors = (state) => {
@@ -29,6 +31,7 @@ export const useErrors = (state) => {
   useEffect(() => {
     setErrors({ title: null, endTime: null, startTime: null, endDate: null, startDate: null });
     if (!title) setErrors({ title: i18n.__('pages.AddEvent.needTitle') });
+
     if (moment(`${startDate} ${startTime}`).isSameOrAfter(`${endDate} ${endTime}`)) {
       setErrors({
         endDate: i18n.__('pages.AddEvent.endMustBeAfterBegin'),
