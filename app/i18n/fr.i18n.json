@@ -5,8 +5,8 @@
     "logout": "Déconnexion en cours"
   },
   "notifications": {
-    "newMeetingEvent": "Nouvel évenement sur l'agenda",
-    "youAreInvitedTo": "Vous avez été invité à participer à l'évenement"
+    "newMeetingEvent": "Nouvel évènement sur l'agenda",
+    "youAreInvitedTo": "Vous avez été invité à participer à l'évènement"
   },
   "api": {
     "appsettings": {
@@ -25,15 +25,15 @@
       "title": "Ajouter un évènement",
       "validateButton": "Valider",
       "closeButton": "Annuler",
-      "eventCreated": "Évenement créé avec succès",
+      "eventCreated": "Évènement créé avec succès",
       "needTitle": "Un titre est requis",
-      "needEventType": "Un type d' évenements est requis",
+      "needEventType": "Un type d'évènements est requis",
       "startDateMustBeAfterToday": "La date doit être après aujourd'hui",
       "startMustBeAfterNow": "Le début de l'événement est déjà passé",
       "endMustBeAfterBegin": "La fin de l'événement doit être après le début"
     },
     "ReadEvent": {
-      "title": "Évenement",
+      "title": "Évènement",
       "closeButton": "Fermer",
       "editButton": "Éditer",
       "cancelButton": "Annuler",
@@ -52,8 +52,8 @@
       "validateButton": "Valider",
       "closeButton": "Annuler",
       "delete": "Supprimer",
-      "eventCreated": "Évenement modifié avec succès",
-      "eventDeleted": "Évenement supprimé avec succès"
+      "eventCreated": "Évènement modifié avec succès",
+      "eventDeleted": "Évènement supprimé avec succès"
     },
     "FormEvent": {
       "eventTitle": "Titre",
@@ -72,7 +72,7 @@
       "allDay": "Journée entière",
       "searchUsers": "Entrez un email",
       "addAsAGuest": "Ajouter en tant qu'invité",
-      "recurrent": "Évenement régulier",
+      "recurrent": "Évènement régulier",
       "from": "A partir de",
       "to": "Jusqu'au",
       "day_0": "Dimanche",
@@ -82,7 +82,7 @@
       "day_4": "Jeudi",
       "day_5": "Vendredi",
       "day_6": "Samedi",
-      "daysOfWeek": "Jours de l'évenement",
+      "daysOfWeek": "Jours de l'évènement",
       "youCantRemoveToday": "Vous ne pouvez pas enlever aujourd'hui",
       "searchUserHelp": "Recherchez un utilisateur de la boîte ou ajoutez un invité externe",
       "endDateMustBeAfterStartDate": "La date de fin doit être après la date de début",
@@ -101,7 +101,7 @@
       "importButton": "Import",
       "exportButton": "Export",
       "displayWeekendButton": "Week-Ends",
-      "cantMoveRecurrent": "Un évenement récurrent ne peut pas être déplacé"
+      "cantMoveRecurrent": "Un évènement récurrent ne peut pas être déplacé"
     },
     "Footer": {
       "legal": "Mentions légales",
