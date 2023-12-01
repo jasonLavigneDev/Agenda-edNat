@@ -1,11 +1,11 @@
 # L'application **Agenda** environnement DEV :
 
 - [Installation](#installation)
-  - [Application : Laboite](#application-laboite)
+  - [Application : LaBoite](#application-laboite)
   - [Application : Agenda](#application-agenda)
   - [Paramètres](#paramètres)
 - [Lancer le projet](#lancer-le-projet)
-  - [Dans un terminal **laboite**](#dans-un-terminal-laboite)
+  - [Dans un terminal **laBoite**](#dans-un-terminal-laboite)
   - [Lancer un autre terminal **agenda**](#lancer-un-autre-terminal-agenda)
   - [Ajouter des groupes à votre utilisateur](#ajouter-des-groupes-à-votre-utilisateur)
     - [Via l'interface utilisateur **localhost:3000**](#via-linterface-utilisateur-localhost3000)
@@ -14,7 +14,7 @@
 
 ## Installation
 
-### Application : Laboite
+### Application : LaBoite
 
 Procédure d'installation :
 
@@ -45,7 +45,7 @@ Se reporter au [document relatif à la configuration](config/LISEZ-MOI.md).
 
 ## Lancer le projet
 
-### Dans un terminal **laboite**
+### Dans un terminal **laBoite**
 
 ```
 cd laboite/app
@@ -75,7 +75,7 @@ http://localhost:3030
 
 #### Via l'interface utilisateur **localhost:3000**
 
-À partir de l'application `laboite` que vous accédez à partir du navigateur
+À partir de l'application `laBoite` que vous accédez à partir du navigateur
 
 ```
 http://localhost:3000
