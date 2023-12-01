@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { useTracker } from 'meteor/react-meteor-data';
 import { useHistory } from 'react-router-dom';
-import i18n from 'meteor/universe:i18n';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -37,12 +36,6 @@ const Calendar = () => {
   const buttons = useTracker(() => BUTTONS_TEXTS(), [language]);
 
   const addEventToDate = ({ dateStr, endStr, startStr }) => {
-    if (
-      (dateStr && moment(dateStr).isBefore(moment().subtract(1, 'days'))) ||
-      (startStr && moment(startStr).isBefore(moment().subtract(1, 'days')))
-    ) {
-      return msg.warning(i18n.__('pages.AddEvent.startDateMustBeAfterToday'));
-    }
     return history.push(
       ROUTES.ADD_EVENT_TO_DATE({
         date: dateStr,

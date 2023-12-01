@@ -38,12 +38,6 @@ export const useErrors = (state) => {
         endTime: i18n.__('pages.AddEvent.endMustBeAfterBegin'),
       });
     }
-    if (moment(`${startDate} ${startTime}`).isBefore()) {
-      setErrors({
-        startDate: i18n.__('pages.AddEvent.startMustBeAfterNow'),
-        startTime: i18n.__('pages.AddEvent.startMustBeAfterNow'),
-      });
-    }
   }, [title, endTime, startTime, endDate, startDate]);
 
   return errors;
