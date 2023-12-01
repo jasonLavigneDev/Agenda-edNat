@@ -29,8 +29,8 @@
       "needTitle": "Un titre est requis",
       "needEventType": "Un type d'évènements est requis",
       "startDateMustBeAfterToday": "La date doit être après aujourd'hui",
-      "startMustBeAfterNow": "Le début de l'événement est déjà passé",
-      "endMustBeAfterBegin": "La fin de l'événement doit être après le début"
+      "startMustBeAfterNow": "Le début de l'évènement est déjà passé",
+      "endMustBeAfterBegin": "La fin de l'évènement doit être après le début"
     },
     "ReadEvent": {
       "title": "Évènement",
@@ -84,7 +84,7 @@
       "day_6": "Samedi",
       "daysOfWeek": "Jours de l'évènement",
       "youCantRemoveToday": "Vous ne pouvez pas enlever aujourd'hui",
-      "searchUserHelp": "Recherchez un utilisateur de la boîte ou ajoutez un invité externe",
+      "searchUserHelp": "Recherchez un utilisateur de LaBoite ou ajoutez un invité externe",
       "endDateMustBeAfterStartDate": "La date de fin doit être après la date de début",
       "endTimeMustBeAfterStartTime": "L'heure de fin doit être après l'heure de début"
     },
@@ -116,7 +116,7 @@
     },
     "MainMenu": {
       "menuLogoutLabel": "Se déconnecter",
-      "menuAddEvent": "Ajouter événement",
+      "menuAddEvent": "Ajouter évènement",
       "copyCaldavUrl": "Mon URL Caldav",
       "successCopyCaldav": "Url copié avec succès"
     },
