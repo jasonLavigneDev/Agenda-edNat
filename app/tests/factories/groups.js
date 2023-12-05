@@ -6,8 +6,8 @@ import Groups from '../../imports/api/groups/groups';
 Factory.define('group', Groups, {
   active: true,
   type: 0,
-  name: () => faker.company.companyName(),
-  slug: () => faker.company.companyName(),
+  name: () => faker.company.name(),
+  slug: () => faker.company.name(),
   owner: () => Random.id(),
   admins: () => [Random.id()],
   animators: () => [Random.id(), Random.id()],
