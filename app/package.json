@@ -15,7 +15,7 @@
     "visualize": "meteor --production --extra-packages bundle-visualizer --settings ../config/settings.development.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.23.2",
+    "@babel/runtime": "^7.23.5",
     "@datapunt/matomo-tracker-react": "^0.5.1",
     "@faker-js/faker": "^8.3.1",
     "@fullcalendar/core": "^5.11.5",
@@ -28,7 +28,7 @@
     "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.3",
     "@material-ui/lab": "^4.0.0-alpha.61",
-    "axios": "^0.21.4",
+    "axios": "^1.6.2",
     "babel-eslint": "^10.1.0",
     "bcrypt": "^5.1.1",
     "buffer": "^6.0.3",
@@ -36,7 +36,7 @@
     "fullcalendar": "^5.11.5",
     "ical-generator": "^2.2.0",
     "material-icons": "^1.13.12",
-    "meteor-node-stubs": "^1.2.5",
+    "meteor-node-stubs": "^1.2.7",
     "moment": "^2.29.4",
     "node-ical": "^0.13.0",
     "prop-types": "^15.8.1",
