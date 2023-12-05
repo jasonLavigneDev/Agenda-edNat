@@ -1,6 +1,6 @@
 import { Factory } from 'meteor/dburles:factory';
 import { Random } from 'meteor/random';
-import faker from 'faker';
+import { faker } from '@faker-js/faker';
 import Groups from '../../imports/api/groups/groups';
 
 Factory.define('group', Groups, {
