@@ -43,7 +43,6 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.3.4",
-    "react-toastify": "^7.0.4",
     "simpl-schema": "^1.13.1",
     "sinon": "^17.0.1"
   },
