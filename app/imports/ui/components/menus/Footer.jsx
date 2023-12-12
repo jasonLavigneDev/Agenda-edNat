@@ -77,7 +77,13 @@ const Footer = () => {
               {i18n.__(`components.Footer.${text}`)}
             </a>
           ) : (
-            <a className={classes.link} target="_blank" rel="noreferrer noopener" href={`${laboiteURL}/legal/${link}`}>
+            <a
+              key={key}
+              className={classes.link}
+              target="_blank"
+              rel="noreferrer noopener"
+              href={`${laboiteURL}/legal/${link}`}
+            >
               {i18n.__(`components.Footer.${text}`)}
             </a>
           );
