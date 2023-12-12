@@ -36,6 +36,7 @@
       "title": "Event",
       "closeButton": "Close",
       "editButton": "Edit",
+      "copyButton": "Duplicate",
       "cancelButton": "Cancel",
       "participants": "Participants",
       "informations": "Information",
@@ -53,6 +54,7 @@
       "closeButton": "Cancel",
       "delete": "Delete",
       "eventCreated": "Event updated with success",
+      "eventCopied": "Event duplicated with success",
       "eventDeleted": "Event deleted with success"
     },
     "FormEvent": {
