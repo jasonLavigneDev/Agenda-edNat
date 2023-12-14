@@ -4,7 +4,7 @@ import moment from 'moment';
 import importICS from 'node-ical';
 import exportICS from 'ical-generator';
 import Events from '../../../../api/events/events';
-import { editEvent, createEvent } from '../../../../api/events/methods';
+import { editEvent, importEvents } from '../../../../api/events/methods';
 
 export const BUTTONS_TEXTS = () => ({
   today: i18n.__('components.Calendar.today'),
@@ -134,7 +134,7 @@ export const importICSToAgenda = (eFiles) => {
   const reader = new FileReader();
   reader.onload = async (eFile) => {
     const file = eFile.target.result;
-
+    const data = [];
     // Parse
     const parseF = importICS.sync.parseICS(file);
     // eslint-disable-next-line no-restricted-syntax
@@ -157,30 +157,30 @@ export const importICSToAgenda = (eFiles) => {
             ? moment.utc(`${ev.start.toDateString()} 00:00`).format()
             : moment(ev.start).format();
           const end = allDayImport ? moment.utc(`${ev.end.toDateString()} 00:00`).format() : moment(ev.end).format();
-
-          createEvent.call(
-            {
-              data: {
-                title,
-                location,
-                description,
-                allDay: allDayImport,
-                start,
-                end,
-                eventType,
-              },
-            },
-            (error) => {
-              if (error) {
-                msg.error(error.reason);
-              } else {
-                msg.success(i18n.__('pages.AddEvent.eventCreated'));
-              }
-            },
-          );
+          data.push({
+            title,
+            location,
+            description,
+            allDay: allDayImport,
+            start,
+            end,
+            eventType,
+          });
         }
       }
     }
+    importEvents.call(
+      {
+        data,
+      },
+      (error) => {
+        if (error) {
+          msg.error(error.reason);
+        } else {
+          msg.success(i18n.__('pages.AddEvent.eventCreated'));
+        }
+      },
+    );
   };
 
   reader.onerror = (e) => msg.error(e.target.error.name);
