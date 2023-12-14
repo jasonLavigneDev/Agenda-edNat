@@ -101,6 +101,7 @@ export const exportAgendaToICS = (events = []) => {
     cal.createEvent({
       start: line.start,
       end: line.end,
+      categories: [{ name: line.eventType }],
       timestamp: moment(),
       summary: line.title,
       description: line.description,
@@ -148,6 +149,7 @@ export const importICSToAgenda = (eFiles) => {
             allDayImport = true;
           }
           const title = ev.summary;
+          const eventType = ev.categories?.[0] ?? '';
           const { location } = ev;
           // eslint-disable-next-line prefer-destructuring
           const description = ev.description;
@@ -165,7 +167,7 @@ export const importICSToAgenda = (eFiles) => {
                 allDay: allDayImport,
                 start,
                 end,
-                eventType: '',
+                eventType,
               },
             },
             (error) => {
