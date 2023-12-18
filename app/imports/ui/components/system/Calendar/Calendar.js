@@ -72,6 +72,10 @@ const Calendar = () => {
     history.push(ROUTES.EVENT_MAKE(_id));
   };
 
+  const renderEventContent = (info) => {
+    info.el.setAttribute('title', info.event.extendedProps.description || info.event.title);
+  };
+
   return (
     <div className={classes.container}>
       <input
@@ -121,6 +125,7 @@ const Calendar = () => {
           minute: '2-digit',
           meridiem: 'short',
         }}
+        eventDidMount={renderEventContent}
       />
     </div>
   );
