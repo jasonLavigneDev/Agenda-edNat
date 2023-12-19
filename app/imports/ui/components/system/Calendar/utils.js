@@ -128,7 +128,8 @@ export const exportAgendaToICS = (events = []) => {
 /** ************************************************** */
 
 /** *****************Import ICS file ******************* */
-export const importICSToAgenda = (eFiles) => {
+export const importICSToAgenda = (eFiles, setImporting) => {
+  setImporting(true);
   const { files } = eFiles.target;
   if (files.lenght === 0) return;
   const fileToRead = files[0];
@@ -177,15 +178,20 @@ export const importICSToAgenda = (eFiles) => {
       },
       (error) => {
         if (error) {
+          setImporting(false);
           msg.error(error.reason);
         } else {
-          msg.success(i18n.__('pages.AddEvent.eventCreated'));
+          setImporting(false);
+          msg.success(i18n.__('components.Calendar.eventsImported'));
         }
       },
     );
   };
 
-  reader.onerror = (e) => msg.error(e.target.error.name);
+  reader.onerror = (e) => {
+    setImporting(false);
+    msg.error(e.target.error.name);
+  };
 
   reader.readAsText(fileToRead);
 };
