@@ -1,10 +1,11 @@
+import { Meteor } from 'meteor/meteor';
 import i18n from 'meteor/universe:i18n';
 import { useTracker } from 'meteor/react-meteor-data';
 import moment from 'moment';
 import importICS from 'node-ical';
 import exportICS from 'ical-generator';
 import Events from '../../../../api/events/events';
-import { editEvent, importEvents } from '../../../../api/events/methods';
+import { editEvent } from '../../../../api/events/methods';
 
 export const BUTTONS_TEXTS = () => ({
   today: i18n.__('components.Calendar.today'),
@@ -169,7 +170,8 @@ export const importICSToAgenda = (eFiles) => {
         }
       }
     }
-    importEvents.call(
+    Meteor.call(
+      'events.import',
       {
         data,
       },

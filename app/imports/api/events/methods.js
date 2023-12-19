@@ -19,7 +19,7 @@ export const validateEvent = (data) => {
   data.participants.forEach((participant) => validateString(participant.email));
 };
 
-const _createEvent = (data) => {
+export const _createEvent = (data) => {
   validateEvent(data);
   const result = Events.insert(data);
   if (result && Meteor.isServer && !Meteor.isTest) {
@@ -42,25 +42,6 @@ const _createEvent = (data) => {
   }
   return result;
 };
-
-export const importEvents = new ValidatedMethod({
-  name: 'events.import',
-  validate: new SimpleSchema({
-    data: Array,
-    'data.$': Events.schema.omit('createdAt', 'updatedAt', 'userId', '_id'),
-  }).validator({ clean: true }),
-
-  run({ data }) {
-    try {
-      if (!isActive(this.userId)) {
-        throw new Meteor.Error('api.events.import.notLoggedIn', i18n.__('api.users.notLoggedIn'));
-      }
-      data.forEach((event) => _createEvent(event));
-    } catch (error) {
-      throw new Meteor.Error(error.code, error.message);
-    }
-  },
-});
 
 export const createEvent = new ValidatedMethod({
   name: 'events.create',
@@ -185,7 +166,7 @@ export const changeUserStatus = new ValidatedMethod({
 });
 
 // Get list of all method names on User
-const LISTS_METHODS = _.pluck([createEvent, deleteEvent, editEvent, changeUserStatus, importEvents], 'name');
+const LISTS_METHODS = _.pluck([createEvent, deleteEvent, editEvent, changeUserStatus], 'name');
 
 if (Meteor.isServer) {
   // Only allow 5 list operations per connection per second
