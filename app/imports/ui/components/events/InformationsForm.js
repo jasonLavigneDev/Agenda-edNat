@@ -94,7 +94,7 @@ const InformationsForm = ({ stateHook: [state, setState], errors }) => {
               value={state.eventType ?? Object.keys(EVENTS_COLOR)[0]}
             >
               {Object.entries(EVENTS_COLOR).map(([type, color]) => (
-                <MenuItem value={type}>
+                <MenuItem value={type} key={type}>
                   <div style={{ display: 'flex', alignItems: 'center', height: '2vh' }}>
                     <div
                       style={{

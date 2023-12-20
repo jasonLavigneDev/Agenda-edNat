@@ -51,7 +51,12 @@ const MainLayout = ({ userFailed, setUserFailed }) => {
                     <Route exact path={ROUTES.LOGIN} component={Login} />
                     <Route exact path={ROUTES.ADD_EVENT} component={AddEvent} />
                     <Route exact path={ROUTES.EVENT} component={ReadEvent} />
-                    <Route exact path={ROUTES.EVENT_EDIT} component={EditEvent} />
+                    <Route
+                      exact
+                      path={ROUTES.EVENT_EDIT}
+                      render={(props) => <EditEvent {...props} copyMode={false} />}
+                    />
+                    <Route exact path={ROUTES.EVENT_COPY} render={(props) => <EditEvent {...props} copyMode />} />
                     <Redirect from="*" to={ROUTES.HOME} />
                   </Switch>
                 </>

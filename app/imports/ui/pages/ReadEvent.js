@@ -59,6 +59,7 @@ const ReadEvent = ({ history, match: { params } }) => {
   const [{ userId }] = useAppContext();
   const goHome = () => history.push(ROUTES.HOME);
   const goEdit = () => history.push(ROUTES.EVENT_EDIT_MAKE(params._id));
+  const goCopy = () => history.push(ROUTES.EVENT_COPY_MAKE(params._id));
   const [state, setState] = useObjectState({});
   const [loading, setLoading] = useState(false);
 
@@ -174,6 +175,12 @@ const ReadEvent = ({ history, match: { params } }) => {
             onClick: state.userId !== userId ? acceptEvent : goEdit,
             props: { color: 'primary' },
             key: 'third',
+          },
+          {
+            text: i18n.__('pages.ReadEvent.copyButton'),
+            onClick: goCopy,
+            props: { color: 'primary' },
+            key: 'fourth',
           },
         ]}
       >

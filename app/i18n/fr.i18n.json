@@ -36,6 +36,7 @@
       "title": "Évènement",
       "closeButton": "Fermer",
       "editButton": "Éditer",
+      "copyButton": "Dupliquer",
       "cancelButton": "Annuler",
       "accept": "Accepter",
       "refuse": "Refuser",
@@ -53,6 +54,7 @@
       "closeButton": "Annuler",
       "delete": "Supprimer",
       "eventCreated": "Évènement modifié avec succès",
+      "eventCopied": "Évènement dupliqué avec succès",
       "eventDeleted": "Évènement supprimé avec succès"
     },
     "FormEvent": {
