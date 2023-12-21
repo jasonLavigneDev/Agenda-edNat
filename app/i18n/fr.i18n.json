@@ -103,7 +103,9 @@
       "importButton": "Import",
       "exportButton": "Export",
       "displayWeekendButton": "Week-Ends",
-      "cantMoveRecurrent": "Un évènement récurrent ne peut pas être déplacé"
+      "cantMoveRecurrent": "Un évènement récurrent ne peut pas être déplacé",
+      "eventsImported": "Évènements importés avec succès",
+      "importPending": "Import en cours..."
     },
     "Footer": {
       "legal": "Mentions légales",

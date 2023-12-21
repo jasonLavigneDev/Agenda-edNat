@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import i18n from 'meteor/universe:i18n';
 import { useTracker } from 'meteor/react-meteor-data';
 import { useHistory } from 'react-router-dom';
 import FullCalendar from '@fullcalendar/react';
@@ -22,6 +23,7 @@ import {
 import useCalendarStyles from './style';
 import ROUTES from '../../../layouts/routes';
 import EVENTS_COLOR from '../../../utils/eventsColor';
+import Spinner from '../Spinner';
 
 const plugins = [dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin];
 
@@ -29,6 +31,7 @@ const Calendar = () => {
   const [{ language, isMobile }] = useAppContext();
   const [weekends, toggleWeekends] = useToggle();
   const [datesRange, setDatesRange] = useState({});
+  const [importICS, setImportICS] = useState(false);
   const inputRef = useRef();
   const history = useHistory();
   const classes = useCalendarStyles(isMobile)();
@@ -80,53 +83,57 @@ const Calendar = () => {
     <div className={classes.container}>
       <input
         ref={inputRef}
-        onChange={importICSToAgenda}
+        onChange={(files) => importICSToAgenda(files, setImportICS)}
         className={classes.hidden}
         id="myfile"
         type="file"
         accept=".ics"
       />
-      <FullCalendar
-        locale={language}
-        timeZone="local"
-        eventAllow={() => true}
-        plugins={plugins}
-        eventClick={eventClick}
-        businessHours={[
-          {
-            daysOfWeek: weekends ? [1, 2, 3, 4, 5, 6, 7] : [1, 2, 3, 4, 5],
-            startTime: '08:00',
-            endTime: '18:00',
-          },
-        ]}
-        datesSet={changeViewDates}
-        initialDate={moment().format()}
-        slotDuration="00:15:00"
-        dayHeaderFormat={{
-          weekday: isMobile ? 'short' : 'long',
-          omitCommas: true,
-        }}
-        dateClick={addEventToDate}
-        select={addEventToDate}
-        weekends={weekends}
-        events={events}
-        editable
-        selectable
-        eventDrop={eventDropOrResize}
-        eventResize={eventDropOrResize}
-        height={isMobile ? 'auto' : 1000}
-        firstDay={1}
-        nowIndicator
-        buttonText={buttons}
-        customButtons={customButtons}
-        headerToolbar={TOOLBAR}
-        eventTimeFormat={{
-          hour: 'numeric',
-          minute: '2-digit',
-          meridiem: 'short',
-        }}
-        eventDidMount={renderEventContent}
-      />
+      {importICS ? (
+        <Spinner message={i18n.__('components.Calendar.importPending')} inside />
+      ) : (
+        <FullCalendar
+          locale={language}
+          timeZone="local"
+          eventAllow={() => true}
+          plugins={plugins}
+          eventClick={eventClick}
+          businessHours={[
+            {
+              daysOfWeek: weekends ? [1, 2, 3, 4, 5, 6, 7] : [1, 2, 3, 4, 5],
+              startTime: '08:00',
+              endTime: '18:00',
+            },
+          ]}
+          datesSet={changeViewDates}
+          initialDate={moment().format()}
+          slotDuration="00:15:00"
+          dayHeaderFormat={{
+            weekday: isMobile ? 'short' : 'long',
+            omitCommas: true,
+          }}
+          dateClick={addEventToDate}
+          select={addEventToDate}
+          weekends={weekends}
+          events={events}
+          editable
+          selectable
+          eventDrop={eventDropOrResize}
+          eventResize={eventDropOrResize}
+          height={isMobile ? 'auto' : 1000}
+          firstDay={1}
+          nowIndicator
+          buttonText={buttons}
+          customButtons={customButtons}
+          headerToolbar={TOOLBAR}
+          eventTimeFormat={{
+            hour: 'numeric',
+            minute: '2-digit',
+            meridiem: 'short',
+          }}
+          eventDidMount={renderEventContent}
+        />
+      )}
     </div>
   );
 };

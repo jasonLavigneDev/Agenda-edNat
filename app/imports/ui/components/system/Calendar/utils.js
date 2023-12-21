@@ -1,10 +1,11 @@
+import { Meteor } from 'meteor/meteor';
 import i18n from 'meteor/universe:i18n';
 import { useTracker } from 'meteor/react-meteor-data';
 import moment from 'moment';
 import importICS from 'node-ical';
 import exportICS from 'ical-generator';
 import Events from '../../../../api/events/events';
-import { editEvent, createEvent } from '../../../../api/events/methods';
+import { editEvent } from '../../../../api/events/methods';
 
 export const BUTTONS_TEXTS = () => ({
   today: i18n.__('components.Calendar.today'),
@@ -127,14 +128,15 @@ export const exportAgendaToICS = (events = []) => {
 /** ************************************************** */
 
 /** *****************Import ICS file ******************* */
-export const importICSToAgenda = (eFiles) => {
+export const importICSToAgenda = (eFiles, setImporting) => {
+  setImporting(true);
   const { files } = eFiles.target;
   if (files.lenght === 0) return;
   const fileToRead = files[0];
   const reader = new FileReader();
   reader.onload = async (eFile) => {
     const file = eFile.target.result;
-
+    const data = [];
     // Parse
     const parseF = importICS.sync.parseICS(file);
     // eslint-disable-next-line no-restricted-syntax
@@ -157,33 +159,39 @@ export const importICSToAgenda = (eFiles) => {
             ? moment.utc(`${ev.start.toDateString()} 00:00`).format()
             : moment(ev.start).format();
           const end = allDayImport ? moment.utc(`${ev.end.toDateString()} 00:00`).format() : moment(ev.end).format();
-
-          createEvent.call(
-            {
-              data: {
-                title,
-                location,
-                description,
-                allDay: allDayImport,
-                start,
-                end,
-                eventType,
-              },
-            },
-            (error) => {
-              if (error) {
-                msg.error(error.reason);
-              } else {
-                msg.success(i18n.__('pages.AddEvent.eventCreated'));
-              }
-            },
-          );
+          data.push({
+            title,
+            location,
+            description,
+            allDay: allDayImport,
+            start,
+            end,
+            eventType,
+          });
         }
       }
     }
+    Meteor.call(
+      'events.import',
+      {
+        data,
+      },
+      (error) => {
+        if (error) {
+          setImporting(false);
+          msg.error(error.reason);
+        } else {
+          setImporting(false);
+          msg.success(i18n.__('components.Calendar.eventsImported'));
+        }
+      },
+    );
   };
 
-  reader.onerror = (e) => msg.error(e.target.error.name);
+  reader.onerror = (e) => {
+    setImporting(false);
+    msg.error(e.target.error.name);
+  };
 
   reader.readAsText(fileToRead);
 };
