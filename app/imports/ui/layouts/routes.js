@@ -17,6 +17,8 @@ const ROUTES = {
   ADD_EVENT_TO_GROUP: ({ groupId }) => `/add-event?${queryStringMaker({ groupId })}`,
   EVENT: '/event/:_id',
   EVENT_MAKE: (id) => `/event/${id}`,
+  EVENT_COPY: '/copy-event/:_id',
+  EVENT_COPY_MAKE: (id) => `/copy-event/${id}`,
   EVENT_EDIT: '/edit-event/:_id',
   EVENT_EDIT_MAKE: (id) => `/edit-event/${id}`,
 };

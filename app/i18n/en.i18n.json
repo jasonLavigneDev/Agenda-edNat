@@ -27,6 +27,7 @@
       "closeButton": "Cancel",
       "eventCreated": "Event created with success",
       "needTitle": "A title is required",
+      "needEventType": "An event type is required",
       "startDateMustBeAfterToday": "Start date must be after today",
       "startMustBeAfterNow": "The event has already started",
       "endMustBeAfterBegin": "The end of the event must be after the beginning"
@@ -35,6 +36,7 @@
       "title": "Event",
       "closeButton": "Close",
       "editButton": "Edit",
+      "copyButton": "Duplicate",
       "cancelButton": "Cancel",
       "participants": "Participants",
       "informations": "Information",
@@ -52,6 +54,7 @@
       "closeButton": "Cancel",
       "delete": "Delete",
       "eventCreated": "Event updated with success",
+      "eventCopied": "Event duplicated with success",
       "eventDeleted": "Event deleted with success"
     },
     "FormEvent": {
@@ -100,7 +103,9 @@
       "importButton": "Import",
       "exportButton": "Export",
       "displayWeekendButton": "Show Week-End",
-      "cantMoveRecurrent": "Recurrent event can not be moved"
+      "cantMoveRecurrent": "Recurrent event can not be moved",
+      "eventsImported": "Events imported successfully",
+      "importPending": "Import in progress..."
     },
     "Footer": {
       "legal": "Legal",
@@ -144,6 +149,20 @@
   "languages": {
     "en": "English",
     "fr": "French"
+  },
+  "eventType": {
+    "type": "Type",
+    "rdv": "appointment",
+    "prefere": "favorite",
+    "project": "project",
+    "problems": "problems",
+    "suivi": "follow up",
+    "perso": "personal",
+    "meeting": "meeting",
+    "divers": "diverse",
+    "ferie": "public holiday",
+    "call": "call",
+    "conge": "holiday"
   },
   "SimpleSchema": {
     "required": "{$label} is required",

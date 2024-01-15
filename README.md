@@ -1,11 +1,11 @@
 # The DEV environment **Agenda** application :
 
 - [Install](#install)
-  - [Application : Laboite](#application-laboite)
+  - [Application : LaBoite](#application-laboite)
   - [Application : Agenda](#application-agenda)
   - [Parameters](#parameters)
 - [Run project](#run-project)
-  - [In a terminal **laboite**](#in-a-terminal-laboite)
+  - [In a terminal **laBoite**](#in-a-terminal-laboite)
   - [Run an other terminal **agenda**](#run-an-other-terminal-agenda)
   - [Add groups to your user](#add-groups-to-your-user)
     - [In user interface **localhost:3000**](#in-user-interface-localhost3000)
@@ -14,7 +14,7 @@
 
 ## Install
 
-### Application : Laboite
+### Application : LaBoite
 
 Install process :
 
@@ -44,7 +44,7 @@ To run **Agenda** locally, you need to configure a **LaBoite**' local instance w
 
 ## Run project
 
-### In a terminal **laboite**
+### In a terminal **laBoite**
 
 ```
 cd laboite/app
