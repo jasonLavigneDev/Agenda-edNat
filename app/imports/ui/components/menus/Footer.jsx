@@ -88,6 +88,9 @@ const Footer = () => {
             </a>
           );
         })}
+        <a className={classes.link} target="_blank" rel="noreferrer noopener" href="/about">
+          {i18n.__(`components.MainMenu.menuAboutLabel`)}
+        </a>
       </>
     );
   };

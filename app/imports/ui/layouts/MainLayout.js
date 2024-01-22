@@ -17,6 +17,7 @@ import Spinner from '../components/system/Spinner';
 import { useAppContext } from '../contexts/context';
 import SiteInMaintenance from '../components/system/SiteInMaintenance';
 import UserFailed from '../components/system/UserFailed';
+import AboutPage from '../pages/About';
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -47,6 +48,7 @@ const MainLayout = ({ userFailed, setUserFailed }) => {
                 <>
                   <Switch>
                     <Route exact path={ROUTES.HOME} component={Calendar} />
+                    <Route exact path={ROUTES.ABOUT} component={AboutPage} />
                     <Route exact path={ROUTES.LOGOUT} component={Logout} />
                     <Route exact path={ROUTES.LOGIN} component={Login} />
                     <Route exact path={ROUTES.ADD_EVENT} component={AddEvent} />

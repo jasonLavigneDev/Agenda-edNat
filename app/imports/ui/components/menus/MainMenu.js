@@ -10,7 +10,6 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import PropTypes from 'prop-types';
-import AppVersion from '../system/AppVersion';
 import LogoutDialog from '../system/LogoutDialog';
 import UserAvatar from '../system/UserAvatar';
 import LanguageSwitcher from '../system/LanguageSwitcher';
@@ -147,8 +146,8 @@ const MainMenu = ({ user = {} }) => {
           <T>menuLogoutLabel</T>
         </MenuItem>
         <Divider />
-        <MenuItem>
-          <AppVersion />
+        <MenuItem onClick={() => handleMenuClick('/about')}>
+          <T>menuAboutLabel</T>
         </MenuItem>
       </Menu>
       <LanguageSwitcher topbar />
