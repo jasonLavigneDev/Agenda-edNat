@@ -153,16 +153,16 @@
   "eventType": {
     "type": "Type",
     "rdv": "rendez-vous",
-    "prefere": "préféré",
-    "project": "projet",
-    "problems": "problème",
-    "suivi": "suivis",
-    "perso": "personel",
-    "meeting": "réunion",
+    "préférés": "préféré",
+    "projets": "projet",
+    "problèmes": "problème",
+    "suivis": "suivis",
+    "personnel": "personel",
+    "réunion": "réunion",
     "divers": "divers",
     "ferie": "jour férié",
-    "call": "appels",
-    "conge": "congés"
+    "appels": "appels",
+    "congés": "congés"
   },
   "SimpleSchema": {
     "required": "{$label} est requis",
