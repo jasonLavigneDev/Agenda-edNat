@@ -151,7 +151,7 @@ export const importICSToAgenda = (eFiles, setImporting) => {
             allDayImport = true;
           }
           const title = ev.summary;
-          const eventType = ev.categories?.[0] || 'rdv';
+          const eventType = ev.categories?.[0]?.toLowerCase() || 'rdv';
           const { location } = ev;
           // eslint-disable-next-line prefer-destructuring
           const description = ev.description;

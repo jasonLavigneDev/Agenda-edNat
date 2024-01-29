@@ -1,15 +1,14 @@
 const EVENTS_COLOR = {
   rdv: '#3788D8',
-  prefere: '#00bcd4',
-  project: '#4caf50',
-  problems: '#009688',
-  suivi: '#cddc39',
-  perso: '#A8470A',
-  meeting: '#DB9F53',
+  préférés: '#00bcd4',
+  projets: '#4caf50',
+  problèmes: '#009688',
+  suivis: '#cddc39',
+  personnel: '#A8470A',
+  réunion: '#DB9F53',
   divers: '#ff5722',
-  ferie: '#e91e63',
-  call: '#9c27b0',
-  conge: '#673ab7',
+  appels: '#9c27b0',
+  congés: '#673ab7',
 };
 
 export default EVENTS_COLOR;
