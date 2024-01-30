@@ -1,5 +1,45 @@
 # Changelog
 
+## [3.12.0](https://gitlab.mim-libre.fr/alphabet/agenda/compare/release/3.11.0...release/3.12.0) (2024-01-30)
+
+
+### Features
+
+* **doc:** change some orthographic errors ([f22d4d2](https://gitlab.mim-libre.fr/alphabet/agenda/commit/f22d4d2d2adb7c5ec65cfaa614dab48a3ef13cb4))
+* **doc:** fix remaining spelling errors ([1418d81](https://gitlab.mim-libre.fr/alphabet/agenda/commit/1418d81a1d6440623c8ffc592077674b9b481d3b))
+* **event:** add a category selector for events ([91bde23](https://gitlab.mim-libre.fr/alphabet/agenda/commit/91bde239d04936d09df6ec05b73c94bd170eddd2))
+* **event:** add trad and color to event type ([eb6b828](https://gitlab.mim-libre.fr/alphabet/agenda/commit/eb6b828f07032047cf43dda98173d193d69e2122))
+* **events:** add event duplicate feature ([3a8d392](https://gitlab.mim-libre.fr/alphabet/agenda/commit/3a8d3928aa31379fd88a116753faef6b1781833e))
+* **events:** allow create event in the past and sunday ([5437299](https://gitlab.mim-libre.fr/alphabet/agenda/commit/54372992b5e038cdd557c6310f27d91510b7aed3))
+* **events:** show event description on mouse hover ([47c4453](https://gitlab.mim-libre.fr/alphabet/agenda/commit/47c44536a59b36fdd4edd507e59e52db1be1b373))
+* **eventType:** add type to event for have colors ([22a6796](https://gitlab.mim-libre.fr/alphabet/agenda/commit/22a67965d46cabd623b1f89ccd62991b7b5431c7))
+* **faker:** update faker to new version ([02380b1](https://gitlab.mim-libre.fr/alphabet/agenda/commit/02380b129aab506e034cc44a1e86a80a9948fa12))
+* **ics:** add categories to import export ics cal ([1589251](https://gitlab.mim-libre.fr/alphabet/agenda/commit/1589251007bbd66185ebaf39615cc7f10e8e4671))
+* **import:** show spinner while importing ([cff63ab](https://gitlab.mim-libre.fr/alphabet/agenda/commit/cff63ab5615e1e822363b31526248175c9cc7b14))
+* **lib:** update libs to wanted version ([b56bb3c](https://gitlab.mim-libre.fr/alphabet/agenda/commit/b56bb3cb3d8cd551532204d05d215056bb27aab1))
+* **meteor:** update meteor and packages to 2.13.3 ([1b20c71](https://gitlab.mim-libre.fr/alphabet/agenda/commit/1b20c71c4b389eb553a335e3da7412312b2afa01))
+* **npm:** update outdated libs to wanted version ([11d4f74](https://gitlab.mim-libre.fr/alphabet/agenda/commit/11d4f74cd279539e405426053bbda482efccdd47))
+* **sinon:** update sinon librairie ([b70d944](https://gitlab.mim-libre.fr/alphabet/agenda/commit/b70d944d1ad7720681736c9ae598bdadbf180e44))
+* **toast:** delete unused lib react-toastify in app ([df99054](https://gitlab.mim-libre.fr/alphabet/agenda/commit/df99054e9509fc091865fa51cba372f3020a9e54))
+
+
+### Bug Fixes
+
+* **event:** delete errors front ([675ac03](https://gitlab.mim-libre.fr/alphabet/agenda/commit/675ac0357b8ff401df23c08572e14ea883c0bd33))
+* **event:** first fix for meteor test ([5d5ee9c](https://gitlab.mim-libre.fr/alphabet/agenda/commit/5d5ee9c9b176b705f728ea03974d284c94006117))
+* **event:** hotfix categorie color at ics import ([33059a9](https://gitlab.mim-libre.fr/alphabet/agenda/commit/33059a981ee3158a9278de0af6647279cd83b6c5))
+* **eventTest:** add eventType to factory for unit test ([d31349d](https://gitlab.mim-libre.fr/alphabet/agenda/commit/d31349d5fc35c2957cb6356f7a76b425e0125548))
+* **eventtype:** add translation and change select label ([822f84b](https://gitlab.mim-libre.fr/alphabet/agenda/commit/822f84b16204798255ffbc7728eb188fea2e2399))
+* **eventtype:** don't store translated event type in database ([4c2240b](https://gitlab.mim-libre.fr/alphabet/agenda/commit/4c2240b4114cd9bcbe171b537d9de864e18ced34))
+* **eventtype:** fix default value for event type selector ([49d87e7](https://gitlab.mim-libre.fr/alphabet/agenda/commit/49d87e7fc89a4de5f74c2372855534a487fa19ea))
+* **exportics:** add default value to rdv if no category ([69f6a2d](https://gitlab.mim-libre.fr/alphabet/agenda/commit/69f6a2d6d0d5f63619a8fdedd4290ec242ed01d7))
+* **faker:** fix syntax errors in faker ([3155054](https://gitlab.mim-libre.fr/alphabet/agenda/commit/31550545835bd0045e5e424464405c2156ec153f))
+* **form:** fix eventType not updated ([9adc127](https://gitlab.mim-libre.fr/alphabet/agenda/commit/9adc1275475d3551b9e957d1660617dcbddd873b))
+* **import:** add importEvent method to import events at once ([75dc28a](https://gitlab.mim-libre.fr/alphabet/agenda/commit/75dc28aea521ac9fcdd6648edcf43fa162e482b7))
+* **import:** make import export functional ([4d35308](https://gitlab.mim-libre.fr/alphabet/agenda/commit/4d35308e2cef8e66f65d8dec1d116d7a39a8c231))
+* **import:** refactor import method to improve performance ([285f1cb](https://gitlab.mim-libre.fr/alphabet/agenda/commit/285f1cb729df9f90d5a982c88a783e7c736229e4))
+* **jsx:** fix JSX warnings by adding missing key attributes ([de509e0](https://gitlab.mim-libre.fr/alphabet/agenda/commit/de509e0c2d5d5538136afe2c7a0eb2b8aa058015))
+
 ## [3.11.0](https://gitlab.mim-libre.fr/alphabet/agenda/compare/release/3.10.0...release/3.11.0) (2023-11-07)
 
 
