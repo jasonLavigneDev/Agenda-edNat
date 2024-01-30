@@ -4,7 +4,7 @@ import i18n from 'meteor/universe:i18n';
 import moment from 'moment';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { editEvent, deleteEvent } from '../../api/events/methods';
+import { editEvent, createEvent, deleteEvent } from '../../api/events/methods';
 import { useObjectState } from '../../api/utils/hooks';
 import Groups from '../../api/groups/groups';
 
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const EditEvent = ({ history, match: { params } }) => {
+const EditEvent = ({ history, match: { params }, copyMode }) => {
   const goHome = () => history.push(ROUTES.HOME);
   const classes = useStyles();
   const [state, setState] = useObjectState(initialState);
@@ -135,6 +135,13 @@ const EditEvent = ({ history, match: { params } }) => {
         });
       }
 
+      if (copyMode) {
+        // if duplicating an event, reset all participants status (except organizer)
+        allParticipants = allParticipants.map((part) => {
+          return part._id === organizerId ? part : { ...part, status: 1 };
+        });
+      }
+
       const data = {
         ...rest,
         groups,
@@ -149,12 +156,13 @@ const EditEvent = ({ history, match: { params } }) => {
           ? moment.utc(`${endDate} 00:00`).add(1, 'days').format()
           : moment(`${endDate} ${endTime}`).format(),
       };
-      editEvent.call({ data }, (error) => {
+      const callMethod = copyMode ? createEvent : editEvent;
+      callMethod.call({ data }, (error) => {
         setLoading(false);
         if (error) {
           msg.error(error.reason || error.message);
         } else {
-          msg.success(i18n.__('pages.EditEvent.eventCreated'));
+          msg.success(i18n.__(copyMode ? 'pages.EditEvent.eventCopied' : 'pages.EditEvent.eventCreated'));
           history.push('/');
         }
       });
@@ -208,7 +216,8 @@ const EditEvent = ({ history, match: { params } }) => {
             props: { color: 'primary', disabled: !isValid },
             key: 'third',
           },
-        ]}
+          // delete button is not available in event copy mode
+        ].filter((button) => copyMode === false || button.key !== 'first')}
       >
         {loading ? (
           <Spinner inside />
@@ -229,4 +238,5 @@ export default EditEvent;
 EditEvent.propTypes = {
   history: PropTypes.objectOf(PropTypes.any).isRequired,
   match: PropTypes.objectOf(PropTypes.any).isRequired,
+  copyMode: PropTypes.bool.isRequired,
 };

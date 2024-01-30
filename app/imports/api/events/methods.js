@@ -19,6 +19,30 @@ export const validateEvent = (data) => {
   data.participants.forEach((participant) => validateString(participant.email));
 };
 
+export const _createEvent = (data) => {
+  validateEvent(data);
+  const result = Events.insert(data);
+  if (result && Meteor.isServer && !Meteor.isTest) {
+    // eslint-disable-next-line global-require
+    const sendnotif = require('../notifications/server/notifSender').default;
+    // eslint-disable-next-line global-require
+    const sendEmail = require('../emails/server/methods').default;
+    if (data.participants && data.participants.filter((p) => p._id !== this.userId).length) {
+      sendnotif({
+        groups: data.groups,
+        participants: data.participants.filter((p) => p._id !== this.userId),
+        title: i18n.__('notifications.newMeetingEvent'),
+        content: `${i18n.__('notifications.youAreInvitedTo')} ${data.title}`,
+        eventId: result,
+      });
+    }
+    if (data.guests && data.guests.length) {
+      sendEmail(data, this.userId);
+    }
+  }
+  return result;
+};
+
 export const createEvent = new ValidatedMethod({
   name: 'events.create',
   validate: new SimpleSchema({
@@ -30,27 +54,7 @@ export const createEvent = new ValidatedMethod({
       if (!isActive(this.userId)) {
         throw new Meteor.Error('api.events.create.notLoggedIn', i18n.__('api.users.notLoggedIn'));
       }
-      validateEvent(data);
-      const result = Events.insert(data);
-      if (result && Meteor.isServer && !Meteor.isTest) {
-        // eslint-disable-next-line global-require
-        const sendnotif = require('../notifications/server/notifSender').default;
-        // eslint-disable-next-line global-require
-        const sendEmail = require('../emails/server/methods').default;
-        if (data.participants && data.participants.filter((p) => p._id !== this.userId).length) {
-          sendnotif({
-            groups: data.groups,
-            participants: data.participants.filter((p) => p._id !== this.userId),
-            title: i18n.__('notifications.newMeetingEvent'),
-            content: `${i18n.__('notifications.youAreInvitedTo')} ${data.title}`,
-            eventId: result,
-          });
-        }
-        if (data.guests && data.guests.length) {
-          sendEmail(data, this.userId);
-        }
-      }
-      return result;
+      _createEvent(data);
     } catch (error) {
       throw new Meteor.Error(error.code, error.message);
     }

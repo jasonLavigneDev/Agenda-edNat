@@ -41,7 +41,7 @@ const sendEmail = (event, userId) => {
       return Email.send({
         to: guest,
         from: Meteor.settings.private.smtp.fromEmail,
-        subject: `Laboite - Agenda - Votre rdv du ${moment(event.start).format('L')}`,
+        subject: `LaBoite - Agenda - Votre rdv du ${moment(event.start).format('L')}`,
         icalEvent: cal.toString(),
         inReplyTo: Meteor.settings.private.smtp.toEmail,
         html,

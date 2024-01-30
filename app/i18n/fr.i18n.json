@@ -5,8 +5,8 @@
     "logout": "Déconnexion en cours"
   },
   "notifications": {
-    "newMeetingEvent": "Nouvel évenement sur l'agenda",
-    "youAreInvitedTo": "Vous avez été invité à participer à l'évenement"
+    "newMeetingEvent": "Nouvel évènement sur l'agenda",
+    "youAreInvitedTo": "Vous avez été invité à participer à l'évènement"
   },
   "api": {
     "appsettings": {
@@ -25,16 +25,18 @@
       "title": "Ajouter un évènement",
       "validateButton": "Valider",
       "closeButton": "Annuler",
-      "eventCreated": "Évenement créé avec succès",
+      "eventCreated": "Évènement créé avec succès",
       "needTitle": "Un titre est requis",
+      "needEventType": "Un type d'évènements est requis",
       "startDateMustBeAfterToday": "La date doit être après aujourd'hui",
-      "startMustBeAfterNow": "Le début de l'événement est déjà passé",
-      "endMustBeAfterBegin": "La fin de l'événement doit être après le début"
+      "startMustBeAfterNow": "Le début de l'évènement est déjà passé",
+      "endMustBeAfterBegin": "La fin de l'évènement doit être après le début"
     },
     "ReadEvent": {
-      "title": "Évenement",
+      "title": "Évènement",
       "closeButton": "Fermer",
       "editButton": "Éditer",
+      "copyButton": "Dupliquer",
       "cancelButton": "Annuler",
       "accept": "Accepter",
       "refuse": "Refuser",
@@ -51,8 +53,9 @@
       "validateButton": "Valider",
       "closeButton": "Annuler",
       "delete": "Supprimer",
-      "eventCreated": "Évenement modifié avec succès",
-      "eventDeleted": "Évenement supprimé avec succès"
+      "eventCreated": "Évènement modifié avec succès",
+      "eventCopied": "Évènement dupliqué avec succès",
+      "eventDeleted": "Évènement supprimé avec succès"
     },
     "FormEvent": {
       "eventTitle": "Titre",
@@ -71,7 +74,7 @@
       "allDay": "Journée entière",
       "searchUsers": "Entrez un email",
       "addAsAGuest": "Ajouter en tant qu'invité",
-      "recurrent": "Évenement régulier",
+      "recurrent": "Évènement régulier",
       "from": "A partir de",
       "to": "Jusqu'au",
       "day_0": "Dimanche",
@@ -81,9 +84,9 @@
       "day_4": "Jeudi",
       "day_5": "Vendredi",
       "day_6": "Samedi",
-      "daysOfWeek": "Jours de l'évenement",
+      "daysOfWeek": "Jours de l'évènement",
       "youCantRemoveToday": "Vous ne pouvez pas enlever aujourd'hui",
-      "searchUserHelp": "Recherchez un utilisateur de la boîte ou ajoutez un invité externe",
+      "searchUserHelp": "Recherchez un utilisateur de LaBoite ou ajoutez un invité externe",
       "endDateMustBeAfterStartDate": "La date de fin doit être après la date de début",
       "endTimeMustBeAfterStartTime": "L'heure de fin doit être après l'heure de début"
     },
@@ -100,7 +103,9 @@
       "importButton": "Import",
       "exportButton": "Export",
       "displayWeekendButton": "Week-Ends",
-      "cantMoveRecurrent": "Un évenement récurrent ne peut pas être déplacé"
+      "cantMoveRecurrent": "Un évènement récurrent ne peut pas être déplacé",
+      "eventsImported": "Évènements importés avec succès",
+      "importPending": "Import en cours..."
     },
     "Footer": {
       "legal": "Mentions légales",
@@ -115,7 +120,7 @@
     },
     "MainMenu": {
       "menuLogoutLabel": "Se déconnecter",
-      "menuAddEvent": "Ajouter événement",
+      "menuAddEvent": "Ajouter évènement",
       "copyCaldavUrl": "Mon URL Caldav",
       "successCopyCaldav": "Url copié avec succès"
     },
@@ -144,6 +149,20 @@
   "languages": {
     "en": "Anglais",
     "fr": "Français"
+  },
+  "eventType": {
+    "type": "Type",
+    "rdv": "rendez-vous",
+    "préférés": "préféré",
+    "projets": "projet",
+    "problèmes": "problème",
+    "suivis": "suivis",
+    "personnel": "personel",
+    "réunion": "réunion",
+    "divers": "divers",
+    "ferie": "jour férié",
+    "appels": "appels",
+    "congés": "congés"
   },
   "SimpleSchema": {
     "required": "{$label} est requis",

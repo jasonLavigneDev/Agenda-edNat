@@ -59,6 +59,7 @@ const ReadEvent = ({ history, match: { params } }) => {
   const [{ userId }] = useAppContext();
   const goHome = () => history.push(ROUTES.HOME);
   const goEdit = () => history.push(ROUTES.EVENT_EDIT_MAKE(params._id));
+  const goCopy = () => history.push(ROUTES.EVENT_COPY_MAKE(params._id));
   const [state, setState] = useObjectState({});
   const [loading, setLoading] = useState(false);
 
@@ -106,6 +107,10 @@ const ReadEvent = ({ history, match: { params } }) => {
     {
       label: i18n.__('pages.FormEvent.daysOfWeek'),
       value: state.daysOfWeek ? state.daysOfWeek.map((d) => i18n.__(`pages.FormEvent.day_${d}`)).join(', ') : null,
+    },
+    {
+      label: 'event type',
+      value: state.eventType,
     },
     { label: i18n.__('pages.FormEvent.description'), value: descriptionWithLinks(state.description), width: 12 },
   ];
@@ -171,6 +176,12 @@ const ReadEvent = ({ history, match: { params } }) => {
             props: { color: 'primary' },
             key: 'third',
           },
+          {
+            text: i18n.__('pages.ReadEvent.copyButton'),
+            onClick: goCopy,
+            props: { color: 'primary' },
+            key: 'fourth',
+          },
         ]}
       >
         {loading ? (
@@ -190,7 +201,6 @@ const ReadEvent = ({ history, match: { params } }) => {
                 </Grid>
               ) : null,
             )}
-
             {!!state.groups && !!state.groups.length && (
               <>
                 <Grid item md={12} xs={12}>

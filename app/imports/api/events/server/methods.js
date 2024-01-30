@@ -7,6 +7,7 @@ import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import i18n from 'meteor/universe:i18n';
 
 import { isActive } from '../../utils/functions';
+import { _createEvent } from '../methods';
 import Events from '../events';
 
 export const getEvent = new ValidatedMethod({
@@ -27,8 +28,30 @@ export const getEvent = new ValidatedMethod({
   },
 });
 
+export const importEvents = new ValidatedMethod({
+  name: 'events.import',
+  // data will be validated on the fly in the run method because
+  // validating all data at once here was taking a looooot of time
+  validate: null,
+
+  run({ data }) {
+    try {
+      if (!isActive(this.userId)) {
+        throw new Meteor.Error('api.events.import.notLoggedIn', i18n.__('api.users.notLoggedIn'));
+      }
+      const evtSchema = Events.schema.omit('createdAt', 'updatedAt', 'userId', '_id');
+      data.forEach((event) => {
+        const validatedEvent = evtSchema.clean(event);
+        _createEvent(validatedEvent);
+      });
+    } catch (error) {
+      throw new Meteor.Error(error.code, error.message);
+    }
+  },
+});
+
 // Get list of all method names on User
-const LISTS_METHODS = _.pluck([getEvent], 'name');
+const LISTS_METHODS = _.pluck([getEvent, importEvents], 'name');
 
 if (Meteor.isServer) {
   // Only allow 5 list operations per connection per second
