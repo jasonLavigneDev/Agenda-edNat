@@ -21,6 +21,31 @@
     }
   },
   "pages": {
+    "AboutPage": {
+      "developped": "Agenda est un service de LaBoite sous licence",
+      "socle": "faisant partie du socle",
+      "by": "Réalisation du",
+      "and": "du",
+      "contributions": "en partenariat avec la",
+      "external": "et des contributeurs externes.",
+      "links": "Vous pouvez consulter la",
+      "exchange": "Vous pouvez échanger avec nous sur le",
+      "chat": "chat Mim-libre",
+      "news": "Retrouvez les dernières informations du pôle sur ",
+      "contributing": "Envie de participer à l'amélioration du portail ? Retouvez le projet sur la",
+      "deposit": "forge Mim-libre",
+      "information": "Informations de dépannage",
+      "Modal": {
+        "information": "Vos informations",
+        "navigator": "Navigateur :",
+        "version": "Version :",
+        "os": "Os :",
+        "device": "Appareil :",
+        "close": "Fermer",
+        "copy": "Copier les informations",
+        "success": "Informations copié avec succès"
+      }
+    },
     "AddEvent": {
       "title": "Ajouter un évènement",
       "validateButton": "Valider",
@@ -122,7 +147,8 @@
       "menuLogoutLabel": "Se déconnecter",
       "menuAddEvent": "Ajouter évènement",
       "copyCaldavUrl": "Mon URL Caldav",
-      "successCopyCaldav": "Url copié avec succès"
+      "successCopyCaldav": "Url copié avec succès",
+      "menuAboutLabel": "À propos"
     },
     "AppVersion": {
       "title": "Version"
