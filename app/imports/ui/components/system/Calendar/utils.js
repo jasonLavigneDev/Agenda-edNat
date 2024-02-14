@@ -20,10 +20,12 @@ export const CUSTOM_BUTTONS = ({ importFunc, exportFunc, weekendFunc }) => ({
   import: {
     text: i18n.__('components.Calendar.importButton'),
     click: importFunc,
+    hint: i18n.__('components.Calendar.importButtonTooltip'),
   },
   export: {
     text: i18n.__('components.Calendar.exportButton'),
     click: exportFunc,
+    hint: i18n.__('components.Calendar.exportButtonTooltip'),
   },
   displayWeekEnds: {
     text: i18n.__('components.Calendar.displayWeekendButton'),
